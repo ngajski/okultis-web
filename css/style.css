@@ -425,6 +425,26 @@ ul  { list-style: none; }
 .form__status--success { color: #00e676; }
 .form__status--error   { color: #ff4d6a; }
 
+.form__recaptcha-notice {
+  margin-top: 16px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.form__recaptcha-notice a {
+  color: var(--text-muted);
+  text-decoration: underline;
+  transition: color var(--transition);
+}
+
+.form__recaptcha-notice a:hover {
+  color: var(--text);
+}
+
+/* --- reCAPTCHA badge --- */
+.grecaptcha-badge { visibility: hidden; }
+
 /* --- Footer --- */
 .footer {
   border-top: 1px solid var(--border);

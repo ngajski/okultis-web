@@ -16,15 +16,6 @@
   <!-- Favicon -->
   <link rel="icon" type="image/webp" href="assets/images/logo/okultis-o-square.webp">
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4X89M6MWM9"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-4X89M6MWM9');
-  </script>
-
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -203,7 +194,18 @@
     </div>
   </footer>
 
-  <script src="https://www.google.com/recaptcha/api.js?render=6LcaSnEsAAAAAA_EtV9FJjCfZ8fLeyLsnF9GeElo"></script>
+  <!-- ===== COOKIE CONSENT ===== -->
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="container cookie-banner__inner">
+      <p class="cookie-banner__text">We use cookies for analytics and spam protection. Read our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+      <div class="cookie-banner__actions">
+        <button class="btn btn--primary btn--sm" id="cookieAccept">Accept</button>
+        <button class="btn btn--outline btn--sm" id="cookieReject">Reject</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/cookies.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

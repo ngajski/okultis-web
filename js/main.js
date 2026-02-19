@@ -144,17 +144,14 @@
     formStatus.textContent = '';
     formStatus.className = 'form__status';
 
-    grecaptcha.ready(function () {
-      grecaptcha.execute('6LcaSnEsAAAAAA_EtV9FJjCfZ8fLeyLsnF9GeElo', { action: 'contact' })
-        .then(function (token) {
-          var formData = new FormData(form);
-          formData.append('g-recaptcha-response', token);
+    function sendForm(token) {
+      var formData = new FormData(form);
+      if (token) formData.append('g-recaptcha-response', token);
 
-          return fetch('send.php', {
-            method: 'POST',
-            body: formData,
-          });
-        })
+      fetch('send.php', {
+        method: 'POST',
+        body: formData,
+      })
         .then(function (res) { return res.json(); })
         .then(function (data) {
           if (data.success) {
@@ -174,7 +171,16 @@
           submitBtn.disabled = false;
           submitBtn.textContent = 'Send message';
         });
-    });
+    }
+
+    if (typeof grecaptcha !== 'undefined') {
+      grecaptcha.ready(function () {
+        grecaptcha.execute('6LcaSnEsAAAAAA_EtV9FJjCfZ8fLeyLsnF9GeElo', { action: 'contact' })
+          .then(function (token) { sendForm(token); });
+      });
+    } else {
+      sendForm(null);
+    }
   });
 
   // Clear validation on input

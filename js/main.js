@@ -94,101 +94,103 @@
   });
 
   // --- Contact form ---
-  function validateField(input, errorEl, message) {
-    if (!input.value.trim()) {
-      input.classList.add('is-invalid');
-      errorEl.textContent = message;
-      return false;
+  if (form) {
+    function validateField(input, errorEl, message) {
+      if (!input.value.trim()) {
+        input.classList.add('is-invalid');
+        errorEl.textContent = message;
+        return false;
+      }
+      input.classList.remove('is-invalid');
+      errorEl.textContent = '';
+      return true;
     }
-    input.classList.remove('is-invalid');
-    errorEl.textContent = '';
-    return true;
-  }
 
-  function validateEmail(input, errorEl) {
-    if (!input.value.trim()) {
-      input.classList.add('is-invalid');
-      errorEl.textContent = 'Email is required.';
-      return false;
+    function validateEmail(input, errorEl) {
+      if (!input.value.trim()) {
+        input.classList.add('is-invalid');
+        errorEl.textContent = 'Email is required.';
+        return false;
+      }
+      var pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!pattern.test(input.value.trim())) {
+        input.classList.add('is-invalid');
+        errorEl.textContent = 'Please enter a valid email.';
+        return false;
+      }
+      input.classList.remove('is-invalid');
+      errorEl.textContent = '';
+      return true;
     }
-    var pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!pattern.test(input.value.trim())) {
-      input.classList.add('is-invalid');
-      errorEl.textContent = 'Please enter a valid email.';
-      return false;
-    }
-    input.classList.remove('is-invalid');
-    errorEl.textContent = '';
-    return true;
-  }
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
 
-    var nameInput    = document.getElementById('name');
-    var emailInput   = document.getElementById('email');
-    var messageInput = document.getElementById('message');
-    var nameError    = document.getElementById('nameError');
-    var emailError   = document.getElementById('emailError');
-    var messageError = document.getElementById('messageError');
+      var nameInput    = document.getElementById('name');
+      var emailInput   = document.getElementById('email');
+      var messageInput = document.getElementById('message');
+      var nameError    = document.getElementById('nameError');
+      var emailError   = document.getElementById('emailError');
+      var messageError = document.getElementById('messageError');
 
-    var v1 = validateField(nameInput, nameError, 'Name is required.');
-    var v2 = validateEmail(emailInput, emailError);
-    var v3 = validateField(messageInput, messageError, 'Message is required.');
+      var v1 = validateField(nameInput, nameError, 'Name is required.');
+      var v2 = validateEmail(emailInput, emailError);
+      var v3 = validateField(messageInput, messageError, 'Message is required.');
 
-    if (!v1 || !v2 || !v3) return;
+      if (!v1 || !v2 || !v3) return;
 
-    // Submit via AJAX
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending…';
-    formStatus.textContent = '';
-    formStatus.className = 'form__status';
+      // Submit via AJAX
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+      formStatus.textContent = '';
+      formStatus.className = 'form__status';
 
-    function sendForm(token) {
-      var formData = new FormData(form);
-      if (token) formData.append('g-recaptcha-response', token);
+      function sendForm(token) {
+        var formData = new FormData(form);
+        if (token) formData.append('g-recaptcha-response', token);
 
-      fetch('send.php', {
-        method: 'POST',
-        body: formData,
-      })
-        .then(function (res) { return res.json(); })
-        .then(function (data) {
-          if (data.success) {
-            formStatus.textContent = data.message || 'Message sent! We\'ll be in touch soon.';
-            formStatus.classList.add('form__status--success');
-            form.reset();
-          } else {
-            formStatus.textContent = data.message || 'Something went wrong. Please try again.';
+        fetch('send.php', {
+          method: 'POST',
+          body: formData,
+        })
+          .then(function (res) { return res.json(); })
+          .then(function (data) {
+            if (data.success) {
+              formStatus.textContent = data.message || 'Message sent! We\'ll be in touch soon.';
+              formStatus.classList.add('form__status--success');
+              form.reset();
+            } else {
+              formStatus.textContent = data.message || 'Something went wrong. Please try again.';
+              formStatus.classList.add('form__status--error');
+            }
+          })
+          .catch(function () {
+            formStatus.textContent = 'Network error. Please try again later.';
             formStatus.classList.add('form__status--error');
-          }
-        })
-        .catch(function () {
-          formStatus.textContent = 'Network error. Please try again later.';
-          formStatus.classList.add('form__status--error');
-        })
-        .finally(function () {
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Send message';
+          })
+          .finally(function () {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send message';
+          });
+      }
+
+      if (typeof grecaptcha !== 'undefined') {
+        grecaptcha.ready(function () {
+          grecaptcha.execute('6LcaSnEsAAAAAA_EtV9FJjCfZ8fLeyLsnF9GeElo', { action: 'contact' })
+            .then(function (token) { sendForm(token); });
         });
-    }
-
-    if (typeof grecaptcha !== 'undefined') {
-      grecaptcha.ready(function () {
-        grecaptcha.execute('6LcaSnEsAAAAAA_EtV9FJjCfZ8fLeyLsnF9GeElo', { action: 'contact' })
-          .then(function (token) { sendForm(token); });
-      });
-    } else {
-      sendForm(null);
-    }
-  });
-
-  // Clear validation on input
-  document.querySelectorAll('.form__input').forEach(function (input) {
-    input.addEventListener('input', function () {
-      this.classList.remove('is-invalid');
-      var errorEl = this.parentElement.querySelector('.form__error');
-      if (errorEl) errorEl.textContent = '';
+      } else {
+        sendForm(null);
+      }
     });
-  });
+
+    // Clear validation on input
+    document.querySelectorAll('.form__input').forEach(function (input) {
+      input.addEventListener('input', function () {
+        this.classList.remove('is-invalid');
+        var errorEl = this.parentElement.querySelector('.form__error');
+        if (errorEl) errorEl.textContent = '';
+      });
+    });
+  }
 })();

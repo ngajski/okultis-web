@@ -144,31 +144,37 @@
     formStatus.textContent = '';
     formStatus.className = 'form__status';
 
-    var formData = new FormData(form);
+    grecaptcha.ready(function () {
+      grecaptcha.execute('6LcaSnEsAAAAAA_EtV9FJjCfZ8fLeyLsnF9GeElo', { action: 'contact' })
+        .then(function (token) {
+          var formData = new FormData(form);
+          formData.append('g-recaptcha-response', token);
 
-    fetch('send.php', {
-      method: 'POST',
-      body: formData,
-    })
-      .then(function (res) { return res.json(); })
-      .then(function (data) {
-        if (data.success) {
-          formStatus.textContent = data.message || 'Message sent! We\'ll be in touch soon.';
-          formStatus.classList.add('form__status--success');
-          form.reset();
-        } else {
-          formStatus.textContent = data.message || 'Something went wrong. Please try again.';
+          return fetch('send.php', {
+            method: 'POST',
+            body: formData,
+          });
+        })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          if (data.success) {
+            formStatus.textContent = data.message || 'Message sent! We\'ll be in touch soon.';
+            formStatus.classList.add('form__status--success');
+            form.reset();
+          } else {
+            formStatus.textContent = data.message || 'Something went wrong. Please try again.';
+            formStatus.classList.add('form__status--error');
+          }
+        })
+        .catch(function () {
+          formStatus.textContent = 'Network error. Please try again later.';
           formStatus.classList.add('form__status--error');
-        }
-      })
-      .catch(function () {
-        formStatus.textContent = 'Network error. Please try again later.';
-        formStatus.classList.add('form__status--error');
-      })
-      .finally(function () {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Send message';
-      });
+        })
+        .finally(function () {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send message';
+        });
+    });
   });
 
   // Clear validation on input

@@ -43,6 +43,40 @@ if (!empty($errors)) {
     exit;
 }
 
+// reCAPTCHA v3 verification
+$recaptchaToken = $_POST['g-recaptcha-response'] ?? '';
+
+if ($recaptchaToken === '') {
+    http_response_code(422);
+    echo json_encode(['success' => false, 'message' => 'reCAPTCHA verification failed. Please try again.']);
+    exit;
+}
+
+$recaptchaSecret = '6LcaSnEsAAAAAL67h51SWKVHCkzPSHJy4jGDtXtV';
+$recaptchaUrl = 'https://www.google.com/recaptcha/api/siteverify';
+$recaptchaData = http_build_query([
+    'secret'   => $recaptchaSecret,
+    'response' => $recaptchaToken,
+    'remoteip' => $_SERVER['REMOTE_ADDR'] ?? '',
+]);
+
+$recaptchaContext = stream_context_create([
+    'http' => [
+        'method'  => 'POST',
+        'header'  => 'Content-Type: application/x-www-form-urlencoded',
+        'content' => $recaptchaData,
+    ],
+]);
+
+$recaptchaResult = file_get_contents($recaptchaUrl, false, $recaptchaContext);
+$recaptchaJson = json_decode($recaptchaResult, true);
+
+if (!$recaptchaJson || empty($recaptchaJson['success']) || ($recaptchaJson['score'] ?? 0) < 0.5) {
+    http_response_code(403);
+    echo json_encode(['success' => false, 'message' => 'reCAPTCHA verification failed. Please try again.']);
+    exit;
+}
+
 // Prepare email
 $to      = 'info@okultis.com';
 $subject = 'New contact from okultis.com: ' . mb_substr($name, 0, 50);

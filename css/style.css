@@ -102,13 +102,11 @@ ul  { list-style: none; }
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
 }
 
-.logo__text {
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+.logo__img {
+  height: 32px;
+  width: auto;
 }
 
 /* Nav */

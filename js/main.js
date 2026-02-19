@@ -14,17 +14,11 @@
   const submitBtn  = document.getElementById('submitBtn');
   const formStatus = document.getElementById('formStatus');
 
-  // Create overlay element for mobile nav
-  const overlay = document.createElement('div');
-  overlay.classList.add('nav-overlay');
-  document.body.appendChild(overlay);
-
   // --- Mobile menu toggle ---
   function openMenu() {
     hamburger.classList.add('is-active');
     hamburger.setAttribute('aria-expanded', 'true');
     nav.classList.add('is-open');
-    overlay.classList.add('is-visible');
     document.body.style.overflow = 'hidden';
   }
 
@@ -32,7 +26,6 @@
     hamburger.classList.remove('is-active');
     hamburger.setAttribute('aria-expanded', 'false');
     nav.classList.remove('is-open');
-    overlay.classList.remove('is-visible');
     document.body.style.overflow = '';
   }
 
@@ -40,7 +33,10 @@
     nav.classList.contains('is-open') ? closeMenu() : openMenu();
   });
 
-  overlay.addEventListener('click', closeMenu);
+  // Close menu when clicking the background (not a link)
+  nav.addEventListener('click', function (e) {
+    if (e.target === nav) closeMenu();
+  });
 
   // Close menu when a nav link is clicked
   navLinks.forEach(function (link) {

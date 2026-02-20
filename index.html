@@ -1,211 +1,469 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Okultis - From Fiction to Reality</title>
-  <meta name="description" content="Okultis delivers software development, UX/UI design, digital transformation, and IT consulting to turn your boldest ideas into reality.">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Okultis - From Fiction to Reality</title>
+    <meta
+      name="description"
+      content="Okultis delivers software development, UX/UI design, digital transformation, and IT consulting to turn your boldest ideas into reality."
+    />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Okultis - From Fiction to Reality">
-  <meta property="og:description" content="Software development, UX/UI design, digital transformation, and IT consulting.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://okultis.com">
-  <meta property="og:image" content="https://okultis.com/assets/images/logo/okultis-software-systems-vertical.webp">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Okultis - From Fiction to Reality" />
+    <meta
+      property="og:description"
+      content="Software development, UX/UI design, digital transformation, and IT consulting."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://okultis.com" />
+    <meta
+      property="og:image"
+      content="https://okultis.com/assets/images/logo/okultis-software-systems-vertical.webp"
+    />
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/webp" href="assets/images/logo/okultis-o-square.webp">
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/webp"
+      href="assets/images/logo/okultis-o-square.webp"
+    />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- ===== HEADER / NAV ===== -->
+    <header class="header" id="header">
+      <div class="container header__inner">
+        <a href="#hero" class="logo">
+          <img
+            src="assets/images/logo/okultis.png"
+            alt="Okultis"
+            class="logo__img"
+          />
+        </a>
 
-  <!-- ===== HEADER / NAV ===== -->
-  <header class="header" id="header">
-    <div class="container header__inner">
-      <a href="#hero" class="logo">
-        <img src="assets/images/logo/okultis.png" alt="Okultis" class="logo__img">
-      </a>
+        <nav class="nav" id="nav">
+          <ul class="nav__list">
+            <li><a href="#hero" class="nav__link">Home</a></li>
+            <li><a href="#about" class="nav__link">About</a></li>
+            <li><a href="#services" class="nav__link">Services</a></li>
+            <li><a href="#clients" class="nav__link">Clients</a></li>
+            <li>
+              <a href="contact.html" class="nav__link nav__link--cta">Contact</a>
+            </li>
+          </ul>
+        </nav>
 
-      <nav class="nav" id="nav">
-        <ul class="nav__list">
-          <li><a href="#hero" class="nav__link">Home</a></li>
-          <li><a href="#about" class="nav__link">About</a></li>
-          <li><a href="#services" class="nav__link">Services</a></li>
-          <li><a href="#clients" class="nav__link">Clients</a></li>
-          <li><a href="#contact" class="nav__link nav__link--cta">Contact</a></li>
-        </ul>
-      </nav>
-
-      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
-        <span class="hamburger__line"></span>
-        <span class="hamburger__line"></span>
-        <span class="hamburger__line"></span>
-      </button>
-    </div>
-  </header>
-
-  <!-- ===== HERO ===== -->
-  <section class="hero" id="hero">
-    <div class="container hero__inner">
-      <h1 class="hero__title">From fiction…<br><span class="accent">to reality.</span></h1>
-      <p class="hero__subtitle">We build software, design experiences, and transform businesses - so your boldest ideas become real products.</p>
-      <a href="#contact" class="btn btn--primary">Get in touch</a>
-    </div>
-  </section>
-
-  <!-- ===== ABOUT ===== -->
-  <section class="section about" id="about">
-    <div class="container">
-      <h2 class="section__title">Who we are</h2>
-      <div class="about__content">
-        <p>Okultis is a digital studio that partners with startups and established companies to ship software that matters. From first concept to live product, we handle the full spectrum - code, design, strategy, and infrastructure.</p>
-        <p>Based in Croatia and working globally, our team blends engineering precision with creative thinking to deliver solutions that look great and perform even better.</p>
+        <button
+          class="hamburger"
+          id="hamburger"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          <span class="hamburger__line"></span>
+          <span class="hamburger__line"></span>
+          <span class="hamburger__line"></span>
+        </button>
       </div>
-    </div>
-  </section>
+    </header>
 
-  <!-- ===== SERVICES ===== -->
-  <section class="section services" id="services">
-    <div class="container">
-      <h2 class="section__title">What we do</h2>
-      <div class="services__grid">
-
-        <div class="card">
-          <div class="card__icon">
-            <svg viewBox="0 0 48 48" width="48" height="48" fill="none"><rect x="6" y="10" width="36" height="24" rx="3" stroke="#00d4ff" stroke-width="2.5"/><path d="M16 38h16" stroke="#00d4ff" stroke-width="2.5" stroke-linecap="round"/><path d="M24 34v4" stroke="#00d4ff" stroke-width="2.5" stroke-linecap="round"/><path d="M16 18l4 4-4 4" stroke="#00d4ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 26h8" stroke="#00d4ff" stroke-width="2.5" stroke-linecap="round"/></svg>
-          </div>
-          <h3 class="card__title">Software Development</h3>
-          <p class="card__text">Custom web and mobile applications built with modern stacks. From MVPs to full-scale platforms - clean code, solid architecture, reliable delivery.</p>
-        </div>
-
-        <div class="card">
-          <div class="card__icon">
-            <svg viewBox="0 0 48 48" width="48" height="48" fill="none"><rect x="8" y="6" width="32" height="36" rx="3" stroke="#00d4ff" stroke-width="2.5"/><circle cx="24" cy="18" r="5" stroke="#00d4ff" stroke-width="2.5"/><path d="M14 32h20M14 36h12" stroke="#00d4ff" stroke-width="2.5" stroke-linecap="round"/></svg>
-          </div>
-          <h3 class="card__title">UX &amp; UI Design</h3>
-          <p class="card__text">Research-driven interfaces that users love. Wireframes, prototypes, and polished design systems - beauty meets usability.</p>
-        </div>
-
-        <div class="card">
-          <div class="card__icon">
-            <svg viewBox="0 0 48 48" width="48" height="48" fill="none"><path d="M24 6v36" stroke="#00d4ff" stroke-width="2.5" stroke-linecap="round"/><path d="M12 18l12-12 12 12" stroke="#00d4ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="30" r="5" stroke="#00d4ff" stroke-width="2.5"/><circle cx="36" cy="30" r="5" stroke="#00d4ff" stroke-width="2.5"/></svg>
-          </div>
-          <h3 class="card__title">Digital Transformation</h3>
-          <p class="card__text">Modernise workflows, migrate legacy systems, and adopt cloud-native tools. We help organisations move faster with less friction.</p>
-        </div>
-
-        <div class="card">
-          <div class="card__icon">
-            <svg viewBox="0 0 48 48" width="48" height="48" fill="none"><circle cx="24" cy="24" r="10" stroke="#00d4ff" stroke-width="2.5"/><circle cx="24" cy="24" r="3" fill="#00d4ff"/><path d="M24 14V8M24 40v-6M14 24H8M40 24h-6M16.34 16.34l-4.24-4.24M35.9 35.9l-4.24-4.24M16.34 31.66l-4.24 4.24M35.9 12.1l-4.24 4.24" stroke="#00d4ff" stroke-width="2.5" stroke-linecap="round"/></svg>
-          </div>
-          <h3 class="card__title">AI</h3>
-          <p class="card__text">From intelligent automation to custom models - we help you harness AI to streamline operations, unlock insights, and build smarter products.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CLIENTS ===== -->
-  <section class="section clients" id="clients">
-    <div class="container">
-      <h2 class="section__title">Trusted by</h2>
-      <div class="marquee">
-        <div class="marquee__track">
-          <!-- First set -->
-          <div class="marquee__item"><img src="assets/images/clients/kinana.webp" alt="Kinana"></div>
-          <div class="marquee__item"><img src="assets/images/clients/blooming.webp" alt="Blooming"></div>
-          <div class="marquee__item"><img src="assets/images/clients/posluz_ime.webp" alt="posluzi.me"></div>
-          <div class="marquee__item"><img src="assets/images/clients/bjuti.webp" alt="Bjuti"></div>
-          <div class="marquee__item"><img src="assets/images/clients/GreenSolutions.webp" alt="GreenSolutions"></div>
-          <div class="marquee__item"><img src="assets/images/clients/Aurora-Media-logo.webp" alt="Aurora Media"></div>
-          <div class="marquee__item"><img src="assets/images/clients/mb_autoskola.png" alt="MB Autoskola"></div>
-          <!-- Duplicate set for seamless loop -->
-          <div class="marquee__item"><img src="assets/images/clients/kinana.webp" alt="Kinana"></div>
-          <div class="marquee__item"><img src="assets/images/clients/blooming.webp" alt="Blooming"></div>
-          <div class="marquee__item"><img src="assets/images/clients/posluz_ime.webp" alt="posluzi.me"></div>
-          <div class="marquee__item"><img src="assets/images/clients/bjuti.webp" alt="Bjuti"></div>
-          <div class="marquee__item"><img src="assets/images/clients/GreenSolutions.webp" alt="GreenSolutions"></div>
-          <div class="marquee__item"><img src="assets/images/clients/Aurora-Media-logo.webp" alt="Aurora Media"></div>
-          <div class="marquee__item"><img src="assets/images/clients/mb_autoskola.png" alt="MB Autoskola"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CONTACT ===== -->
-  <section class="section contact" id="contact">
-    <div class="container">
-      <h2 class="section__title">Let's talk</h2>
-      <p class="contact__intro">Have a project in mind? Drop us a message and we'll get back to you within 24 hours.</p>
-
-      <form class="form" id="contactForm" action="send.php" method="POST" novalidate>
-        <!-- Honeypot -->
-        <div class="form__honeypot" aria-hidden="true">
-          <label for="website">Website</label>
-          <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
-        </div>
-
-        <div class="form__group">
-          <label for="name" class="form__label">Name</label>
-          <input type="text" name="name" id="name" class="form__input" required placeholder="Your name">
-          <span class="form__error" id="nameError"></span>
-        </div>
-
-        <div class="form__group">
-          <label for="email" class="form__label">Email</label>
-          <input type="email" name="email" id="email" class="form__input" required placeholder="you@example.com">
-          <span class="form__error" id="emailError"></span>
-        </div>
-
-        <div class="form__group">
-          <label for="message" class="form__label">Message</label>
-          <textarea name="message" id="message" class="form__input form__textarea" required placeholder="Tell us about your project…" rows="5"></textarea>
-          <span class="form__error" id="messageError"></span>
-        </div>
-
-        <button type="submit" class="btn btn--primary btn--full" id="submitBtn">Send message</button>
-        <div class="form__status" id="formStatus"></div>
-        <p class="form__recaptcha-notice">
-          Protected by reCAPTCHA · <a href="https://policies.google.com/privacy">Privacy</a> · <a href="https://policies.google.com/terms">Terms</a>
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
+      <div class="container hero__inner">
+        <h1 class="hero__title">
+          From fiction…<br /><span class="accent">to reality.</span>
+        </h1>
+        <p class="hero__subtitle">
+          We build software, design experiences, and transform businesses - so
+          your boldest ideas become real products.
         </p>
-      </form>
-    </div>
-  </section>
+        <a href="contact.html" class="btn btn--primary">Get in touch</a>
+      </div>
+    </section>
 
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer">
-    <div class="container footer__inner">
-      <p class="footer__copy">&copy; 2026 Okultis. All rights reserved.</p>
-      <ul class="footer__links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-        <li><a href="terms.html">Terms</a></li>
-      </ul>
-    </div>
-  </footer>
+    <!-- ===== ABOUT ===== -->
+    <section class="section about" id="about">
+      <div class="container">
+        <h2 class="section__title">Who we are</h2>
+        <div class="about__content">
+          <p>
+            Okultis is a digital studio that partners with startups and
+            established companies to ship software that matters. From first
+            concept to live product, we handle the full spectrum - code, design,
+            strategy, and infrastructure.
+          </p>
+          <p>
+            Based in Croatia and working globally, our team blends engineering
+            precision with creative thinking to deliver solutions that look
+            great and perform even better.
+          </p>
+        </div>
+      </div>
+    </section>
 
-  <!-- ===== COOKIE CONSENT ===== -->
-  <div class="cookie-banner" id="cookieBanner">
-    <div class="container cookie-banner__inner">
-      <p class="cookie-banner__text">We use cookies for analytics and spam protection. Read our <a href="privacy-policy.html">Privacy Policy</a>.</p>
-      <div class="cookie-banner__actions">
-        <button class="btn btn--primary btn--sm" id="cookieAccept">Accept</button>
-        <button class="btn btn--outline btn--sm" id="cookieReject">Reject</button>
+    <!-- ===== SERVICES ===== -->
+    <section class="section services" id="services">
+      <div class="container">
+        <h2 class="section__title">What we do</h2>
+        <div class="services__grid">
+          <div class="card">
+            <div class="card__icon">
+              <svg viewBox="0 0 48 48" width="48" height="48" fill="none">
+                <rect
+                  x="6"
+                  y="10"
+                  width="36"
+                  height="24"
+                  rx="3"
+                  stroke="#00d4ff"
+                  stroke-width="2.5"
+                />
+                <path
+                  d="M16 38h16"
+                  stroke="#00d4ff"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M24 34v4"
+                  stroke="#00d4ff"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M16 18l4 4-4 4"
+                  stroke="#00d4ff"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M24 26h8"
+                  stroke="#00d4ff"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+            <h3 class="card__title">Software Development</h3>
+            <p class="card__text">
+              Custom web and mobile applications built with modern stacks. From
+              MVPs to full-scale platforms - clean code, solid architecture,
+              reliable delivery.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card__icon">
+              <svg viewBox="0 0 48 48" width="48" height="48" fill="none">
+                <rect
+                  x="8"
+                  y="6"
+                  width="32"
+                  height="36"
+                  rx="3"
+                  stroke="#00d4ff"
+                  stroke-width="2.5"
+                />
+                <circle
+                  cx="24"
+                  cy="18"
+                  r="5"
+                  stroke="#00d4ff"
+                  stroke-width="2.5"
+                />
+                <path
+                  d="M14 32h20M14 36h12"
+                  stroke="#00d4ff"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+            <h3 class="card__title">UX &amp; UI Design</h3>
+            <p class="card__text">
+              Research-driven interfaces that users love. Wireframes,
+              prototypes, and polished design systems - beauty meets usability.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card__icon">
+              <svg viewBox="0 0 48 48" width="48" height="48" fill="none">
+                <path
+                  d="M24 6v36"
+                  stroke="#00d4ff"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M12 18l12-12 12 12"
+                  stroke="#00d4ff"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <circle
+                  cx="12"
+                  cy="30"
+                  r="5"
+                  stroke="#00d4ff"
+                  stroke-width="2.5"
+                />
+                <circle
+                  cx="36"
+                  cy="30"
+                  r="5"
+                  stroke="#00d4ff"
+                  stroke-width="2.5"
+                />
+              </svg>
+            </div>
+            <h3 class="card__title">Digital Transformation</h3>
+            <p class="card__text">
+              Modernise workflows, migrate legacy systems, and adopt
+              cloud-native tools. We help organisations move faster with less
+              friction.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card__icon">
+              <svg viewBox="0 0 48 48" width="48" height="48" fill="none">
+                <circle
+                  cx="24"
+                  cy="24"
+                  r="10"
+                  stroke="#00d4ff"
+                  stroke-width="2.5"
+                />
+                <circle cx="24" cy="24" r="3" fill="#00d4ff" />
+                <path
+                  d="M24 14V8M24 40v-6M14 24H8M40 24h-6M16.34 16.34l-4.24-4.24M35.9 35.9l-4.24-4.24M16.34 31.66l-4.24 4.24M35.9 12.1l-4.24 4.24"
+                  stroke="#00d4ff"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+            <h3 class="card__title">AI</h3>
+            <p class="card__text">
+              From intelligent automation to custom models - we help you harness
+              AI to streamline operations, unlock insights, and build smarter
+              products.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CLIENTS ===== -->
+    <section class="section clients" id="clients">
+      <div class="container">
+        <h2 class="section__title">Trusted by</h2>
+        <div class="marquee">
+          <div class="marquee__track">
+            <!-- First set -->
+            <div class="marquee__item">
+              <img src="assets/images/clients/kinana.webp" alt="Kinana" />
+            </div>
+            <div class="marquee__item">
+              <img src="assets/images/clients/blooming.webp" alt="Blooming" />
+            </div>
+            <div class="marquee__item">
+              <img
+                src="assets/images/clients/posluz_ime.webp"
+                alt="posluzi.me"
+              />
+            </div>
+            <div class="marquee__item">
+              <img src="assets/images/clients/bjuti.webp" alt="Bjuti" />
+            </div>
+            <div class="marquee__item">
+              <img
+                src="assets/images/clients/GreenSolutions.webp"
+                alt="GreenSolutions"
+              />
+            </div>
+            <div class="marquee__item">
+              <img
+                src="assets/images/clients/Aurora-Media-logo.webp"
+                alt="Aurora Media"
+              />
+            </div>
+            <div class="marquee__item">
+              <img
+                src="assets/images/clients/mb_autoskola.png"
+                alt="MB Autoskola"
+              />
+            </div>
+            <!-- Duplicate set for seamless loop -->
+            <div class="marquee__item">
+              <img src="assets/images/clients/kinana.webp" alt="Kinana" />
+            </div>
+            <div class="marquee__item">
+              <img src="assets/images/clients/blooming.webp" alt="Blooming" />
+            </div>
+            <div class="marquee__item">
+              <img
+                src="assets/images/clients/posluz_ime.webp"
+                alt="posluzi.me"
+              />
+            </div>
+            <div class="marquee__item">
+              <img src="assets/images/clients/bjuti.webp" alt="Bjuti" />
+            </div>
+            <div class="marquee__item">
+              <img
+                src="assets/images/clients/GreenSolutions.webp"
+                alt="GreenSolutions"
+              />
+            </div>
+            <div class="marquee__item">
+              <img
+                src="assets/images/clients/Aurora-Media-logo.webp"
+                alt="Aurora Media"
+              />
+            </div>
+            <div class="marquee__item">
+              <img
+                src="assets/images/clients/mb_autoskola.png"
+                alt="MB Autoskola"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="section contact" id="contact">
+      <div class="container">
+        <h2 class="section__title">Let's talk</h2>
+        <p class="contact__intro">
+          Have a project in mind? Drop us a message and we'll get back to you
+          within 24 hours.
+        </p>
+
+        <form
+          class="form"
+          id="contactForm"
+          action="send.php"
+          method="POST"
+          novalidate
+        >
+          <!-- Honeypot -->
+          <div class="form__honeypot" aria-hidden="true">
+            <label for="website">Website</label>
+            <input
+              type="text"
+              name="website"
+              id="website"
+              tabindex="-1"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="form__group">
+            <label for="name" class="form__label">Name</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              class="form__input"
+              required
+              placeholder="Your name"
+            />
+            <span class="form__error" id="nameError"></span>
+          </div>
+
+          <div class="form__group">
+            <label for="email" class="form__label">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              class="form__input"
+              required
+              placeholder="you@example.com"
+            />
+            <span class="form__error" id="emailError"></span>
+          </div>
+
+          <div class="form__group">
+            <label for="message" class="form__label">Message</label>
+            <textarea
+              name="message"
+              id="message"
+              class="form__input form__textarea"
+              required
+              placeholder="Tell us about your project…"
+              rows="5"
+            ></textarea>
+            <span class="form__error" id="messageError"></span>
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn--primary btn--full"
+            id="submitBtn"
+          >
+            Send message
+          </button>
+          <div class="form__status" id="formStatus"></div>
+          <p class="form__recaptcha-notice">
+            Protected by reCAPTCHA ·
+            <a href="https://policies.google.com/privacy">Privacy</a> ·
+            <a href="https://policies.google.com/terms">Terms</a>
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+      <div class="container footer__inner">
+        <p class="footer__copy">&copy; 2026 Okultis. All rights reserved.</p>
+        <ul class="footer__links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+        </ul>
+      </div>
+    </footer>
+
+    <!-- ===== COOKIE CONSENT ===== -->
+    <div class="cookie-banner" id="cookieBanner">
+      <div class="container cookie-banner__inner">
+        <p class="cookie-banner__text">
+          We use cookies for analytics and spam protection. Read our
+          <a href="privacy-policy.html">Privacy Policy</a>.
+        </p>
+        <div class="cookie-banner__actions">
+          <button class="btn btn--primary btn--sm" id="cookieAccept">
+            Accept
+          </button>
+          <button class="btn btn--outline btn--sm" id="cookieReject">
+            Reject
+          </button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <script src="js/cookies.js"></script>
-  <script src="js/main.js"></script>
-</body>
+    <script src="js/cookies.js"></script>
+    <script src="js/main.js"></script>
+  </body>
 </html>
+˜

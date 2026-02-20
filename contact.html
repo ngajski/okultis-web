@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Okultis</title>
+  <meta name="description" content="Get in touch with Okultis. Visit us at HUB 385, Zagreb or send us a message.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/webp" href="assets/images/logo/okultis-o-square.webp">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER / NAV ===== -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo">
+        <img src="assets/images/logo/okultis.png" alt="Okultis" class="logo__img">
+      </a>
+
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link">Home</a></li>
+          <li><a href="index.html#about" class="nav__link">About</a></li>
+          <li><a href="index.html#services" class="nav__link">Services</a></li>
+          <li><a href="index.html#clients" class="nav__link">Clients</a></li>
+          <li><a href="contact.html" class="nav__link nav__link--cta">Contact</a></li>
+        </ul>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== CONTACT PAGE ===== -->
+  <main class="contact-page">
+    <div class="container">
+      <h1 class="section__title">Let's talk</h1>
+      <p class="contact__intro">Have a project in mind? Drop us a message and we'll get back to you within 24 hours.</p>
+
+      <div class="contact-page__grid">
+        <!-- Left: Form -->
+        <div class="contact-page__form">
+          <form class="form" id="contactForm" action="send.php" method="POST" novalidate>
+            <!-- Honeypot -->
+            <div class="form__honeypot" aria-hidden="true">
+              <label for="website">Website</label>
+              <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
+            </div>
+
+            <div class="form__group">
+              <label for="name" class="form__label">Name</label>
+              <input type="text" name="name" id="name" class="form__input" required placeholder="Your name">
+              <span class="form__error" id="nameError"></span>
+            </div>
+
+            <div class="form__group">
+              <label for="email" class="form__label">Email</label>
+              <input type="email" name="email" id="email" class="form__input" required placeholder="you@example.com">
+              <span class="form__error" id="emailError"></span>
+            </div>
+
+            <div class="form__group">
+              <label for="message" class="form__label">Message</label>
+              <textarea name="message" id="message" class="form__input form__textarea" required placeholder="Tell us about your project…" rows="5"></textarea>
+              <span class="form__error" id="messageError"></span>
+            </div>
+
+            <button type="submit" class="btn btn--primary btn--full" id="submitBtn">Send message</button>
+            <div class="form__status" id="formStatus"></div>
+            <p class="form__recaptcha-notice">
+              Protected by reCAPTCHA ·
+              <a href="https://policies.google.com/privacy">Privacy</a> ·
+              <a href="https://policies.google.com/terms">Terms</a>
+            </p>
+          </form>
+        </div>
+
+        <!-- Right: Map & Info -->
+        <div class="contact-page__sidebar">
+          <div class="contact-page__map">
+            <iframe
+              src="https://maps.google.com/maps?q=HUB385+Ul.+Franje+Petra%C4%8Di%C4%87a+4+Zagreb&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              width="100%"
+              height="300"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Okultis office location - HUB 385, Zagreb">
+            </iframe>
+          </div>
+
+          <div class="contact-page__info">
+            <div class="contact-page__info-item">
+              <h3>Address</h3>
+              <p>HUB 385<br>Ul. Franje Petračića 4<br>10000 Zagreb, Croatia</p>
+            </div>
+
+            <div class="contact-page__info-item">
+              <h3>Email</h3>
+              <p><a href="mailto:info@okultis.com">info@okultis.com</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__copy">&copy; 2026 Okultis. All rights reserved.</p>
+      <ul class="footer__links">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- ===== COOKIE CONSENT ===== -->
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="container cookie-banner__inner">
+      <p class="cookie-banner__text">We use cookies for analytics and spam protection. Read our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+      <div class="cookie-banner__actions">
+        <button class="btn btn--primary btn--sm" id="cookieAccept">Accept</button>
+        <button class="btn btn--outline btn--sm" id="cookieReject">Reject</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/cookies.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

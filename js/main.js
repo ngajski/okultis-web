@@ -43,6 +43,15 @@
     link.addEventListener('click', closeMenu);
   });
 
+  // --- Nav dot follows mouse ---
+  navLinks.forEach(function (link) {
+    link.addEventListener('mousemove', function (e) {
+      var rect = link.getBoundingClientRect();
+      var x = e.clientX - rect.left;
+      link.style.setProperty('--dot-x', x + 'px');
+    });
+  });
+
   // --- Smooth scroll for anchor links ---
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     anchor.addEventListener('click', function (e) {

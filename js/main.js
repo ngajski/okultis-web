@@ -158,7 +158,7 @@
         var formData = new FormData(form);
         if (token) formData.append('g-recaptcha-response', token);
 
-        fetch('send.php', {
+        fetch('/send.php', {
           method: 'POST',
           body: formData,
         })

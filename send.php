@@ -74,7 +74,7 @@ if ($recaptchaToken !== '') {
 }
 
 // Prepare email
-$to      = 'info@okultis.com';
+$to      = 'hello@okultis.com';
 $subject = 'New contact from okultis.com: ' . mb_substr($name, 0, 50);
 
 $body  = "Name:    {$name}\n";

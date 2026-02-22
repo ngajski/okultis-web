@@ -1,6 +1,17 @@
 <?php
 header('Content-Type: application/json');
 
+// Load config
+$config = require __DIR__ . '/config.php';
+
+// PHPMailer
+require __DIR__ . '/phpmailer/Exception.php';
+require __DIR__ . '/phpmailer/PHPMailer.php';
+require __DIR__ . '/phpmailer/SMTP.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 // Only accept POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
@@ -10,7 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 // Honeypot check
 if (!empty($_POST['website'])) {
-    // Bot detected — pretend success
     echo json_encode(['success' => true, 'message' => 'Message sent! We\'ll be in touch soon.']);
     exit;
 }
@@ -47,10 +57,9 @@ if (!empty($errors)) {
 $recaptchaToken = $_POST['g-recaptcha-response'] ?? '';
 
 if ($recaptchaToken !== '') {
-    $recaptchaSecret = '6LcaSnEsAAAAAL67h51SWKVHCkzPSHJy4jGDtXtV';
     $recaptchaUrl = 'https://www.google.com/recaptcha/api/siteverify';
     $recaptchaData = http_build_query([
-        'secret'   => $recaptchaSecret,
+        'secret'   => $config['recaptcha_secret'],
         'response' => $recaptchaToken,
         'remoteip' => $_SERVER['REMOTE_ADDR'] ?? '',
     ]);
@@ -73,24 +82,30 @@ if ($recaptchaToken !== '') {
     }
 }
 
-// Prepare email
-$to      = 'hello@okultis.com';
-$subject = 'New contact from okultis.com: ' . mb_substr($name, 0, 50);
+// Send email via PHPMailer SMTP
+$mail = new PHPMailer(true);
 
-$body  = "Name:    {$name}\n";
-$body .= "Email:   {$email}\n\n";
-$body .= "Message:\n{$message}\n";
+try {
+    $mail->isSMTP();
+    $mail->Host       = $config['smtp_host'];
+    $mail->SMTPAuth   = true;
+    $mail->Username   = $config['smtp_user'];
+    $mail->Password   = $config['smtp_pass'];
+    $mail->SMTPSecure = $config['smtp_enc'];
+    $mail->Port       = $config['smtp_port'];
+    $mail->CharSet    = 'UTF-8';
 
-$headers  = "From: noreply@okultis.com\r\n";
-$headers .= "Reply-To: " . filter_var($email, FILTER_SANITIZE_EMAIL) . "\r\n";
-$headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+    $mail->setFrom($config['smtp_user'], 'Okultis Website');
+    $mail->addAddress('hello@okultis.com');
+    $mail->addReplyTo(filter_var($email, FILTER_SANITIZE_EMAIL), $name);
 
-// Send
-$sent = mail($to, $subject, $body, $headers);
+    $mail->isHTML(false);
+    $mail->Subject = 'New contact from okultis.com: ' . mb_substr($name, 0, 50);
+    $mail->Body    = "Name:    {$name}\nEmail:   {$email}\n\nMessage:\n{$message}\n";
 
-if ($sent) {
+    $mail->send();
     echo json_encode(['success' => true, 'message' => 'Message sent! We\'ll be in touch soon.']);
-} else {
+} catch (Exception $e) {
     http_response_code(500);
     echo json_encode(['success' => false, 'message' => 'Failed to send message. Please try again later.']);
 }

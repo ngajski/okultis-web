@@ -1,0 +1,45 @@
+import { clients } from '@/data/clients'
+
+export default function ClientsSection() {
+  // Duplicate the logo set for a seamless infinite scroll loop
+  const duplicatedClients = [...clients, ...clients]
+
+  return (
+    <section id="clients" className="py-[100px] md:py-[72px]">
+      <div className="w-full max-w-[1120px] mx-auto px-6">
+        <h2
+          className="font-bold tracking-[-0.02em] mb-12"
+          style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)' }}
+        >
+          Trusted by
+        </h2>
+      </div>
+      {/* Full-width marquee, not constrained to the container */}
+      <div
+        className="overflow-hidden w-full group"
+        aria-label="Client logos"
+      >
+        <div
+          className="flex gap-12 w-max"
+          style={{
+            animation: 'marquee-scroll 25s linear infinite',
+            willChange: 'transform',
+          }}
+        >
+          {duplicatedClients.map((client, index) => (
+            <div
+              key={`${client.alt}-${index}`}
+              className="flex-none flex items-center h-[60px]"
+            >
+              <img
+                src={client.src}
+                alt={client.alt}
+                className="max-h-[48px] w-auto object-contain opacity-50 brightness-0 invert transition-opacity duration-300 hover:opacity-100"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}

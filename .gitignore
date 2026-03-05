@@ -16,3 +16,6 @@ package-lock.json
 # Environment
 .env
 config.php
+
+# Secrets
+text.json

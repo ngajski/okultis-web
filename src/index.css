@@ -29,6 +29,14 @@ body {
 
 .grecaptcha-badge { visibility: hidden; }
 
+/* Hide threejs-components library branding */
+a[href*="21st.dev"],
+a[href*="threejs-components"],
+div[style*="z-index: 9999"],
+canvas + div:has(a[href]) {
+  display: none !important;
+}
+
 @keyframes marquee-scroll {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }

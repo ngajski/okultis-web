@@ -110,7 +110,7 @@ const ProceduralGroundBackground: React.FC = () => {
         gl.viewport(0, 0, width, height);
       }
 
-      gl.uniform1f(timeLoc, time * 0.001);
+      gl.uniform1f(timeLoc, time * 0.00025);
       gl.uniform2f(resLoc, width, height);
       gl.drawArrays(gl.TRIANGLES, 0, 6);
       animationFrameId = requestAnimationFrame(render);

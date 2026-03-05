@@ -22,8 +22,10 @@ export default function ClientsSection() {
         <div
           className="flex gap-12 w-max"
           style={{
-            animation: 'marquee-scroll 25s linear infinite',
+            animation: 'marquee-scroll 40s linear infinite',
             willChange: 'transform',
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden',
           }}
         >
           {duplicatedClients.map((client, index) => (

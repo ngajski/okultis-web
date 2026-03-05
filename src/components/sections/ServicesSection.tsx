@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import type { LucideIcon } from 'lucide-react'
 import { useScrollFadeIn } from '@/hooks/useScrollFadeIn'
 import { services } from '@/data/services'
 
@@ -35,15 +35,17 @@ export default function ServicesSection() {
 }
 
 interface ServiceCardProps {
-  icon: ReactNode
+  icon: LucideIcon
   title: string
   description: string
 }
 
-function ServiceCard({ icon, title, description }: ServiceCardProps) {
+function ServiceCard({ icon: Icon, title, description }: ServiceCardProps) {
   return (
     <div className="bg-bg-card border border-border rounded-[12px] p-9 transition-all duration-300 hover:-translate-y-1 hover:border-accent group">
-      <div className="mb-5">{icon}</div>
+      <div className="w-14 h-14 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center mb-5 shadow-[0_0_20px_rgba(0,212,255,0.1)] transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(0,212,255,0.25)] group-hover:border-accent/40">
+        <Icon size={28} className="text-accent" />
+      </div>
       <h3 className="text-[1.2rem] font-semibold mb-3">{title}</h3>
       <p className="text-text-muted text-[0.95rem] leading-[1.65]">{description}</p>
     </div>

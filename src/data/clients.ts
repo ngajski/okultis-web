@@ -9,14 +9,15 @@ import posluzIme from '@/assets/images/clients/posluzi.me.png'
 export interface Client {
   src: string
   alt: string
+  invertOnLight?: boolean
 }
 
 export const clients: Client[] = [
   { src: kinana, alt: 'Kinana' },
   { src: blooming, alt: 'Blooming' },
   { src: greenSolutions, alt: 'GreenSolutions' },
-  { src: auroraMedia, alt: 'Aurora Media' },
+  { src: auroraMedia, alt: 'Aurora Media', invertOnLight: true },
   { src: mbAutoskola, alt: 'MB Autoskola' },
-  { src: zmda, alt: 'ZMDA' },
-  { src: posluzIme, alt: 'posluzi.me' },
+  { src: zmda, alt: 'ZMDA', invertOnLight: true },
+  { src: posluzIme, alt: 'posluzi.me', invertOnLight: true },
 ]

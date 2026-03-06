@@ -43,7 +43,7 @@ interface ServiceCardProps {
 function ServiceCard({ icon: Icon, title, description }: ServiceCardProps) {
   return (
     <div className="bg-bg-card border border-border rounded-[12px] p-9 transition-all duration-300 hover:-translate-y-1 hover:border-accent group">
-      <div className="w-14 h-14 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center mb-5 shadow-[0_0_20px_rgba(0,212,255,0.1)] transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(0,212,255,0.25)] group-hover:border-accent/40">
+      <div className="w-14 h-14 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center mb-5 shadow-[0_0_20px_rgba(0,119,182,0.1)] transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(0,119,182,0.2)] group-hover:border-accent/40">
         <Icon size={28} className="text-accent" />
       </div>
       <h3 className="text-[1.2rem] font-semibold mb-3">{title}</h3>

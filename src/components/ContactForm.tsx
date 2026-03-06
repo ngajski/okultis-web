@@ -158,7 +158,7 @@ export default function ContactForm({ className = '' }: ContactFormProps) {
           placeholder="Your name"
           value={fields.name}
           onChange={handleChange}
-          className={`w-full px-4 py-3.5 bg-bg-input border rounded-[12px] text-text font-[inherit] text-base transition-colors duration-300 outline-none placeholder-[#555566] ${
+          className={`w-full px-4 py-3.5 bg-bg-input border rounded-[12px] text-text font-[inherit] text-base transition-colors duration-300 outline-none placeholder-[#9999a8] ${
             errors.name
               ? 'border-error focus:border-error'
               : 'border-border focus:border-accent'
@@ -181,7 +181,7 @@ export default function ContactForm({ className = '' }: ContactFormProps) {
           placeholder="you@example.com"
           value={fields.email}
           onChange={handleChange}
-          className={`w-full px-4 py-3.5 bg-bg-input border rounded-[12px] text-text font-[inherit] text-base transition-colors duration-300 outline-none placeholder-[#555566] ${
+          className={`w-full px-4 py-3.5 bg-bg-input border rounded-[12px] text-text font-[inherit] text-base transition-colors duration-300 outline-none placeholder-[#9999a8] ${
             errors.email
               ? 'border-error focus:border-error'
               : 'border-border focus:border-accent'
@@ -207,7 +207,7 @@ export default function ContactForm({ className = '' }: ContactFormProps) {
           rows={5}
           value={fields.message}
           onChange={handleChange}
-          className={`w-full px-4 py-3.5 bg-bg-input border rounded-[12px] text-text font-[inherit] text-base transition-colors duration-300 outline-none placeholder-[#555566] resize-y min-h-[120px] ${
+          className={`w-full px-4 py-3.5 bg-bg-input border rounded-[12px] text-text font-[inherit] text-base transition-colors duration-300 outline-none placeholder-[#9999a8] resize-y min-h-[120px] ${
             errors.message
               ? 'border-error focus:border-error'
               : 'border-border focus:border-accent'
@@ -221,7 +221,7 @@ export default function ContactForm({ className = '' }: ContactFormProps) {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full px-9 py-3.5 bg-accent text-bg font-semibold rounded-[12px] text-base cursor-pointer transition-all duration-300 hover:bg-accent-hover hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0"
+        className="w-full px-9 py-3.5 bg-accent text-white font-semibold rounded-[12px] text-base cursor-pointer transition-all duration-300 hover:bg-accent-hover hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0"
       >
         {isSubmitting ? 'Sending…' : 'Send message'}
       </button>

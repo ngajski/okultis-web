@@ -20,7 +20,7 @@ export default function NotFoundPage() {
         </p>
         <Link
           to="/"
-          className="inline-block px-9 py-3.5 bg-accent text-bg font-semibold rounded-[12px] transition-all duration-300 hover:bg-accent-hover hover:-translate-y-0.5"
+          className="inline-block px-9 py-3.5 bg-accent text-white font-semibold rounded-[12px] transition-all duration-300 hover:bg-accent-hover hover:-translate-y-0.5"
         >
           Back to home
         </Link>

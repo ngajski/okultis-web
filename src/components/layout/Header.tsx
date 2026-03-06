@@ -56,7 +56,7 @@ export default function Header() {
   return (
     <>
       {/* Header bar */}
-      <header className="fixed top-0 left-0 w-full h-[72px] z-[1000] border-b border-border md:bg-[rgba(10,10,15,0.85)] md:backdrop-blur-[12px] bg-[#0a0a0f]">
+      <header className="fixed top-0 left-0 w-full h-[72px] z-[1000] border-b border-border md:bg-[rgba(255,255,255,0.85)] md:backdrop-blur-[12px] bg-white">
         <div className="w-full max-w-[1120px] mx-auto px-6 h-full flex items-center justify-between">
           {/* Logo */}
           {isHomePage ? (
@@ -84,7 +84,7 @@ export default function Header() {
               <li>
                 <Link
                   to="/contact"
-                  className="text-[#00d4ff] border border-[#00d4ff] rounded-full px-5 py-2 text-sm font-medium transition-colors duration-300 hover:bg-[#00d4ff] hover:text-[#0a0a0f]"
+                  className="text-accent border border-accent rounded-full px-5 py-2 text-sm font-medium transition-colors duration-300 hover:bg-accent hover:text-white"
                 >
                   Contact
                 </Link>
@@ -100,17 +100,17 @@ export default function Header() {
             onClick={() => setIsMobileMenuOpen((prev) => !prev)}
           >
             <span
-              className={`block w-full h-0.5 bg-white rounded-sm transition-transform duration-300 ${
+              className={`block w-full h-0.5 bg-[#1a1a2e] rounded-sm transition-transform duration-300 ${
                 isMobileMenuOpen ? 'translate-y-[7px] rotate-45' : ''
               }`}
             />
             <span
-              className={`block w-full h-0.5 bg-white rounded-sm transition-opacity duration-300 ${
+              className={`block w-full h-0.5 bg-[#1a1a2e] rounded-sm transition-opacity duration-300 ${
                 isMobileMenuOpen ? 'opacity-0' : ''
               }`}
             />
             <span
-              className={`block w-full h-0.5 bg-white rounded-sm transition-transform duration-300 ${
+              className={`block w-full h-0.5 bg-[#1a1a2e] rounded-sm transition-transform duration-300 ${
                 isMobileMenuOpen ? '-translate-y-[7px] -rotate-45' : ''
               }`}
             />
@@ -120,7 +120,7 @@ export default function Header() {
 
       {/* Mobile fullscreen menu overlay — outside header to avoid stacking context issues */}
       <div
-        className={`md:hidden fixed inset-0 bg-[rgba(10,10,15,0.92)] backdrop-blur-[16px] flex items-end justify-center pb-20 z-[1001] transition-all duration-400 ${
+        className={`md:hidden fixed inset-0 bg-[rgba(255,255,255,0.95)] backdrop-blur-[16px] flex items-end justify-center pb-20 z-[1001] transition-all duration-400 ${
           isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
         }`}
         onClick={(e) => {
@@ -156,7 +156,7 @@ export default function Header() {
           >
             <Link
               to="/contact"
-              className="block text-[clamp(1.8rem,5vw,2.5rem)] font-semibold py-4 text-[#00d4ff] transition-colors duration-300"
+              className="block text-[clamp(1.8rem,5vw,2.5rem)] font-semibold py-4 text-accent transition-colors duration-300"
               onClick={handleNavLinkClick}
             >
               Contact
@@ -187,7 +187,7 @@ function DesktopNavLink({ item, isActive }: NavLinkProps) {
 
   const baseClasses =
     'relative text-sm font-medium transition-colors duration-300 group'
-  const activeClasses = isActive ? 'text-white' : 'text-[#a0a0b0] hover:text-white'
+  const activeClasses = isActive ? 'text-text' : 'text-text-muted hover:text-text'
 
   // Render anchor for hash links, Link for page routes
   if (item.href.startsWith('#') || item.href.startsWith('/#')) {
@@ -200,7 +200,7 @@ function DesktopNavLink({ item, isActive }: NavLinkProps) {
       >
         {item.label}
         <span
-          className="absolute -bottom-2.5 left-[var(--dot-x,50%)] -translate-x-1/2 w-2 h-2 bg-[#00d4ff] rounded-full transition-transform duration-200"
+          className="absolute -bottom-2.5 left-[var(--dot-x,50%)] -translate-x-1/2 w-2 h-2 bg-accent rounded-full transition-transform duration-200"
           style={{ transform: `translateX(-50%) scale(${isActive ? 1 : 0})` }}
           aria-hidden
         />
@@ -226,7 +226,7 @@ interface MobileNavLinkProps extends NavLinkProps {
 }
 
 function MobileNavLink({ item, isActive, onClick }: MobileNavLinkProps) {
-  const activeClasses = isActive ? 'text-[#00d4ff]' : 'text-white hover:text-[#00d4ff]'
+  const activeClasses = isActive ? 'text-accent' : 'text-text hover:text-accent'
 
   if (item.href.startsWith('#') || item.href.startsWith('/#')) {
     return (

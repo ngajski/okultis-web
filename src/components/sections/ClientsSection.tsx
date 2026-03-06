@@ -36,7 +36,7 @@ export default function ClientsSection() {
               <img
                 src={client.src}
                 alt={client.alt}
-                className="max-h-[48px] w-auto object-contain opacity-50 brightness-0 invert transition-opacity duration-300 hover:opacity-100"
+                className={`max-h-[48px] w-auto object-contain opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0 ${client.invertOnLight ? 'brightness-0' : ''}`}
               />
             </div>
           ))}

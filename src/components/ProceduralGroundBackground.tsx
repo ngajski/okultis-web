@@ -54,17 +54,17 @@ const ProceduralGroundBackground: React.FC = () => {
         float topoLine = smoothstep(0.03, 0.0, abs(ripples));
 
         // Color Palette — Okultis brand
-        vec3 baseColor = vec3(0.039, 0.039, 0.059);  // #0a0a0f
-        vec3 midColor = vec3(0.071, 0.071, 0.102);   // #12121a
-        vec3 accentColor = vec3(0.0, 0.831, 1.0);    // #00d4ff
+        vec3 baseColor = vec3(0.96, 0.96, 0.97);      // #f5f5f7
+        vec3 midColor = vec3(1.0, 1.0, 1.0);           // #ffffff
+        vec3 accentColor = vec3(0.0, 0.467, 0.714);    // #0077b6
 
         // Composite
         vec3 finalColor = mix(baseColor, midColor, n * 0.6);
-        finalColor += topoLine * accentColor * depth * 0.35;
+        finalColor -= topoLine * accentColor * depth * 0.5;
 
         // Horizon Fog / Fade
         float fade = smoothstep(0.1, -1.0, uv.y);
-        finalColor *= (1.0 - length(uv) * 0.45) * (1.0 - fade);
+        finalColor = mix(finalColor, vec3(1.0), length(uv) * 0.3 + fade * 0.5);
 
         gl_FragColor = vec4(finalColor, 1.0);
       }
@@ -124,11 +124,11 @@ const ProceduralGroundBackground: React.FC = () => {
   }, []);
 
   return (
-    <div className="absolute inset-0 w-full h-full bg-[#0a0a0f] -z-10">
+    <div className="absolute inset-0 w-full h-full bg-white -z-10">
       <canvas
         ref={canvasRef}
         className="w-full h-full block touch-none"
-        style={{ filter: 'contrast(1.1) brightness(0.9)' }}
+        style={{ filter: 'contrast(1.05) brightness(1.0)' }}
       />
     </div>
   );

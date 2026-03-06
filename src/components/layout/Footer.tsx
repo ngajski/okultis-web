@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="w-full max-w-[1120px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0 text-center md:text-left">
         <div className="flex items-center gap-4">
           <p className="text-sm text-text-muted">
-            &copy; 2026 Okultis. All rights reserved.
+            &copy; 2023–{new Date().getFullYear()} Okultis. All rights reserved.
           </p>
           <a
             href="https://www.linkedin.com/in/nikola-gajski-993807176/"

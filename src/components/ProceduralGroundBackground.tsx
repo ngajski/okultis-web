@@ -1,4 +1,22 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react'
+import { useColorScheme } from '@/hooks/useColorScheme'
+
+const THEME_COLORS = {
+  light: {
+    base: [0.96, 0.96, 0.97],
+    mid: [1.0, 1.0, 1.0],
+    accent: [0.0, 0.467, 0.714],
+    fog: [1.0, 1.0, 1.0],
+    lineSign: -1.0,
+  },
+  dark: {
+    base: [0.04, 0.04, 0.06],
+    mid: [0.08, 0.08, 0.12],
+    accent: [0.0, 0.467, 0.714],
+    fog: [0.04, 0.04, 0.06],
+    lineSign: 1.0,
+  },
+} as const
 
 /**
  * ProceduralGroundBackground
@@ -6,26 +24,37 @@ import { useEffect, useRef } from 'react';
  * Optimized for performance using fragment shaders.
  */
 const ProceduralGroundBackground: React.FC = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const colorScheme = useColorScheme()
+  const colorsRef = useRef(THEME_COLORS[colorScheme])
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    colorsRef.current = THEME_COLORS[colorScheme]
+  }, [colorScheme])
 
-    const gl = canvas.getContext('webgl');
-    if (!gl) return;
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+
+    const gl = canvas.getContext('webgl')
+    if (!gl) return
 
     const vsSource = `
       attribute vec2 position;
       void main() {
         gl_Position = vec4(position, 0.0, 1.0);
       }
-    `;
+    `
 
     const fsSource = `
       precision highp float;
       uniform float u_time;
       uniform vec2 u_resolution;
+      uniform vec3 u_baseColor;
+      uniform vec3 u_midColor;
+      uniform vec3 u_accentColor;
+      uniform vec3 u_fogColor;
+      uniform float u_lineSign;
 
       float hash(vec2 p) {
         return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
@@ -53,85 +82,91 @@ const ProceduralGroundBackground: React.FC = () => {
         // Neon Topographic Lines
         float topoLine = smoothstep(0.03, 0.0, abs(ripples));
 
-        // Color Palette — Okultis brand
-        vec3 baseColor = vec3(0.96, 0.96, 0.97);      // #f5f5f7
-        vec3 midColor = vec3(1.0, 1.0, 1.0);           // #ffffff
-        vec3 accentColor = vec3(0.0, 0.467, 0.714);    // #0077b6
-
         // Composite
-        vec3 finalColor = mix(baseColor, midColor, n * 0.6);
-        finalColor -= topoLine * accentColor * depth * 0.5;
+        vec3 finalColor = mix(u_baseColor, u_midColor, n * 0.6);
+        finalColor += u_lineSign * topoLine * u_accentColor * depth * 0.5;
 
         // Horizon Fog / Fade
         float fade = smoothstep(0.1, -1.0, uv.y);
-        finalColor = mix(finalColor, vec3(1.0), length(uv) * 0.3 + fade * 0.5);
+        finalColor = mix(finalColor, u_fogColor, length(uv) * 0.3 + fade * 0.5);
 
         gl_FragColor = vec4(finalColor, 1.0);
       }
-    `;
+    `
 
     const createShader = (gl: WebGLRenderingContext, type: number, source: string) => {
-      const shader = gl.createShader(type)!;
-      gl.shaderSource(shader, source);
-      gl.compileShader(shader);
-      return shader;
-    };
+      const shader = gl.createShader(type)!
+      gl.shaderSource(shader, source)
+      gl.compileShader(shader)
+      return shader
+    }
 
-    const program = gl.createProgram()!;
-    gl.attachShader(program, createShader(gl, gl.VERTEX_SHADER, vsSource));
-    gl.attachShader(program, createShader(gl, gl.FRAGMENT_SHADER, fsSource));
-    gl.linkProgram(program);
-    gl.useProgram(program);
+    const program = gl.createProgram()!
+    gl.attachShader(program, createShader(gl, gl.VERTEX_SHADER, vsSource))
+    gl.attachShader(program, createShader(gl, gl.FRAGMENT_SHADER, fsSource))
+    gl.linkProgram(program)
+    gl.useProgram(program)
 
-    const buffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+    const buffer = gl.createBuffer()
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer)
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
       -1, -1,  1, -1, -1,  1,
       -1,  1,  1, -1,  1,  1
-    ]), gl.STATIC_DRAW);
+    ]), gl.STATIC_DRAW)
 
-    const posAttrib = gl.getAttribLocation(program, "position");
-    gl.enableVertexAttribArray(posAttrib);
-    gl.vertexAttribPointer(posAttrib, 2, gl.FLOAT, false, 0, 0);
+    const posAttrib = gl.getAttribLocation(program, "position")
+    gl.enableVertexAttribArray(posAttrib)
+    gl.vertexAttribPointer(posAttrib, 2, gl.FLOAT, false, 0, 0)
 
-    const timeLoc = gl.getUniformLocation(program, "u_time");
-    const resLoc = gl.getUniformLocation(program, "u_resolution");
+    const timeLoc = gl.getUniformLocation(program, "u_time")
+    const resLoc = gl.getUniformLocation(program, "u_resolution")
+    const baseColorLoc = gl.getUniformLocation(program, "u_baseColor")
+    const midColorLoc = gl.getUniformLocation(program, "u_midColor")
+    const accentColorLoc = gl.getUniformLocation(program, "u_accentColor")
+    const fogColorLoc = gl.getUniformLocation(program, "u_fogColor")
+    const lineSignLoc = gl.getUniformLocation(program, "u_lineSign")
 
-    let animationFrameId: number;
+    let animationFrameId: number
     const render = (time: number) => {
-      const rect = canvas.getBoundingClientRect();
-      const dpr = Math.min(window.devicePixelRatio, 2);
-      const width = rect.width * dpr;
-      const height = rect.height * dpr;
+      const rect = canvas.getBoundingClientRect()
+      const dpr = Math.min(window.devicePixelRatio, 2)
+      const width = rect.width * dpr
+      const height = rect.height * dpr
 
       if (canvas.width !== width || canvas.height !== height) {
-        canvas.width = width;
-        canvas.height = height;
-        gl.viewport(0, 0, width, height);
+        canvas.width = width
+        canvas.height = height
+        gl.viewport(0, 0, width, height)
       }
 
-      gl.uniform1f(timeLoc, time * 0.00025);
-      gl.uniform2f(resLoc, width, height);
-      gl.drawArrays(gl.TRIANGLES, 0, 6);
-      animationFrameId = requestAnimationFrame(render);
-    };
+      const c = colorsRef.current
+      gl.uniform1f(timeLoc, time * 0.00025)
+      gl.uniform2f(resLoc, width, height)
+      gl.uniform3f(baseColorLoc, c.base[0], c.base[1], c.base[2])
+      gl.uniform3f(midColorLoc, c.mid[0], c.mid[1], c.mid[2])
+      gl.uniform3f(accentColorLoc, c.accent[0], c.accent[1], c.accent[2])
+      gl.uniform3f(fogColorLoc, c.fog[0], c.fog[1], c.fog[2])
+      gl.uniform1f(lineSignLoc, c.lineSign)
+      gl.drawArrays(gl.TRIANGLES, 0, 6)
+      animationFrameId = requestAnimationFrame(render)
+    }
 
-    animationFrameId = requestAnimationFrame(render);
+    animationFrameId = requestAnimationFrame(render)
 
     return () => {
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
+      cancelAnimationFrame(animationFrameId)
+    }
+  }, [])
 
   return (
-    <div className="absolute inset-0 w-full h-full bg-white -z-10">
+    <div className="absolute inset-0 w-full h-full bg-bg -z-10">
       <canvas
         ref={canvasRef}
         className="w-full h-full block touch-none"
         style={{ filter: 'contrast(1.05) brightness(1.0)' }}
       />
     </div>
-  );
-};
+  )
+}
 
-export default ProceduralGroundBackground;
+export default ProceduralGroundBackground

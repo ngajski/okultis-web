@@ -14,6 +14,21 @@
   --font-family-sans: 'Space Grotesk', system-ui, sans-serif;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0a0a0f;
+    --color-bg-card: #14141f;
+    --color-bg-input: #1a1a2a;
+    --color-accent: #0077b6;
+    --color-accent-hover: #0091db;
+    --color-text: #f0f0f5;
+    --color-text-muted: #a0a0b0;
+    --color-border: #2a2a3a;
+    --color-error: #ef5350;
+    --color-success: #66bb6a;
+  }
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 72px;

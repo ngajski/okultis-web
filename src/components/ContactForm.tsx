@@ -158,7 +158,7 @@ export default function ContactForm({ className = '' }: ContactFormProps) {
           placeholder="Your name"
           value={fields.name}
           onChange={handleChange}
-          className={`w-full px-4 py-3.5 bg-bg-input border rounded-[12px] text-text font-[inherit] text-base transition-colors duration-300 outline-none placeholder-[#9999a8] ${
+          className={`w-full px-4 py-3.5 bg-bg-input border rounded-[12px] text-text font-[inherit] text-base transition-colors duration-300 outline-none placeholder-text-muted ${
             errors.name
               ? 'border-error focus:border-error'
               : 'border-border focus:border-accent'
@@ -181,7 +181,7 @@ export default function ContactForm({ className = '' }: ContactFormProps) {
           placeholder="you@example.com"
           value={fields.email}
           onChange={handleChange}
-          className={`w-full px-4 py-3.5 bg-bg-input border rounded-[12px] text-text font-[inherit] text-base transition-colors duration-300 outline-none placeholder-[#9999a8] ${
+          className={`w-full px-4 py-3.5 bg-bg-input border rounded-[12px] text-text font-[inherit] text-base transition-colors duration-300 outline-none placeholder-text-muted ${
             errors.email
               ? 'border-error focus:border-error'
               : 'border-border focus:border-accent'
@@ -207,7 +207,7 @@ export default function ContactForm({ className = '' }: ContactFormProps) {
           rows={5}
           value={fields.message}
           onChange={handleChange}
-          className={`w-full px-4 py-3.5 bg-bg-input border rounded-[12px] text-text font-[inherit] text-base transition-colors duration-300 outline-none placeholder-[#9999a8] resize-y min-h-[120px] ${
+          className={`w-full px-4 py-3.5 bg-bg-input border rounded-[12px] text-text font-[inherit] text-base transition-colors duration-300 outline-none placeholder-text-muted resize-y min-h-[120px] ${
             errors.message
               ? 'border-error focus:border-error'
               : 'border-border focus:border-accent'

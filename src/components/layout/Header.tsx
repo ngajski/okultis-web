@@ -56,16 +56,16 @@ export default function Header() {
   return (
     <>
       {/* Header bar */}
-      <header className="fixed top-0 left-0 w-full h-[72px] z-[1000] border-b border-border md:bg-[rgba(255,255,255,0.85)] md:backdrop-blur-[12px] bg-white">
+      <header className="fixed top-0 left-0 w-full h-[72px] z-[1000] border-b border-border bg-bg md:bg-bg/85 md:backdrop-blur-[12px]">
         <div className="w-full max-w-[1120px] mx-auto px-6 h-full flex items-center justify-between">
           {/* Logo */}
           {isHomePage ? (
             <a href={logoHref} className="flex items-center">
-              <img src={logo} alt="Okultis" className="h-11 w-auto" />
+              <img src={logo} alt="Okultis" className="h-11 w-auto dark:invert" />
             </a>
           ) : (
             <Link to={logoHref} className="flex items-center">
-              <img src={logo} alt="Okultis" className="h-11 w-auto" />
+              <img src={logo} alt="Okultis" className="h-11 w-auto dark:invert" />
             </Link>
           )}
 
@@ -100,17 +100,17 @@ export default function Header() {
             onClick={() => setIsMobileMenuOpen((prev) => !prev)}
           >
             <span
-              className={`block w-full h-0.5 bg-[#1a1a2e] rounded-sm transition-transform duration-300 ${
+              className={`block w-full h-0.5 bg-text rounded-sm transition-transform duration-300 ${
                 isMobileMenuOpen ? 'translate-y-[7px] rotate-45' : ''
               }`}
             />
             <span
-              className={`block w-full h-0.5 bg-[#1a1a2e] rounded-sm transition-opacity duration-300 ${
+              className={`block w-full h-0.5 bg-text rounded-sm transition-opacity duration-300 ${
                 isMobileMenuOpen ? 'opacity-0' : ''
               }`}
             />
             <span
-              className={`block w-full h-0.5 bg-[#1a1a2e] rounded-sm transition-transform duration-300 ${
+              className={`block w-full h-0.5 bg-text rounded-sm transition-transform duration-300 ${
                 isMobileMenuOpen ? '-translate-y-[7px] -rotate-45' : ''
               }`}
             />
@@ -120,7 +120,7 @@ export default function Header() {
 
       {/* Mobile fullscreen menu overlay — outside header to avoid stacking context issues */}
       <div
-        className={`md:hidden fixed inset-0 bg-[rgba(255,255,255,0.95)] backdrop-blur-[16px] flex items-end justify-center pb-20 z-[1001] transition-all duration-400 ${
+        className={`md:hidden fixed inset-0 bg-bg/95 backdrop-blur-[16px] flex items-end justify-center pb-20 z-[1001] transition-all duration-400 ${
           isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
         }`}
         onClick={(e) => {

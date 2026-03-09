@@ -6,7 +6,7 @@ export default function ContactInfo() {
     <div>
       <div className="mb-8">
         <iframe
-          src="https://maps.google.com/maps?q=WESPA+Spaces+Heinzelova+ulica+60+Zagreb&t=&z=15&ie=UTF8&iwloc=&output=embed"
+          src="https://maps.google.com/maps?q=WESPA+Spaces+Zavrtnica+17+Zagreb&t=&z=15&ie=UTF8&iwloc=&output=embed"
           width="100%"
           height="300"
           style={{ border: 0 }}
@@ -22,9 +22,7 @@ export default function ContactInfo() {
         <div className="mb-6">
           <h3 className="text-base font-semibold mb-2 text-text">Address</h3>
           <p className="text-text-muted text-[0.95rem] leading-[1.75]">
-            WESPA Spaces | Zavrtnica, Zagreb
-            <br />
-            Heinzelova ulica 60
+            WESPA Spaces | Zavrtnica 17
             <br />
             10000 Zagreb, Croatia
           </p>

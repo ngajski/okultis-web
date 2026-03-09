@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useScrollSpy } from '@/hooks/useScrollSpy'
 import logo from '@/assets/images/logo/okultis.png'
+import logoWhite from '@/assets/images/logo/okultis-logo-white.png'
 
 const NAV_SECTION_IDS = ['hero', 'about', 'services', 'clients']
 
@@ -61,11 +62,13 @@ export default function Header() {
           {/* Logo */}
           {isHomePage ? (
             <a href={logoHref} className="flex items-center">
-              <img src={logo} alt="Okultis" className="h-11 w-auto dark:invert" />
+              <img src={logo} alt="Okultis" className="h-11 w-auto dark:hidden" />
+              <img src={logoWhite} alt="Okultis" className="h-11 w-auto hidden dark:block" />
             </a>
           ) : (
             <Link to={logoHref} className="flex items-center">
-              <img src={logo} alt="Okultis" className="h-11 w-auto dark:invert" />
+              <img src={logo} alt="Okultis" className="h-11 w-auto dark:hidden" />
+              <img src={logoWhite} alt="Okultis" className="h-11 w-auto hidden dark:block" />
             </Link>
           )}
 

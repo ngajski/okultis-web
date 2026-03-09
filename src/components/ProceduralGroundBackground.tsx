@@ -77,10 +77,12 @@ const ProceduralGroundBackground: React.FC = () => {
 
         // Layered Procedural Noise for Terrain
         float n = noise(gridUv * 3.5);
-        float ripples = sin(gridUv.y * 18.0 + n * 8.0 + u_time * 0.15);
+        float ripples = sin(gridUv.y * 5.0 + n * 4.0 + u_time * 0.15);
 
         // Neon Topographic Lines
         float topoLine = smoothstep(0.03, 0.0, abs(ripples));
+        float bottomFade = smoothstep(-0.6, 0.1, uv.y);
+        topoLine *= bottomFade;
 
         // Composite
         vec3 finalColor = mix(u_baseColor, u_midColor, n * 0.6);

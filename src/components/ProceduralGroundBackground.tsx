@@ -80,13 +80,13 @@ const ProceduralGroundBackground: React.FC = () => {
         float ripples = sin(gridUv.y * 5.0 + n * 4.0 + u_time * 0.15);
 
         // Neon Topographic Lines
-        float topoLine = smoothstep(0.03, 0.0, abs(ripples));
+        float topoLine = smoothstep(0.05, 0.0, abs(ripples));
         float bottomFade = smoothstep(-0.6, 0.1, uv.y);
         topoLine *= bottomFade;
 
         // Composite
         vec3 finalColor = mix(u_baseColor, u_midColor, n * 0.6);
-        finalColor += u_lineSign * topoLine * u_accentColor * depth * 0.5;
+        finalColor += u_lineSign * topoLine * u_accentColor * depth * 0.8;
 
         // Horizon Fog / Fade
         float fade = smoothstep(0.1, -1.0, uv.y);

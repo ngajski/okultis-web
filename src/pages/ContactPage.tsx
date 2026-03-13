@@ -2,6 +2,32 @@ import { Helmet } from 'react-helmet-async'
 import ContactForm from '@/components/ContactForm'
 import ContactInfo from '@/components/ContactInfo'
 
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Okultis',
+  url: 'https://okultis.com',
+  email: 'hello@okultis.com',
+  image: 'https://okultis.com/assets/images/logo/okultis-software-systems-vertical.webp',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Zavrtnica 17',
+    addressLocality: 'Zagreb',
+    addressCountry: 'HR',
+  },
+  location: {
+    '@type': 'Place',
+    name: 'WESPA Spaces',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Zavrtnica 17',
+      addressLocality: 'Zagreb',
+      addressCountry: 'HR',
+    },
+  },
+  sameAs: ['https://www.linkedin.com/in/nikola-gajski/'],
+}
+
 export default function ContactPage() {
   return (
     <>
@@ -11,6 +37,7 @@ export default function ContactPage() {
           name="description"
           content="Get in touch with Okultis. Visit us at WESPA Spaces, Zagreb or send us a message."
         />
+        <script type="application/ld+json">{JSON.stringify(localBusinessSchema)}</script>
       </Helmet>
 
       <div className="pt-[calc(72px+60px)] pb-20">

@@ -1,5 +1,23 @@
+import { lazy, Suspense } from 'react'
 import { Link } from 'react-router-dom'
-import ProceduralGroundBackground from '@/components/ProceduralGroundBackground'
+
+const ProceduralGroundBackground = lazy(
+  () => import('@/components/ProceduralGroundBackground')
+)
+
+function HeroBackgroundFallback() {
+  return (
+    <div
+      className="absolute inset-0 w-full h-full -z-10"
+      style={{
+        background: `
+          radial-gradient(ellipse 80% 60% at 50% 100%, color-mix(in srgb, var(--color-accent) 8%, transparent) 0%, transparent 70%),
+          var(--color-bg)
+        `,
+      }}
+    />
+  )
+}
 
 export default function HeroSection() {
   return (
@@ -7,7 +25,9 @@ export default function HeroSection() {
       id="hero"
       className="relative flex items-center min-h-screen pt-[72px] overflow-hidden"
     >
-      <ProceduralGroundBackground />
+      <Suspense fallback={<HeroBackgroundFallback />}>
+        <ProceduralGroundBackground />
+      </Suspense>
 
       <div className="relative z-10 w-full max-w-[1120px] mx-auto px-6">
         <div className="max-w-[720px]">

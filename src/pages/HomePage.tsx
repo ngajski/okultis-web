@@ -5,6 +5,57 @@ import ServicesSection from '@/components/sections/ServicesSection'
 import ClientsSection from '@/components/sections/ClientsSection'
 import ContactFormSection from '@/components/sections/ContactFormSection'
 
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Okultis',
+  url: 'https://okultis.com',
+  email: 'hello@okultis.com',
+  logo: 'https://okultis.com/assets/images/logo/okultis-software-systems-vertical.webp',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Zavrtnica 17',
+    addressLocality: 'Zagreb',
+    addressCountry: 'HR',
+  },
+  sameAs: ['https://www.linkedin.com/in/nikola-gajski/'],
+}
+
+const serviceSchemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'AI & Intelligent Systems',
+    description:
+      'From LLM-powered features to autonomous agents — we design, build, and deploy AI systems tailored to your product. RAG pipelines, multi-modal workflows, and fine-tuned models that deliver real business value.',
+    provider: { '@type': 'Organization', name: 'Okultis', url: 'https://okultis.com' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Software Engineering',
+    description:
+      'Full-stack applications engineered for scale. APIs, real-time systems, and data-intensive platforms — built with disciplined architecture and shipped on time.',
+    provider: { '@type': 'Organization', name: 'Okultis', url: 'https://okultis.com' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Product Design',
+    description:
+      'Interfaces shaped by research and tested with real users. From AI-native UX patterns to complete design systems — we design products people want to use.',
+    provider: { '@type': 'Organization', name: 'Okultis', url: 'https://okultis.com' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Cloud & Platform Engineering',
+    description:
+      'Production-grade infrastructure from day one. CI/CD pipelines, container orchestration, observability, and cost optimization — so your team ships faster without firefighting.',
+    provider: { '@type': 'Organization', name: 'Okultis', url: 'https://okultis.com' },
+  },
+]
+
 export default function HomePage() {
   return (
     <>
@@ -25,6 +76,9 @@ export default function HomePage() {
           property="og:image"
           content="https://okultis.com/assets/images/logo/okultis-software-systems-vertical.webp"
         />
+        <script type="application/ld+json">
+          {JSON.stringify([organizationSchema, ...serviceSchemas])}
+        </script>
       </Helmet>
 
       <HeroSection />

@@ -18,7 +18,7 @@ const organizationSchema = {
     addressLocality: 'Zagreb',
     addressCountry: 'HR',
   },
-  sameAs: ['https://www.linkedin.com/in/nikola-gajski/'],
+  sameAs: ['https://www.linkedin.com/company/okultis-it'],
 }
 
 const serviceSchemas = [

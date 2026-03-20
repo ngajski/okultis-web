@@ -9,7 +9,7 @@ export default function Footer() {
             &copy; 2023–{new Date().getFullYear()} Okultis. All rights reserved.
           </p>
           <a
-            href="https://www.linkedin.com/in/nikola-gajski-993807176/"
+            href="https://www.linkedin.com/company/okultis-it"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"

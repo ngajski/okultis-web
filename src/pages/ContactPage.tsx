@@ -25,7 +25,7 @@ const localBusinessSchema = {
       addressCountry: 'HR',
     },
   },
-  sameAs: ['https://www.linkedin.com/in/nikola-gajski/'],
+  sameAs: ['https://www.linkedin.com/company/okultis-it'],
 }
 
 export default function ContactPage() {

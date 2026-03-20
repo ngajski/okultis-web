@@ -19,10 +19,11 @@ export default function AboutSection() {
           }`}
         >
           <p className="text-text-muted text-[1.05rem] mb-4">
-            Okultis is a digital studio that partners with startups and
-            established companies to ship software that matters. From first
-            concept to live product, we handle the full spectrum - code, design,
-            strategy, and infrastructure.
+            Okultis is a boutique digital studio that partners with startups and
+            small to medium-sized companies to ship software that matters. From
+            first concept to live product, we handle the entire lifecycle - code,
+            design, strategy, and infrastructure - and deliver MVPs in a matter
+            of weeks.
           </p>
           <p className="text-text-muted text-[1.05rem]">
             Based in Croatia and working globally, our team blends engineering

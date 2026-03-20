@@ -1,6 +1,16 @@
-import { useCallback, useEffect, useState } from 'react'
+import { createContext, useCallback, useContext, useEffect, useState } from 'react'
+import type { ReactNode } from 'react'
+import { createElement } from 'react'
 
 type ThemePreference = 'system' | 'light' | 'dark'
+
+interface ThemeContextValue {
+  theme: 'light' | 'dark'
+  preference: ThemePreference
+  toggleTheme: () => void
+}
+
+const ThemeContext = createContext<ThemeContextValue | null>(null)
 
 function getSystemTheme(): 'light' | 'dark' {
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
@@ -27,17 +37,15 @@ function applyTheme(theme: 'light' | 'dark') {
 //   })()
 // </script>
 
-export function useTheme() {
+export function ThemeProvider({ children }: { children: ReactNode }) {
   const [preference, setPreference] = useState<ThemePreference>(getStoredPreference)
 
   const resolvedTheme = preference === 'system' ? getSystemTheme() : preference
 
-  // Apply theme class on mount and when preference changes
   useEffect(() => {
     applyTheme(resolvedTheme)
   }, [resolvedTheme])
 
-  // Listen for system theme changes when preference is 'system'
   useEffect(() => {
     if (preference !== 'system') return
     const mql = window.matchMedia('(prefers-color-scheme: dark)')
@@ -52,5 +60,14 @@ export function useTheme() {
     localStorage.setItem('theme-preference', next)
   }, [resolvedTheme])
 
-  return { theme: resolvedTheme, preference, toggleTheme }
+  return createElement(ThemeContext.Provider, {
+    value: { theme: resolvedTheme, preference, toggleTheme },
+    children,
+  })
+}
+
+export function useTheme() {
+  const ctx = useContext(ThemeContext)
+  if (!ctx) throw new Error('useTheme must be used within ThemeProvider')
+  return ctx
 }

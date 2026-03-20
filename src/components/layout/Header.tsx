@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useScrollSpy } from '@/hooks/useScrollSpy'
+import { useTheme } from '@/hooks/useTheme'
 import EclipseToggle from '@/components/EclipseToggle'
 import logo from '@/assets/images/logo/okultis.png'
 import logoWhite from '@/assets/images/logo/okultis-logo-white.png'
@@ -32,6 +33,7 @@ export default function Header() {
   const isHomePage = location.pathname === '/'
 
   const activeSectionId = useScrollSpy(isHomePage ? NAV_SECTION_IDS : [])
+  const { theme } = useTheme()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   // Close menu when route changes

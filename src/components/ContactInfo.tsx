@@ -20,7 +20,7 @@ export default function ContactInfo() {
 
       <div>
         <div className="mb-6">
-          <h3 className="text-base font-semibold mb-2 text-text">Address</h3>
+          <h3 className="text-base font-semibold mb-2 text-text">Office</h3>
           <p className="text-text-muted text-[0.95rem] leading-[1.75]">
             WESPA Spaces | Zavrtnica 17
             <br />

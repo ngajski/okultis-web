@@ -35,7 +35,7 @@ const serviceSchemas = [
     '@type': 'Service',
     name: 'Software Engineering',
     description:
-      'Full-stack applications engineered for scale. APIs, real-time systems, and data-intensive platforms -built with disciplined architecture and shipped on time.',
+      'We engineer the systems behind ambitious products. Real-time platforms, high-throughput APIs, and complex integrations. Secure by default, built with modern tooling, and delivered fast enough to keep pace with your roadmap.',
     provider: { '@type': 'Organization', name: 'Okultis', url: 'https://okultis.com' },
   },
   {
@@ -43,7 +43,7 @@ const serviceSchemas = [
     '@type': 'Service',
     name: 'Product Design',
     description:
-      'Interfaces shaped by research and tested with real users. From AI-native UX patterns to complete design systems -we design products people want to use.',
+      'Design that drives adoption, not just looks good. User research, rapid prototyping, and iterative testing to find what works. From AI-native interaction patterns to full design systems built for product teams that move fast.',
     provider: { '@type': 'Organization', name: 'Okultis', url: 'https://okultis.com' },
   },
   {
@@ -51,7 +51,7 @@ const serviceSchemas = [
     '@type': 'Service',
     name: 'Cloud & Platform Engineering',
     description:
-      'Production-grade infrastructure from day one. CI/CD pipelines, container orchestration, observability, and cost optimization -so your team ships faster without firefighting.',
+      'We build infrastructure your team and your legal department can trust. CI/CD pipelines, container orchestration, observability, and cost optimization. Data residency, encryption, and compliance with local regulations baked in from the start.',
     provider: { '@type': 'Organization', name: 'Okultis', url: 'https://okultis.com' },
   },
 ]

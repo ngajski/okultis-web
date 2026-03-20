@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useScrollSpy } from '@/hooks/useScrollSpy'
+import EclipseToggle from '@/components/EclipseToggle'
 import logo from '@/assets/images/logo/okultis.png'
 import logoWhite from '@/assets/images/logo/okultis-logo-white.png'
 
@@ -92,6 +93,9 @@ export default function Header() {
                   Contact
                 </Link>
               </li>
+              <li className="flex items-center">
+                <EclipseToggle />
+              </li>
             </ul>
           </nav>
 
@@ -164,6 +168,16 @@ export default function Header() {
             >
               Contact
             </Link>
+          </li>
+          <li
+            className="transition-all duration-300 mt-6"
+            style={{
+              opacity: isMobileMenuOpen ? 1 : 0,
+              transform: isMobileMenuOpen ? 'translateY(0)' : 'translateY(20px)',
+              transitionDelay: isMobileMenuOpen ? `${(navItems.length + 2) * 50}ms` : '0ms',
+            }}
+          >
+            <EclipseToggle />
           </li>
         </ul>
       </div>

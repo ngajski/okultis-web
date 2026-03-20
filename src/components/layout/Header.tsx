@@ -125,7 +125,7 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Mobile fullscreen menu overlay — outside header to avoid stacking context issues */}
+      {/* Mobile fullscreen menu overlay -outside header to avoid stacking context issues */}
       <div
         className={`md:hidden fixed inset-0 bg-bg/95 backdrop-blur-[16px] flex items-end justify-center pb-20 z-[1001] transition-all duration-400 ${
           isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'

@@ -1,6 +1,6 @@
 /**
  * Dynamically injects the Google Analytics 4 script into the document head.
- * Safe to call multiple times — checks for an existing script tag first.
+ * Safe to call multiple times -checks for an existing script tag first.
  */
 export function loadGA(gaId: string): void {
   if (document.querySelector(`script[src*="googletagmanager.com/gtag"]`)) return
@@ -23,7 +23,7 @@ export function loadGA(gaId: string): void {
 
 /**
  * Dynamically injects the Google reCAPTCHA v3 script into the document head.
- * Safe to call multiple times — checks for an existing script tag first.
+ * Safe to call multiple times -checks for an existing script tag first.
  */
 export function loadRecaptcha(siteKey: string): void {
   if (document.querySelector(`script[src*="recaptcha"]`)) return

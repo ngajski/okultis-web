@@ -132,7 +132,7 @@ export default function ContactForm({ className = '' }: ContactFormProps) {
 
   return (
     <form className={className} onSubmit={handleSubmit} noValidate>
-      {/* Honeypot field — hidden from real users, traps bots */}
+      {/* Honeypot field -hidden from real users, traps bots */}
       <div className="absolute left-[-9999px] opacity-0 h-0 overflow-hidden" aria-hidden="true">
         <label htmlFor="website">Website</label>
         <input

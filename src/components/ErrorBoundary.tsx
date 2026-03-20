@@ -45,7 +45,7 @@ export default class ErrorBoundary extends Component<Props, State> {
             Something went wrong.
           </h1>
           <p className="text-text-muted text-[1.05rem] max-w-[480px] mb-10">
-            An unexpected error occurred. Try reloading the page — if the
+            An unexpected error occurred. Try reloading the page -if the
             problem persists, please contact us.
           </p>
           <button

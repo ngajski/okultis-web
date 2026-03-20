@@ -80,13 +80,13 @@ export default function PrivacyPolicyPage() {
             </p>
             <ul>
               <li>
-                <strong>Consent</strong> (Art. 6(1)(a)) — for the use of
+                <strong>Consent</strong> (Art. 6(1)(a)) -for the use of
                 analytics cookies (Google Analytics) and spam-protection cookies
                 (Google reCAPTCHA). These are only loaded after you accept
                 cookies via our consent banner.
               </li>
               <li>
-                <strong>Legitimate interest</strong> (Art. 6(1)(f)) — for basic
+                <strong>Legitimate interest</strong> (Art. 6(1)(f)) -for basic
                 website security and honeypot spam protection, which operate
                 without cookies.
               </li>
@@ -94,7 +94,7 @@ export default function PrivacyPolicyPage() {
                 <strong>
                   Performance of a contract or pre-contractual measures
                 </strong>{' '}
-                (Art. 6(1)(b)) — for processing contact form submissions to
+                (Art. 6(1)(b)) -for processing contact form submissions to
                 respond to your enquiry.
               </li>
             </ul>
@@ -105,12 +105,12 @@ export default function PrivacyPolicyPage() {
             <p>Our website uses cookies and similar technologies:</p>
             <ul>
               <li>
-                <strong>Google Analytics cookies</strong> (_ga, _ga_*) — used
+                <strong>Google Analytics cookies</strong> (_ga, _ga_*) -used
                 to distinguish users and sessions. These cookies expire after
                 up to 2 years.
               </li>
               <li>
-                <strong>Google reCAPTCHA cookies</strong> — used to assess
+                <strong>Google reCAPTCHA cookies</strong> -used to assess
                 whether requests come from humans or bots.
               </li>
             </ul>
@@ -132,7 +132,7 @@ export default function PrivacyPolicyPage() {
             </p>
             <ul>
               <li>
-                <strong>Google Analytics (Google LLC)</strong> — web analytics.{' '}
+                <strong>Google Analytics (Google LLC)</strong> -web analytics.{' '}
                 <a
                   href="https://policies.google.com/privacy"
                   target="_blank"
@@ -142,7 +142,7 @@ export default function PrivacyPolicyPage() {
                 </a>
               </li>
               <li>
-                <strong>Google reCAPTCHA (Google LLC)</strong> — spam
+                <strong>Google reCAPTCHA (Google LLC)</strong> -spam
                 protection.{' '}
                 <a
                   href="https://policies.google.com/privacy"
@@ -153,7 +153,7 @@ export default function PrivacyPolicyPage() {
                 </a>
               </li>
               <li>
-                <strong>Google Search Console (Google LLC)</strong> — search
+                <strong>Google Search Console (Google LLC)</strong> -search
                 performance monitoring.{' '}
                 <a
                   href="https://policies.google.com/privacy"
@@ -164,7 +164,7 @@ export default function PrivacyPolicyPage() {
                 </a>
               </li>
               <li>
-                <strong>Hostinger International Ltd.</strong> — website hosting
+                <strong>Hostinger International Ltd.</strong> -website hosting
                 on EU-based servers.{' '}
                 <a
                   href="https://www.hostinger.com/privacy-policy"
@@ -196,15 +196,15 @@ export default function PrivacyPolicyPage() {
             </p>
             <ul>
               <li>
-                <strong>Contact form data</strong> — retained for up to 1 year
+                <strong>Contact form data</strong> -retained for up to 1 year
                 after your enquiry is resolved, then deleted.
               </li>
               <li>
-                <strong>Analytics data</strong> — Google Analytics data is
+                <strong>Analytics data</strong> -Google Analytics data is
                 retained for 14 months, after which it is automatically deleted.
               </li>
               <li>
-                <strong>reCAPTCHA data</strong> — processed in real-time and
+                <strong>reCAPTCHA data</strong> -processed in real-time and
                 not stored by us.
               </li>
             </ul>
@@ -218,31 +218,31 @@ export default function PrivacyPolicyPage() {
             </p>
             <ul>
               <li>
-                <strong>Right of access</strong> — request a copy of your
+                <strong>Right of access</strong> -request a copy of your
                 personal data we hold.
               </li>
               <li>
-                <strong>Right to rectification</strong> — request correction of
+                <strong>Right to rectification</strong> -request correction of
                 inaccurate or incomplete data.
               </li>
               <li>
-                <strong>Right to erasure</strong> — request deletion of your
+                <strong>Right to erasure</strong> -request deletion of your
                 personal data.
               </li>
               <li>
-                <strong>Right to restriction of processing</strong> — request
+                <strong>Right to restriction of processing</strong> -request
                 limited processing of your data.
               </li>
               <li>
-                <strong>Right to data portability</strong> — receive your data
+                <strong>Right to data portability</strong> -receive your data
                 in a structured, machine-readable format.
               </li>
               <li>
-                <strong>Right to object</strong> — object to processing based
+                <strong>Right to object</strong> -object to processing based
                 on legitimate interest.
               </li>
               <li>
-                <strong>Right to withdraw consent</strong> — where processing
+                <strong>Right to withdraw consent</strong> -where processing
                 is based on consent, withdraw it at any time.
               </li>
             </ul>

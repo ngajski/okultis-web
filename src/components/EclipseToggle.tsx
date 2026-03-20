@@ -17,7 +17,7 @@ export default function EclipseToggle() {
         className="overflow-visible"
         aria-hidden="true"
       >
-        {/* Corona glow — visible during eclipse (dark mode) */}
+        {/* Corona glow -visible during eclipse (dark mode) */}
         <circle
           cx="16"
           cy="16"
@@ -50,7 +50,7 @@ export default function EclipseToggle() {
           className="transition-all duration-500 ease-in-out"
         />
 
-        {/* Sun rays — only visible in light mode */}
+        {/* Sun rays -only visible in light mode */}
         {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => {
           const rad = (angle * Math.PI) / 180
           const x1 = 16 + Math.cos(rad) * 11

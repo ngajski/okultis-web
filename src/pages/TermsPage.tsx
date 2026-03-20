@@ -52,8 +52,8 @@ export default function TermsPage() {
           <LegalSection>
             <h2>3. Intellectual Property</h2>
             <p>
-              All content on this Website — including but not limited to text,
-              graphics, logos, images, icons, and software — is the property of
+              All content on this Website -including but not limited to text,
+              graphics, logos, images, icons, and software -is the property of
               Okultis or its content suppliers and is protected by Croatian and
               international copyright, trademark, and other intellectual property
               laws.

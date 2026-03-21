@@ -30,7 +30,7 @@ const fadeUp = {
     opacity: 1,
     y: 0,
     filter: 'blur(0px)',
-    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] as const },
   },
 }
 
@@ -39,7 +39,7 @@ const glowIn = {
   animate: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.9 },
+    transition: { duration: 1, ease: [0.22, 1, 0.36, 1] as const, delay: 0.9 },
   },
 }
 
@@ -131,7 +131,7 @@ export default function HeroSection() {
               }}
               transition={{
                 duration: 1,
-                ease: [0.22, 1, 0.36, 1],
+                ease: [0.22, 1, 0.36, 1] as const,
                 delay: 0.8,
               }}
             >

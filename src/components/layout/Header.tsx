@@ -33,7 +33,7 @@ export default function Header() {
   const isHomePage = location.pathname === '/'
 
   const activeSectionId = useScrollSpy(isHomePage ? NAV_SECTION_IDS : [])
-  const { theme } = useTheme()
+  useTheme()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   // Close menu when route changes

@@ -27,9 +27,9 @@ export default function PrivacyPolicyPage() {
             <h2>1. Data Controller</h2>
             <p>The data controller responsible for your personal data is:</p>
             <p>
-              <strong>Okultis</strong>, obrt za trgovinu i usluge, vl. Nikola Gajski
+              <strong>Okultis d.o.o.</strong>
               <br />
-              Jurjevska ulica 31 A, Zagreb, Croatia
+              Ivana Broza 20A, Zagreb, Croatia
               <br />
               Email:{' '}
               <a href="mailto:hello@okultis.com">hello@okultis.com</a>
@@ -299,7 +299,7 @@ export default function PrivacyPolicyPage() {
               Email:{' '}
               <a href="mailto:hello@okultis.com">hello@okultis.com</a>
               <br />
-              Address: Jurjevska ulica 31 A, Zagreb, Croatia
+              Address: Ivana Broza 20A, Zagreb, Croatia
             </p>
           </LegalSection>
         </div>

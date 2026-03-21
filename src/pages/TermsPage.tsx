@@ -36,8 +36,8 @@ export default function TermsPage() {
           <LegalSection>
             <h2>2. Description of Services</h2>
             <p>
-              The Website is an informational website operated by Okultis, obrt
-              za trgovinu i usluge, vl. Nikola Gajski, based in Zagreb, Croatia.
+              The Website is an informational website operated by Okultis d.o.o.,
+              based in Zagreb, Croatia.
               The Website provides information about our services, including
               software development, UX/UI design, digital transformation, and IT
               consulting.
@@ -169,7 +169,7 @@ export default function TermsPage() {
               Email:{' '}
               <a href="mailto:hello@okultis.com">hello@okultis.com</a>
               <br />
-              Address: Jurjevska ulica 31 A, Zagreb, Croatia
+              Address: Ivana Broza 20A, Zagreb, Croatia
             </p>
           </LegalSection>
         </div>

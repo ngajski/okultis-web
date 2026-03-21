@@ -49,7 +49,7 @@ export default function ContactInfo() {
               rel="noopener noreferrer"
               className="text-accent underline underline-offset-[2px] transition-colors duration-300 hover:text-accent-hover"
             >
-              Nikola Gajski
+              Okultis
             </a>
           </p>
         </div>

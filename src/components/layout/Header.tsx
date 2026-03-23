@@ -6,7 +6,7 @@ import EclipseToggle from '@/components/EclipseToggle'
 import logo from '@/assets/images/logo/okultis.png'
 import logoWhite from '@/assets/images/logo/okultis-logo-white.png'
 
-const NAV_SECTION_IDS = ['hero', 'about', 'services', 'clients']
+const NAV_SECTION_IDS = ['hero', 'about', 'services']
 
 interface NavItem {
   label: string
@@ -18,14 +18,14 @@ const HOME_NAV_ITEMS: NavItem[] = [
   { label: 'Home', href: '#hero', sectionId: 'hero' },
   { label: 'About', href: '#about', sectionId: 'about' },
   { label: 'Services', href: '#services', sectionId: 'services' },
-  { label: 'Clients', href: '#clients', sectionId: 'clients' },
+  { label: 'Careers', href: '/careers' },
 ]
 
 const EXTERNAL_NAV_ITEMS: NavItem[] = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/#about' },
   { label: 'Services', href: '/#services' },
-  { label: 'Clients', href: '/#clients' },
+  { label: 'Careers', href: '/careers' },
 ]
 
 export default function Header() {

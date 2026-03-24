@@ -235,7 +235,7 @@ export default function ApplicationForm({ positions }: ApplicationFormProps) {
 
       <div className="mb-6">
         <label htmlFor="message" className="block text-[0.85rem] font-medium text-text-muted mb-2">
-          Cover letter
+          Cover letter <span className="text-text-muted font-normal">(a few sentences is fine)</span>
         </label>
         <textarea
           name="message"

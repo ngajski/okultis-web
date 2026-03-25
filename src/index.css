@@ -52,6 +52,16 @@ canvas + div:has(a[href]) {
   display: none !important;
 }
 
+:root {
+  --marquee-duration: 40s;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --marquee-duration: 20s;
+  }
+}
+
 @keyframes marquee-scroll {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }

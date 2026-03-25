@@ -5,7 +5,7 @@ export default function ClientsSection() {
   const duplicatedClients = [...clients, ...clients]
 
   return (
-    <section id="clients" className="py-[100px] md:py-[72px]">
+    <section id="clients" className="py-[100px] md:py-[72px] overflow-x-clip">
       <div className="w-full max-w-[1120px] mx-auto px-6">
         <h2
           className="font-bold tracking-[-0.02em] mb-12"
@@ -16,13 +16,13 @@ export default function ClientsSection() {
       </div>
       {/* Full-width marquee, not constrained to the container */}
       <div
-        className="overflow-hidden w-full group"
+        className="overflow-x-clip w-full group"
         aria-label="Client logos"
       >
         <div
           className="flex gap-12 w-max"
           style={{
-            animation: 'marquee-scroll 40s linear infinite',
+            animation: 'marquee-scroll var(--marquee-duration, 40s) linear infinite',
             willChange: 'transform',
             backfaceVisibility: 'hidden',
             WebkitBackfaceVisibility: 'hidden',

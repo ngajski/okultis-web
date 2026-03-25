@@ -108,15 +108,17 @@ export default function ApplicationForm({ positions }: ApplicationFormProps) {
         body: formData,
       })
 
-      if (response.ok) {
+      const data = await response.json()
+
+      if (data.success) {
         setStatusMessage({
-          text: "Application sent! We'll review it and get back to you.",
+          text: data.message || "Application sent! We'll review it and get back to you.",
           isSuccess: true,
         })
         setFields({ name: '', email: '', linkedin: '', role: '', message: '', honeypot: '' })
       } else {
         setStatusMessage({
-          text: 'Something went wrong. Please try again or email us directly.',
+          text: data.message || 'Something went wrong. Please try again or email us directly.',
           isSuccess: false,
         })
       }

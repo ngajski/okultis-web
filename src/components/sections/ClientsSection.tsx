@@ -1,9 +1,25 @@
 import { clients } from '@/data/clients'
 
-export default function ClientsSection() {
-  // Duplicate the logo set for a seamless infinite scroll loop
-  const duplicatedClients = [...clients, ...clients]
+function LogoSet() {
+  return (
+    <div className="flex shrink-0 items-center gap-12 pr-12">
+      {clients.map((client) => (
+        <img
+          key={client.alt}
+          src={client.src}
+          alt={client.alt}
+          width={160}
+          height={48}
+          loading="lazy"
+          decoding="async"
+          className={`h-[48px] w-auto shrink-0 object-contain opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0 ${client.invertOnLight ? 'brightness-0 dark:brightness-100' : 'dark:brightness-0 dark:invert'}`}
+        />
+      ))}
+    </div>
+  )
+}
 
+export default function ClientsSection() {
   return (
     <section id="clients" className="py-[100px] md:py-[72px] overflow-x-clip">
       <div className="w-full max-w-[1120px] mx-auto px-6">
@@ -16,34 +32,18 @@ export default function ClientsSection() {
       </div>
       {/* Full-width marquee, not constrained to the container */}
       <div
-        className="overflow-x-clip w-full group"
+        className="overflow-x-clip w-full"
         aria-label="Client logos"
       >
         <div
-          className="flex gap-12 w-max"
+          className="flex w-max"
           style={{
             animation: 'marquee-scroll var(--marquee-duration, 40s) linear infinite',
             willChange: 'transform',
-            backfaceVisibility: 'hidden',
-            WebkitBackfaceVisibility: 'hidden',
           }}
         >
-          {duplicatedClients.map((client, index) => (
-            <div
-              key={`${client.alt}-${index}`}
-              className="flex-none flex items-center h-[60px]"
-            >
-              <img
-                src={client.src}
-                alt={client.alt}
-                width={160}
-                height={48}
-                loading='lazy'
-                decoding='async'
-                className={`max-h-[48px] w-auto object-contain opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0 ${client.invertOnLight ? 'brightness-0 dark:brightness-100' : 'dark:brightness-0 dark:invert'}`}
-              />
-            </div>
-          ))}
+          <LogoSet />
+          <LogoSet />
         </div>
       </div>
     </section>

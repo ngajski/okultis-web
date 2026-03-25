@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /send.php
+Disallow: /apply.php
 Disallow: /config.php
 Disallow: /phpmailer/
 

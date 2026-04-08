@@ -1,24 +1,6 @@
-import { lazy, Suspense } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-
-const ProceduralGroundBackground = lazy(
-  () => import('@/components/ProceduralGroundBackground')
-)
-
-function HeroBackgroundFallback() {
-  return (
-    <div
-      className="absolute inset-0 w-full h-full -z-10"
-      style={{
-        background: `
-          radial-gradient(ellipse 80% 60% at 50% 100%, color-mix(in srgb, var(--color-accent) 8%, transparent) 0%, transparent 70%),
-          var(--color-bg)
-        `,
-      }}
-    />
-  )
-}
+import ProceduralGroundBackground from '@/components/ProceduralGroundBackground'
 
 const stagger = {
   animate: { transition: { staggerChildren: 0.18, delayChildren: 0.4 } },
@@ -49,9 +31,7 @@ export default function HeroSection() {
       id="hero"
       className="relative flex items-center min-h-screen pt-[72px] overflow-hidden"
     >
-      <Suspense fallback={<HeroBackgroundFallback />}>
-        <ProceduralGroundBackground />
-      </Suspense>
+      <ProceduralGroundBackground />
 
       {/* Sigil rings - mystical entrance */}
       <motion.div

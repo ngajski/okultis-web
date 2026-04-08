@@ -13,16 +13,19 @@ interface ThemeContextValue {
 const ThemeContext = createContext<ThemeContextValue | null>(null)
 
 function getSystemTheme(): 'light' | 'dark' {
+  if (typeof window === 'undefined') return 'light'
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
 }
 
 function getStoredPreference(): ThemePreference {
+  if (typeof window === 'undefined') return 'system'
   const stored = localStorage.getItem('theme-preference')
   if (stored === 'light' || stored === 'dark' || stored === 'system') return stored
   return 'system'
 }
 
 function applyTheme(theme: 'light' | 'dark') {
+  if (typeof document === 'undefined') return
   document.documentElement.classList.toggle('dark', theme === 'dark')
 }
 

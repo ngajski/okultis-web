@@ -34,6 +34,8 @@ export default function CareersPage() {
           name="description"
           content="Join the Okultis team. We are a small, focused software engineering studio building products for ambitious clients."
         />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://okultis.com/careers" />
       </Helmet>
 
       <motion.div

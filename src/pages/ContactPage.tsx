@@ -60,7 +60,9 @@ export default function ContactPage() {
           name="description"
           content="Get in touch with Okultis. Visit us at WESPA Spaces, Zagreb or send us a message."
         />
-        <script type="application/ld+json">{JSON.stringify(localBusinessSchema)}</script>
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://okultis.com/contact" />
+      <script type="application/ld+json">{JSON.stringify(localBusinessSchema)}</script>
       </Helmet>
 
       <motion.div

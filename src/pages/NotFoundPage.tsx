@@ -6,6 +6,7 @@ export default function NotFoundPage() {
     <>
       <Helmet>
         <title>404 - Page Not Found | Okultis</title>
+        <meta name="robots" content="noindex, follow" />
       </Helmet>
 
       <div className="flex flex-col items-center justify-center min-h-screen pt-[72px] px-6 text-center">

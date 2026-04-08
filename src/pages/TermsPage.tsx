@@ -10,6 +10,8 @@ export default function TermsPage() {
           name="description"
           content="Terms and Conditions for using the Okultis website."
         />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://okultis.com/terms" />
       </Helmet>
 
       <div className="pt-[calc(72px+60px)] pb-20">

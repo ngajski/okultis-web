@@ -23,6 +23,15 @@ const organizationSchema = {
   sameAs: ['https://www.linkedin.com/company/okultis-it'],
 }
 
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Okultis',
+  url: 'https://okultis.com',
+  description:
+    'Okultis is a software company building AI systems, custom software, product design, and cloud platforms.',
+}
+
 const serviceSchemas = [
   {
     '@context': 'https://schema.org',
@@ -62,24 +71,37 @@ export default function HomePage() {
   return (
     <>
       <Helmet>
-        <title>Okultis - From Fiction to Reality</title>
+        <title>Okultis | AI Systems, Custom Software & Product Design</title>
         <meta
           name="description"
-          content="Okultis delivers AI systems, software engineering, product design, and cloud platform engineering to turn your boldest ideas into reality."
+          content="Okultis is a software company that delivers AI systems, custom software development, product design, and cloud platform engineering for ambitious teams."
         />
-        <meta property="og:title" content="Okultis - From Fiction to Reality" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://okultis.com/" />
+        <meta property="og:title" content="Okultis | AI Systems, Custom Software & Product Design" />
         <meta
           property="og:description"
-          content="AI systems, software engineering, product design, and cloud platform engineering."
+          content="Software company building AI systems, custom software, product design, and cloud platform engineering."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://okultis.com" />
+        <meta property="og:site_name" content="Okultis" />
         <meta
           property="og:image"
           content="https://okultis.com/assets/images/logo/okultis-software-systems-vertical.webp"
         />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Okultis | AI Systems, Custom Software & Product Design" />
+        <meta
+          name="twitter:description"
+          content="Software company building AI systems, custom software, product design, and cloud platform engineering."
+        />
+        <meta
+          name="twitter:image"
+          content="https://okultis.com/assets/images/logo/okultis-software-systems-vertical.webp"
+        />
         <script type="application/ld+json">
-          {JSON.stringify([organizationSchema, ...serviceSchemas])}
+          {JSON.stringify([organizationSchema, websiteSchema, ...serviceSchemas])}
         </script>
       </Helmet>
 

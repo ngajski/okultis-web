@@ -9,6 +9,8 @@ export default function PrivacyPolicyPage() {
           name="description"
           content="Privacy Policy for Okultis. Learn how we collect, use, and protect your personal data in compliance with GDPR."
         />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://okultis.com/privacy-policy" />
       </Helmet>
 
       <div className="pt-[calc(72px+60px)] pb-20">

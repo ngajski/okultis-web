@@ -99,7 +99,7 @@ export default function HeroSection() {
             style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)' }}
             variants={fadeUp}
           >
-            Okultis builds AI systems
+            From fiction…
             <br />
             <motion.span
               className="text-accent inline-block"
@@ -115,7 +115,7 @@ export default function HeroSection() {
                 delay: 0.8,
               }}
             >
-              and custom software.
+              to reality.
             </motion.span>
           </motion.h1>
           <motion.p
@@ -123,9 +123,8 @@ export default function HeroSection() {
             style={{ fontSize: 'clamp(1.05rem, 2vw, 1.25rem)' }}
             variants={fadeUp}
           >
-            Okultis is a software company in Zagreb that designs products,
-            engineers platforms, and turns ambitious ideas into real digital
-            products.
+            We build software, design experiences, and transform businesses - so
+            your boldest ideas become real products.
           </motion.p>
           <motion.div variants={glowIn}>
             <Link

@@ -1,53 +1,71 @@
-import type { LucideIcon } from 'lucide-react'
-import { useScrollFadeIn } from '@/hooks/useScrollFadeIn'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import SectionFrame from '@/components/ui/SectionFrame'
 import { services } from '@/data/services'
 
+const EASE = [0.22, 1, 0.36, 1] as const
+
 export default function ServicesSection() {
-  const { ref, isVisible } = useScrollFadeIn()
+  const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
-    <section id="services" className="py-[100px] md:py-[72px]">
-      <div className="w-full max-w-[1120px] mx-auto px-6">
-        <h2
-          className="font-bold tracking-[-0.02em] mb-12"
-          style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)' }}
-        >
-          What we do
-        </h2>
-        <div
-          ref={ref as React.RefObject<HTMLDivElement>}
-          className={`grid grid-cols-1 md:grid-cols-2 gap-6 transition-all duration-[600ms] ease-out ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-          }`}
-        >
-          {services.map((service) => (
-            <ServiceCard
-              key={service.title}
-              icon={service.icon}
-              title={service.title}
-              description={service.description}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
+    <SectionFrame
+      id="services"
+      label="Practice"
+      title={
+        <>
+          What we do{' '}
+          <span className="display-italic">in the room.</span>
+        </>
+      }
+    >
+      <ol className="divide-y divide-border-soft border-t border-b border-border-soft">
+        {services.map((service, i) => {
+          const isOpen = openIndex === i
+          return (
+            <li key={service.title}>
+              <button
+                type="button"
+                onClick={() => setOpenIndex(isOpen ? null : i)}
+                aria-expanded={isOpen}
+                className="w-full text-left py-8 md:py-10 cursor-pointer group"
+              >
+                <h3
+                  className={`display text-[clamp(1.7rem,3.5vw,2.4rem)] leading-[1.05] transition-colors duration-500 ${
+                    isOpen ? 'text-accent' : 'text-text group-hover:text-accent'
+                  }`}
+                >
+                  {service.title}
+                </h3>
 
-interface ServiceCardProps {
-  icon: LucideIcon
-  title: string
-  description: string
-}
-
-function ServiceCard({ icon: Icon, title, description }: ServiceCardProps) {
-  return (
-    <div className="bg-bg-card border border-border rounded-[12px] p-9 transition-all duration-300 hover:-translate-y-1 hover:border-accent group">
-      <div className="w-14 h-14 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center mb-5 shadow-[0_0_20px_rgba(0,119,182,0.1)] transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(0,119,182,0.2)] group-hover:border-accent/40">
-        <Icon size={28} className="text-accent" />
-      </div>
-      <h3 className="text-[1.2rem] font-semibold mb-3">{title}</h3>
-      <p className="text-text-muted text-[0.95rem] leading-[1.65]">{description}</p>
-    </div>
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      key="body"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{
+                        opacity: 1,
+                        height: 'auto',
+                        transition: { duration: 0.5, ease: EASE },
+                      }}
+                      exit={{
+                        opacity: 0,
+                        height: 0,
+                        transition: { duration: 0.3, ease: EASE },
+                      }}
+                      className="overflow-hidden"
+                    >
+                      <p className="mt-6 max-w-[66ch] text-text-soft text-[1rem] md:text-[1.05rem] leading-[1.7]">
+                        {service.description}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </button>
+            </li>
+          )
+        })}
+      </ol>
+    </SectionFrame>
   )
 }

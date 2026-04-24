@@ -1,35 +1,28 @@
-import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
-import { Flame, Sparkles, Shield, Gem } from "lucide-react";
-import ApplicationForm from "@/components/ApplicationForm";
+import { Helmet } from 'react-helmet-async'
+import { motion } from 'framer-motion'
+import ApplicationForm from '@/components/ApplicationForm'
 
-const veilVariants = {
-  initial: { clipPath: "circle(0% at 50% 40%)" },
-  animate: {
-    clipPath: "circle(150% at 50% 40%)",
-    transition: { duration: 1, ease: [0.22, 1, 0.36, 1] as const },
-  },
-};
+const EASE = [0.22, 1, 0.36, 1] as const
 
 const stagger = {
-  animate: { transition: { staggerChildren: 0.12, delayChildren: 0.3 } },
-};
+  animate: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
+}
 
 const fadeUp = {
-  initial: { opacity: 0, y: 24, filter: "blur(4px)" },
+  initial: { opacity: 0, y: 20, filter: 'blur(4px)' },
   animate: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const },
+    filter: 'blur(0px)',
+    transition: { duration: 0.75, ease: EASE },
   },
-};
+}
 
 export default function CareersPage() {
   return (
     <>
       <Helmet>
-        <title>Careers - Okultis</title>
+        <title>Careers -- Okultis</title>
         <meta
           name="description"
           content="Join the Okultis team. We are a small, focused software engineering studio building products for ambitious clients."
@@ -39,238 +32,189 @@ export default function CareersPage() {
       </Helmet>
 
       <motion.div
-        className="pt-[calc(72px+60px)] pb-20 relative"
-        variants={veilVariants}
+        className="pt-[calc(72px+80px)] pb-24 relative"
+        variants={stagger}
         initial="initial"
         animate="animate"
       >
-        {/* Sigil ring - pulses once and fades */}
-        <motion.div
-          className="absolute left-1/2 pointer-events-none"
-          style={{ top: "40%" }}
-          initial={{ opacity: 0, scale: 0.3 }}
-          animate={{
-            opacity: [0, 0.15, 0],
-            scale: [0.3, 1.2, 1.6],
-          }}
-          transition={{ duration: 1.6, ease: "easeOut", delay: 0.1 }}
-        >
-          <svg
-            width="400"
-            height="400"
-            viewBox="0 0 400 400"
-            className="-translate-x-1/2 -translate-y-1/2"
-          >
-            <circle
-              cx="200"
-              cy="200"
-              r="180"
-              fill="none"
-              stroke="var(--color-accent)"
-              strokeWidth="0.5"
-            />
-            <circle
-              cx="200"
-              cy="200"
-              r="140"
-              fill="none"
-              stroke="var(--color-accent)"
-              strokeWidth="0.3"
-              strokeDasharray="8 12"
-            />
-            <circle
-              cx="200"
-              cy="200"
-              r="100"
-              fill="none"
-              stroke="var(--color-accent)"
-              strokeWidth="0.5"
-            />
-          </svg>
-        </motion.div>
-
-        <motion.div
-          className="w-full max-w-[1120px] mx-auto px-6 relative"
-          variants={stagger}
-          initial="initial"
-          animate="animate"
-        >
-          <motion.h1
-            className="font-bold tracking-[-0.02em] mb-2"
-            style={{ fontSize: "clamp(1.75rem, 4vw, 2.5rem)" }}
-            variants={fadeUp}
-          >
-            Work with us
-          </motion.h1>
-          <motion.p
-            className="text-text-muted text-[1.05rem] mb-12"
-            variants={fadeUp}
-          >
-            We are a small, focused team. If you care deeply about craft and
-            want to build things that matter, we would love to hear from you.
+        <div className="w-full max-w-[1120px] mx-auto px-6 md:px-10">
+          <motion.p variants={fadeUp} className="eyebrow mb-6">
+            Careers
           </motion.p>
 
-          <motion.div variants={fadeUp} className="mb-12">
-            <h2 className="text-[1.15rem] font-semibold text-text mb-5">
-              What we value
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <motion.h1
+            variants={fadeUp}
+            className="display text-[clamp(2.6rem,6.5vw,4.2rem)] leading-[0.98] text-text max-w-[16ch]"
+          >
+            A small room.{' '}
+            <span className="display-italic">A long bench.</span>
+          </motion.h1>
+
+          <motion.p
+            variants={fadeUp}
+            className="mt-8 max-w-[52ch] text-text-soft text-[1.05rem] md:text-[1.15rem] leading-[1.6]"
+          >
+            We hire people who care about the details, ship with intent, and
+            treat craft like a habit -- not a deadline concern. Most of the
+            team touches design, code, and client conversation in the same
+            week.
+          </motion.p>
+
+          {/* Values */}
+          <motion.section variants={fadeUp} className="mt-24">
+            <p className="eyebrow mb-10">What we value</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12">
               {VALUES.map((value) => (
-                <div
-                  key={value.title}
-                  className="border border-border rounded-[12px] p-4"
-                >
-                  <div className="text-accent text-lg mb-2">{value.icon}</div>
-                  <h3 className="text-[0.95rem] font-medium text-text mb-1">
+                <div key={value.title}>
+                  <h3 className="display text-[1.4rem] leading-[1.05] text-text mb-3">
                     {value.title}
                   </h3>
-                  <p className="text-[0.85rem] text-text-muted leading-[1.6]">
+                  <p className="text-text-soft text-[0.92rem] leading-[1.6]">
                     {value.description}
                   </p>
                 </div>
               ))}
             </div>
-          </motion.div>
+          </motion.section>
 
+          {/* Positions + application */}
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start"
             variants={fadeUp}
+            className="mt-24 grid grid-cols-12 gap-10 md:gap-16 items-start"
           >
-            {/* Left column - open positions */}
-            <div>
-              <h2 className="text-[1.15rem] font-semibold text-text mb-4">
-                Open positions
-              </h2>
+            <div className="col-span-12 md:col-span-7">
+              <p className="eyebrow mb-10">Open positions</p>
 
-              {/* Product Manager listing */}
-              <div className="border border-border rounded-[12px] p-5 mb-4">
-                <h3 className="text-[1.05rem] font-semibold text-text mb-1">
-                  Product Manager
-                </h3>
-                <p className="text-[0.8rem] text-text-muted mb-4">
-                  Zagreb / Remote &middot; Freelance / B2B contract
-                </p>
-                <p className="text-[0.95rem] text-text-muted leading-[1.7] mb-4">
-                  We are looking for someone to bridge the gap between our
-                  clients and engineering teams. You will run discovery
-                  workshops, gather and translate business requirements into
-                  actionable specs, own the product backlog, and drive delivery
-                  of custom software projects from kickoff to launch.
-                </p>
-                <h4 className="text-[0.9rem] font-medium text-text mb-2">
-                  What you will do
-                </h4>
-                <ul className="space-y-2 mb-5">
-                  <li className="flex gap-3 text-[0.95rem] text-text-muted leading-[1.7]">
-                    <span className="mt-2 shrink-0 w-1.5 h-1.5 rounded-full bg-accent" />
-                    Lead client discovery sessions to understand business goals,
-                    map processes, and define project scope
-                  </li>
-                  <li className="flex gap-3 text-[0.95rem] text-text-muted leading-[1.7]">
-                    <span className="mt-2 shrink-0 w-1.5 h-1.5 rounded-full bg-accent" />
-                    Translate business requirements into user stories,
-                    acceptance criteria, and technical specifications
-                  </li>
-                  <li className="flex gap-3 text-[0.95rem] text-text-muted leading-[1.7]">
-                    <span className="mt-2 shrink-0 w-1.5 h-1.5 rounded-full bg-accent" />
-                    Own the product backlog and prioritize work across multiple
-                    client projects
-                  </li>
-                  <li className="flex gap-3 text-[0.95rem] text-text-muted leading-[1.7]">
-                    <span className="mt-2 shrink-0 w-1.5 h-1.5 rounded-full bg-accent" />
-                    Coordinate between clients, designers, and engineers to keep
-                    delivery on track
-                  </li>
-                </ul>
-                <h4 className="text-[0.9rem] font-medium text-text mb-2">
-                  Requirements
-                </h4>
-                <ul className="space-y-2 mb-4">
-                  <li className="flex gap-3 text-[0.95rem] text-text-muted leading-[1.7]">
-                    <span className="mt-2 shrink-0 w-1.5 h-1.5 rounded-full bg-accent" />
-                    5+ years of experience in product management in custom
-                    software delivery
-                  </li>
-                  <li className="flex gap-3 text-[0.95rem] text-text-muted leading-[1.7]">
-                    <span className="mt-2 shrink-0 w-1.5 h-1.5 rounded-full bg-accent" />
-                    Bachelor's degree in a relevant field
-                  </li>
-                  <li className="flex gap-3 text-[0.95rem] text-text-muted leading-[1.7]">
-                    <span className="mt-2 shrink-0 w-1.5 h-1.5 rounded-full bg-accent" />
-                    Hands-on experience working directly with external
-                    clients{" "}
-                  </li>
-                  <li className="flex gap-3 text-[0.95rem] text-text-muted leading-[1.7]">
-                    <span className="mt-2 shrink-0 w-1.5 h-1.5 rounded-full bg-accent" />
-                    Strong negotiation skills - you know how to push back
-                    politely and protect the team's focus
-                  </li>
-                  <li className="flex gap-3 text-[0.95rem] text-text-muted leading-[1.7]">
-                    <span className="mt-2 shrink-0 w-1.5 h-1.5 rounded-full bg-accent" />
-                    Calm under pressure - you manage timelines without passing
-                    stress down to the team
-                  </li>
-                </ul>
-              </div>
+              <Position
+                role="Product Manager"
+                meta="Zagreb / Remote · Freelance / B2B"
+                summary="Bridge the gap between clients and engineering teams. Run discovery workshops, translate business requirements into actionable specs, own the product backlog, and drive delivery of custom software projects from kickoff to launch."
+                bullets={[
+                  'Lead client discovery to understand goals, map processes, and define project scope',
+                  'Translate requirements into user stories, acceptance criteria, and technical specs',
+                  'Own the backlog and prioritize across multiple client projects',
+                  'Coordinate between clients, designers, and engineers to keep delivery on track',
+                ]}
+                requirements={[
+                  '5+ years of product management in custom software delivery',
+                  "Bachelor's degree in a relevant field",
+                  'Hands-on experience working directly with external clients',
+                  'Strong negotiation -- pushing back politely to protect the team',
+                  'Calm under pressure; you manage timelines without passing stress down',
+                ]}
+              />
 
-              {/* Open Application */}
-              <div className="border border-border rounded-[12px] p-5">
-                <h3 className="text-[1.05rem] font-semibold text-text mb-1">
-                  Open Application
+              <div className="mt-16">
+                <h3 className="display text-[1.5rem] leading-[1.05] text-text mb-3">
+                  Didn't see your role?
                 </h3>
-                <p className="text-[0.95rem] text-text-muted leading-[1.7]">
-                  Don't see your role listed? We are always interested in
-                  talented people. Send us your application and tell us what you
-                  bring.
+                <p className="text-text-soft text-[0.95rem] leading-[1.7] max-w-[48ch]">
+                  We are always interested in talented people. Send us your
+                  story -- what you build, what you want to build next, and
+                  what a good day at work looks like to you.
                 </p>
               </div>
             </div>
 
-            {/* Right column - application form */}
-            <div>
-              <h2 className="text-[1.15rem] font-semibold text-text mb-6">
-                Apply
-              </h2>
+            <div className="col-span-12 md:col-span-5">
+              <p className="eyebrow mb-10">Apply</p>
               <ApplicationForm positions={OPEN_POSITIONS} />
             </div>
           </motion.div>
-        </motion.div>
+        </div>
       </motion.div>
     </>
-  );
+  )
 }
 
-interface Value {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
+function Position({
+  role,
+  meta,
+  summary,
+  bullets,
+  requirements,
+}: {
+  role: string
+  meta: string
+  summary: string
+  bullets: string[]
+  requirements: string[]
+}) {
+  return (
+    <article className="pb-12 border-b border-border-soft">
+      <header className="flex items-baseline justify-between mb-5 gap-4 flex-wrap">
+        <h3 className="display text-[clamp(1.6rem,2.6vw,2rem)] leading-[1.05] text-text">
+          {role}
+        </h3>
+        <span className="text-[0.85rem] text-text-muted">
+          {meta}
+        </span>
+      </header>
+
+      <p className="text-text-soft text-[1rem] leading-[1.7] mb-8 max-w-[64ch]">
+        {summary}
+      </p>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <p className="eyebrow mb-4">What you'll do</p>
+          <ul className="space-y-2.5">
+            {bullets.map((b) => (
+              <li
+                key={b}
+                className="flex items-baseline gap-3 text-[0.92rem] text-text leading-[1.65]"
+              >
+                <span className="text-accent shrink-0">—</span>
+                <span>{b}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p className="eyebrow mb-4">Requirements</p>
+          <ul className="space-y-2.5">
+            {requirements.map((r) => (
+              <li
+                key={r}
+                className="flex items-baseline gap-3 text-[0.92rem] text-text leading-[1.65]"
+              >
+                <span className="text-accent shrink-0">—</span>
+                <span>{r}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </article>
+  )
 }
 
-const VALUES: Value[] = [
-  {
-    icon: <Flame className="w-5 h-5" />,
-    title: "Motivation",
-    description:
-      "We look for people who bring energy and genuine enthusiasm to the work. That drive is what lifts the whole team.",
-  },
-  {
-    icon: <Sparkles className="w-5 h-5" />,
-    title: "Curiosity",
-    description:
-      "The best people on the team are always learning. We make space for that growth.",
-  },
-  {
-    icon: <Shield className="w-5 h-5" />,
-    title: "Ownership",
-    description:
-      "Everyone on the team owns outcomes, not just tasks. You ship it, you support it.",
-  },
-  {
-    icon: <Gem className="w-5 h-5" />,
-    title: "Craft",
-    description:
-      "We take pride in the details. Quality is a habit, not a deadline concern.",
-  },
-];
+interface ValueDef {
+  title: string
+  description: string
+}
 
-const OPEN_POSITIONS: string[] = ["Product Manager", "Open Application"];
+const VALUES: ValueDef[] = [
+  {
+    title: 'Motivation',
+    description:
+      'We look for people who bring energy and genuine enthusiasm to the work. That drive is what lifts the whole team.',
+  },
+  {
+    title: 'Curiosity',
+    description:
+      'The best people on the team are always learning. We make space for that growth.',
+  },
+  {
+    title: 'Ownership',
+    description:
+      'Everyone on the team owns outcomes, not just tasks. You ship it, you support it.',
+  },
+  {
+    title: 'Craft',
+    description:
+      'We take pride in the details. Quality is a habit, not a deadline concern.',
+  },
+]
+
+const OPEN_POSITIONS: string[] = ['Product Manager', 'Open Application']

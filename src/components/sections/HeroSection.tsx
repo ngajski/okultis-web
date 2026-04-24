@@ -1,27 +1,29 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import ProceduralGroundBackground from '@/components/ProceduralGroundBackground'
+
+const EASE = [0.22, 1, 0.36, 1] as const
 
 const stagger = {
-  animate: { transition: { staggerChildren: 0.18, delayChildren: 0.4 } },
+  animate: { transition: { staggerChildren: 0.14, delayChildren: 0.2 } },
 }
 
 const fadeUp = {
-  initial: { opacity: 0, y: 30, filter: 'blur(6px)' },
+  initial: { opacity: 0, y: 20, filter: 'blur(6px)' },
   animate: {
     opacity: 1,
     y: 0,
     filter: 'blur(0px)',
-    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] as const },
+    transition: { duration: 1, ease: EASE },
   },
 }
 
-const glowIn = {
-  initial: { opacity: 0, scale: 0.9 },
+const wordIn = {
+  initial: { opacity: 0, y: 30, filter: 'blur(10px)' },
   animate: {
     opacity: 1,
-    scale: 1,
-    transition: { duration: 1, ease: [0.22, 1, 0.36, 1] as const, delay: 0.9 },
+    y: 0,
+    filter: 'blur(0px)',
+    transition: { duration: 1.1, ease: EASE },
   },
 }
 
@@ -29,112 +31,51 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative flex items-center min-h-screen pt-[72px] overflow-hidden"
+      className="relative flex items-center min-h-[100svh] pt-[72px] pb-16 overflow-hidden"
     >
-      <ProceduralGroundBackground />
-
-      {/* Sigil rings - mystical entrance */}
       <motion.div
-        className="absolute left-1/2 top-1/2 pointer-events-none -z-[5]"
-        initial={{ opacity: 0, scale: 0.2, rotate: 0 }}
-        animate={{
-          opacity: [0, 0.12, 0],
-          scale: [0.2, 1.4, 1.8],
-          rotate: [0, 45, 90],
-        }}
-        transition={{ duration: 2.2, ease: 'easeOut', delay: 0.1 }}
-      >
-        <svg
-          width="600"
-          height="600"
-          viewBox="0 0 600 600"
-          className="-translate-x-1/2 -translate-y-1/2"
-        >
-          <circle
-            cx="300"
-            cy="300"
-            r="280"
-            fill="none"
-            stroke="var(--color-accent)"
-            strokeWidth="0.5"
-          />
-          <circle
-            cx="300"
-            cy="300"
-            r="220"
-            fill="none"
-            stroke="var(--color-accent)"
-            strokeWidth="0.3"
-            strokeDasharray="4 16"
-          />
-          <circle
-            cx="300"
-            cy="300"
-            r="160"
-            fill="none"
-            stroke="var(--color-accent)"
-            strokeWidth="0.5"
-            strokeDasharray="1 8"
-          />
-          <circle
-            cx="300"
-            cy="300"
-            r="100"
-            fill="none"
-            stroke="var(--color-accent)"
-            strokeWidth="0.4"
-          />
-        </svg>
-      </motion.div>
-
-      <motion.div
-        className="relative z-10 w-full max-w-[1120px] mx-auto px-6"
+        className="relative w-full max-w-[1120px] mx-auto px-6 md:px-10"
         variants={stagger}
         initial="initial"
         animate="animate"
       >
-        <div className="max-w-[720px]">
-          <motion.h1
-            className="font-bold leading-[1.1] tracking-[-0.03em] mb-6"
-            style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)' }}
-            variants={fadeUp}
-          >
-            From fiction…
-            <br />
+        <h1 className="display text-[clamp(3rem,10vw,7.5rem)] text-text max-w-[14ch]">
+          <motion.span className="block overflow-hidden">
+            <motion.span className="block" variants={wordIn}>
+              From fiction,
+            </motion.span>
+          </motion.span>
+          <motion.span className="block overflow-hidden">
             <motion.span
-              className="text-accent inline-block"
-              initial={{ opacity: 0, x: -20, filter: 'blur(8px)' }}
-              animate={{
-                opacity: 1,
-                x: 0,
-                filter: 'blur(0px)',
-              }}
-              transition={{
-                duration: 1,
-                ease: [0.22, 1, 0.36, 1] as const,
-                delay: 0.8,
-              }}
+              className="display-italic block"
+              variants={wordIn}
+              transition={{ duration: 1.2, ease: EASE, delay: 0.1 }}
             >
               to reality.
             </motion.span>
-          </motion.h1>
-          <motion.p
-            className="text-text-muted mb-10 max-w-[560px]"
-            style={{ fontSize: 'clamp(1.05rem, 2vw, 1.25rem)' }}
-            variants={fadeUp}
-          >
-            We build software, design experiences, and transform businesses - so
-            your boldest ideas become real products.
-          </motion.p>
-          <motion.div variants={glowIn}>
-            <Link
-              to="/contact"
-              className="inline-block px-9 py-3.5 bg-accent text-white font-semibold rounded-[12px] transition-all duration-300 hover:bg-accent-hover hover:-translate-y-0.5"
-            >
-              Get in touch
-            </Link>
-          </motion.div>
-        </div>
+          </motion.span>
+        </h1>
+
+        <motion.p
+          variants={fadeUp}
+          className="mt-12 md:mt-14 max-w-[46ch] text-text-soft text-[1.1rem] md:text-[1.2rem] leading-[1.6]"
+        >
+          A boutique studio building AI systems, custom software, and product
+          design for teams that treat shipping like a craft.
+        </motion.p>
+
+        <motion.div
+          variants={fadeUp}
+          className="mt-14 md:mt-16 flex flex-wrap items-center gap-8"
+        >
+          <Link to="/contact" className="btn-accent">
+            <span>Start a project</span>
+            <span aria-hidden>→</span>
+          </Link>
+          <a href="#services" className="ink-link text-text">
+            <span>See what we do</span>
+          </a>
+        </motion.div>
       </motion.div>
     </section>
   )

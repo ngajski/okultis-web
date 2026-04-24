@@ -42,10 +42,6 @@ function hasErrors(errors: FormErrors): boolean {
   return Object.values(errors).some((message) => message !== '')
 }
 
-/**
- * Reusable contact form component. Submits to /send.php via FormData.
- * Integrates with Google reCAPTCHA v3 when cookies have been accepted.
- */
 export default function ContactForm({ className = '' }: ContactFormProps) {
   const [fields, setFields] = useState<FormFields>({
     name: '',
@@ -63,7 +59,6 @@ export default function ContactForm({ className = '' }: ContactFormProps) {
     const { name, value } = e.target
     setFields((prev) => ({ ...prev, [name]: value }))
 
-    // Clear the error for this field in real-time
     if (name in errors) {
       setErrors((prev) => ({ ...prev, [name]: '' }))
     }
@@ -112,17 +107,20 @@ export default function ContactForm({ className = '' }: ContactFormProps) {
       })
 
       if (response.ok) {
-        setStatusMessage({ text: 'Message sent! We\'ll be in touch soon.', isSuccess: true })
+        setStatusMessage({
+          text: "Message received. We'll reply within 24h.",
+          isSuccess: true,
+        })
         setFields({ name: '', email: '', message: '', honeypot: '' })
       } else {
         setStatusMessage({
-          text: 'Something went wrong. Please try again or email us directly.',
+          text: 'Transmission failed. Please try again or email hello@okultis.com.',
           isSuccess: false,
         })
       }
     } catch {
       setStatusMessage({
-        text: 'Failed to send message. Please check your connection and try again.',
+        text: 'Connection error. Check your network and try again.',
         isSuccess: false,
       })
     } finally {
@@ -132,7 +130,7 @@ export default function ContactForm({ className = '' }: ContactFormProps) {
 
   return (
     <form className={className} onSubmit={handleSubmit} noValidate>
-      {/* Honeypot field -hidden from real users, traps bots */}
+      {/* Honeypot */}
       <div className="absolute left-[-9999px] opacity-0 h-0 overflow-hidden" aria-hidden="true">
         <label htmlFor="website">Website</label>
         <input
@@ -146,112 +144,74 @@ export default function ContactForm({ className = '' }: ContactFormProps) {
         />
       </div>
 
-      <div className="mb-6">
-        <label htmlFor="name" className="block text-[0.85rem] font-medium text-text-muted mb-2">
-          Name
-        </label>
-        <input
-          type="text"
-          name="name"
+      <div className="space-y-8">
+        <FieldRow
           id="name"
-          required
-          placeholder="Your name"
+          label="Name"
           value={fields.name}
+          error={errors.name}
           onChange={handleChange}
-          className={`w-full px-4 py-3.5 bg-bg-input border rounded-[12px] text-text font-[inherit] text-base transition-colors duration-300 outline-none placeholder-text-muted ${
-            errors.name
-              ? 'border-error focus:border-error'
-              : 'border-border focus:border-accent'
-          }`}
+          placeholder="Who are we writing to?"
         />
-        {errors.name && (
-          <span className="block text-[0.8rem] text-error mt-1.5">{errors.name}</span>
-        )}
-      </div>
 
-      <div className="mb-6">
-        <label htmlFor="email" className="block text-[0.85rem] font-medium text-text-muted mb-2">
-          Email
-        </label>
-        <input
-          type="email"
-          name="email"
+        <FieldRow
           id="email"
-          required
-          placeholder="you@example.com"
+          type="email"
+          label="Email"
           value={fields.email}
+          error={errors.email}
           onChange={handleChange}
-          className={`w-full px-4 py-3.5 bg-bg-input border rounded-[12px] text-text font-[inherit] text-base transition-colors duration-300 outline-none placeholder-text-muted ${
-            errors.email
-              ? 'border-error focus:border-error'
-              : 'border-border focus:border-accent'
-          }`}
+          placeholder="you@company.com"
         />
-        {errors.email && (
-          <span className="block text-[0.8rem] text-error mt-1.5">{errors.email}</span>
-        )}
-      </div>
 
-      <div className="mb-6">
-        <label
-          htmlFor="message"
-          className="block text-[0.85rem] font-medium text-text-muted mb-2"
-        >
-          Message
-        </label>
-        <textarea
-          name="message"
+        <FieldRow
           id="message"
-          required
-          placeholder="Tell us about your project…"
-          rows={5}
+          label="Message"
+          as="textarea"
           value={fields.message}
+          error={errors.message}
           onChange={handleChange}
-          className={`w-full px-4 py-3.5 bg-bg-input border rounded-[12px] text-text font-[inherit] text-base transition-colors duration-300 outline-none placeholder-text-muted resize-y min-h-[120px] ${
-            errors.message
-              ? 'border-error focus:border-error'
-              : 'border-border focus:border-accent'
-          }`}
+          placeholder="What are we making, and by when?"
         />
-        {errors.message && (
-          <span className="block text-[0.8rem] text-error mt-1.5">{errors.message}</span>
+      </div>
+
+      <div className="mt-10 flex flex-wrap items-center justify-between gap-6">
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="btn-accent"
+        >
+          <span>{isSubmitting ? 'Sending…' : 'Send message'}</span>
+          {!isSubmitting && <span aria-hidden>→</span>}
+        </button>
+
+        {statusMessage && (
+          <div
+            className={`text-[0.9rem] ${
+              statusMessage.isSuccess ? 'text-success' : 'text-error'
+            }`}
+            role="status"
+            aria-live="polite"
+          >
+            {statusMessage.text}
+          </div>
         )}
       </div>
 
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="w-full px-9 py-3.5 bg-accent text-white font-semibold rounded-[12px] text-base cursor-pointer transition-all duration-300 hover:bg-accent-hover hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0"
-      >
-        {isSubmitting ? 'Sending…' : 'Send message'}
-      </button>
-
-      {statusMessage && (
-        <div
-          className={`mt-5 text-[0.95rem] text-center min-h-[1.4em] ${
-            statusMessage.isSuccess ? 'text-success' : 'text-error'
-          }`}
-          role="status"
-          aria-live="polite"
-        >
-          {statusMessage.text}
-        </div>
-      )}
-
-      <p className="mt-4 text-[0.75rem] text-text-muted text-center">
-        Protected by reCAPTCHA &middot;{' '}
+      <p className="mt-8 text-[0.78rem] text-text-muted">
+        Protected by reCAPTCHA ·{' '}
         <a
           href="https://policies.google.com/privacy"
-          className="text-text-muted underline underline-offset-[2px] transition-colors duration-300 hover:text-text"
+          className="underline underline-offset-4 hover:text-text"
           target="_blank"
           rel="noopener noreferrer"
         >
           Privacy
         </a>{' '}
-        &middot;{' '}
+        ·{' '}
         <a
           href="https://policies.google.com/terms"
-          className="text-text-muted underline underline-offset-[2px] transition-colors duration-300 hover:text-text"
+          className="underline underline-offset-4 hover:text-text"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -259,5 +219,61 @@ export default function ContactForm({ className = '' }: ContactFormProps) {
         </a>
       </p>
     </form>
+  )
+}
+
+interface FieldRowProps {
+  id: string
+  label: string
+  value: string
+  error?: string
+  placeholder?: string
+  type?: string
+  as?: 'input' | 'textarea'
+  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
+}
+
+function FieldRow({
+  id,
+  label,
+  value,
+  error,
+  placeholder,
+  type = 'text',
+  as = 'input',
+  onChange,
+}: FieldRowProps) {
+  return (
+    <div>
+      <div className="flex items-baseline justify-between mb-1">
+        <label htmlFor={id} className="field-label">
+          {label}
+        </label>
+        {error && <span className="field-error">{error}</span>}
+      </div>
+      {as === 'textarea' ? (
+        <textarea
+          name={id}
+          id={id}
+          required
+          rows={5}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+          className={`field ${error ? 'has-error' : ''}`}
+        />
+      ) : (
+        <input
+          name={id}
+          id={id}
+          type={type}
+          required
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+          className={`field ${error ? 'has-error' : ''}`}
+        />
+      )}
+    </div>
   )
 }

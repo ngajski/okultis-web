@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useScrollSpy } from '@/hooks/useScrollSpy'
 import { useTheme } from '@/hooks/useTheme'
 import EclipseToggle from '@/components/EclipseToggle'
-import logo from '@/assets/images/logo/okultis.png'
-import logoWhite from '@/assets/images/logo/okultis-logo-white.png'
+import logoDark from '@/assets/images/logo/okultis.png'
+import logoLight from '@/assets/images/logo/okultis-logo-white.png'
 
 const NAV_SECTION_IDS = ['hero', 'about', 'services']
 
@@ -15,16 +15,15 @@ interface NavItem {
 }
 
 const HOME_NAV_ITEMS: NavItem[] = [
-  { label: 'Home', href: '#hero', sectionId: 'hero' },
-  { label: 'About', href: '#about', sectionId: 'about' },
-  { label: 'Services', href: '#services', sectionId: 'services' },
+  { label: 'Studio', href: '#about', sectionId: 'about' },
+  { label: 'Practice', href: '#services', sectionId: 'services' },
   { label: 'Careers', href: '/careers' },
 ]
 
 const EXTERNAL_NAV_ITEMS: NavItem[] = [
   { label: 'Home', href: '/' },
-  { label: 'About', href: '/#about' },
-  { label: 'Services', href: '/#services' },
+  { label: 'Studio', href: '/#about' },
+  { label: 'Practice', href: '/#services' },
   { label: 'Careers', href: '/careers' },
 ]
 
@@ -35,13 +34,12 @@ export default function Header() {
   const activeSectionId = useScrollSpy(isHomePage ? NAV_SECTION_IDS : [])
   useTheme()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
 
-  // Close menu when route changes
   useEffect(() => {
     setIsMobileMenuOpen(false)
   }, [location.pathname])
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? 'hidden' : ''
     return () => {
@@ -49,140 +47,152 @@ export default function Header() {
     }
   }, [isMobileMenuOpen])
 
+  useEffect(() => {
+    function onScroll() {
+      setIsScrolled(window.scrollY > 12)
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   function handleNavLinkClick() {
     setIsMobileMenuOpen(false)
   }
 
   const navItems = isHomePage ? HOME_NAV_ITEMS : EXTERNAL_NAV_ITEMS
 
-  const logoHref = isHomePage ? '#hero' : '/'
-
   return (
     <>
-      {/* Header bar */}
-      <header className="fixed top-0 left-0 w-full h-[72px] z-[1000] border-b border-border bg-bg md:bg-bg/85 md:backdrop-blur-[12px]">
-        <div className="w-full max-w-[1120px] mx-auto px-6 h-full flex items-center justify-between">
-          {/* Logo */}
+      <header
+        className={`fixed top-0 left-0 w-full h-[72px] z-[1000] transition-colors duration-500 ${
+          isScrolled
+            ? 'bg-bg/90 backdrop-blur-[10px]'
+            : 'bg-transparent'
+        }`}
+      >
+        <div className="w-full max-w-[1120px] mx-auto px-6 md:px-10 h-full flex items-center justify-between">
           {isHomePage ? (
-            <a href={logoHref} className="flex items-center">
-              <img src={logo} alt="Okultis" className="h-11 w-auto dark:hidden" />
-              <img src={logoWhite} alt="Okultis" className="h-11 w-auto hidden dark:block" />
+            <a href="#hero" className="flex items-baseline gap-2">
+              <Wordmark />
             </a>
           ) : (
-            <Link to={logoHref} className="flex items-center">
-              <img src={logo} alt="Okultis" className="h-11 w-auto dark:hidden" />
-              <img src={logoWhite} alt="Okultis" className="h-11 w-auto hidden dark:block" />
+            <Link to="/" className="flex items-baseline gap-2">
+              <Wordmark />
             </Link>
           )}
 
-          {/* Desktop navigation */}
-          <nav className="hidden md:block" aria-label="Main navigation">
+          <nav className="hidden md:flex items-center gap-10" aria-label="Main navigation">
             <ul className="flex items-center gap-8">
               {navItems.map((item) => (
                 <li key={item.label}>
                   <DesktopNavLink
                     item={item}
-                    isActive={item.sectionId ? activeSectionId === item.sectionId : false}
-                    isHomePage={isHomePage}
+                    isActive={
+                      item.sectionId ? activeSectionId === item.sectionId : false
+                    }
                   />
                 </li>
               ))}
-              <li>
-                <Link
-                  to="/contact"
-                  className="text-accent border border-accent rounded-full px-5 py-2 text-sm font-medium transition-colors duration-300 hover:bg-accent hover:text-white"
-                >
-                  Contact
-                </Link>
-              </li>
-              <li className="flex items-center">
-                <EclipseToggle />
-              </li>
             </ul>
+
+            <div className="flex items-center gap-5">
+              <Link
+                to="/contact"
+                className="text-[0.92rem] text-text hover:text-accent transition-colors"
+              >
+                Contact
+              </Link>
+              <EclipseToggle />
+            </div>
           </nav>
 
-          {/* Hamburger button */}
           <button
-            className="md:hidden flex flex-col justify-center gap-[5px] w-8 h-8 bg-transparent border-none cursor-pointer z-[1002] relative"
+            className="md:hidden relative w-8 h-8 bg-transparent border-none cursor-pointer z-[1002]"
             aria-label="Toggle menu"
             aria-expanded={isMobileMenuOpen}
             onClick={() => setIsMobileMenuOpen((prev) => !prev)}
           >
             <span
-              className={`block w-full h-0.5 bg-text rounded-sm transition-transform duration-300 ${
-                isMobileMenuOpen ? 'translate-y-[7px] rotate-45' : ''
+              className={`absolute left-0 right-0 h-px bg-text transition-transform duration-300 ${
+                isMobileMenuOpen ? 'top-[15px] rotate-45' : 'top-[10px]'
               }`}
             />
             <span
-              className={`block w-full h-0.5 bg-text rounded-sm transition-opacity duration-300 ${
-                isMobileMenuOpen ? 'opacity-0' : ''
-              }`}
-            />
-            <span
-              className={`block w-full h-0.5 bg-text rounded-sm transition-transform duration-300 ${
-                isMobileMenuOpen ? '-translate-y-[7px] -rotate-45' : ''
+              className={`absolute left-0 right-0 h-px bg-text transition-transform duration-300 ${
+                isMobileMenuOpen ? 'top-[15px] -rotate-45' : 'top-[20px]'
               }`}
             />
           </button>
         </div>
       </header>
 
-      {/* Mobile fullscreen menu overlay -outside header to avoid stacking context issues */}
       <div
-        className={`md:hidden fixed inset-0 bg-bg/95 backdrop-blur-[16px] flex items-end justify-center pb-20 z-[1001] transition-all duration-400 ${
+        className={`md:hidden fixed inset-0 bg-bg z-[1001] transition-opacity duration-500 ${
           isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
         }`}
         onClick={(e) => {
           if (e.target === e.currentTarget) setIsMobileMenuOpen(false)
         }}
       >
-        <ul className="flex flex-col items-center gap-0">
-          {navItems.map((item, index) => (
+        <div className="flex flex-col h-full pt-[100px] px-8 pb-12">
+          <ul className="flex flex-col gap-2">
+            {navItems.map((item, index) => (
+              <li
+                key={item.label}
+                className="transition-all duration-500"
+                style={{
+                  opacity: isMobileMenuOpen ? 1 : 0,
+                  transform: isMobileMenuOpen ? 'translateY(0)' : 'translateY(24px)',
+                  transitionDelay: isMobileMenuOpen ? `${index * 50}ms` : '0ms',
+                }}
+              >
+                <MobileNavLink
+                  item={item}
+                  isActive={item.sectionId ? activeSectionId === item.sectionId : false}
+                  onClick={handleNavLinkClick}
+                />
+              </li>
+            ))}
             <li
-              key={item.label}
-              className="transition-all duration-300"
+              className="transition-all duration-500"
               style={{
                 opacity: isMobileMenuOpen ? 1 : 0,
-                transform: isMobileMenuOpen ? 'translateY(0)' : 'translateY(20px)',
-                transitionDelay: isMobileMenuOpen ? `${(index + 1) * 50}ms` : '0ms',
+                transform: isMobileMenuOpen ? 'translateY(0)' : 'translateY(24px)',
+                transitionDelay: isMobileMenuOpen ? `${navItems.length * 50}ms` : '0ms',
               }}
             >
               <MobileNavLink
-                item={item}
-                isActive={item.sectionId ? activeSectionId === item.sectionId : false}
-                isHomePage={isHomePage}
+                item={{ label: 'Contact', href: '/contact' }}
+                isActive={false}
                 onClick={handleNavLinkClick}
+                accent
               />
             </li>
-          ))}
-          <li
-            className="transition-all duration-300"
-            style={{
-              opacity: isMobileMenuOpen ? 1 : 0,
-              transform: isMobileMenuOpen ? 'translateY(0)' : 'translateY(20px)',
-              transitionDelay: isMobileMenuOpen ? `${(navItems.length + 1) * 50}ms` : '0ms',
-            }}
-          >
-            <Link
-              to="/contact"
-              className="block text-[clamp(1.8rem,5vw,2.5rem)] font-semibold py-4 text-accent transition-colors duration-300"
-              onClick={handleNavLinkClick}
-            >
-              Contact
-            </Link>
-          </li>
-          <li
-            className="transition-all duration-300 mt-6"
-            style={{
-              opacity: isMobileMenuOpen ? 1 : 0,
-              transform: isMobileMenuOpen ? 'translateY(0)' : 'translateY(20px)',
-              transitionDelay: isMobileMenuOpen ? `${(navItems.length + 2) * 50}ms` : '0ms',
-            }}
-          >
+          </ul>
+
+          <div className="mt-auto pt-10">
             <EclipseToggle />
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
+    </>
+  )
+}
+
+function Wordmark() {
+  return (
+    <>
+      <img
+        src={logoDark}
+        alt="Okultis"
+        className="h-8 md:h-9 w-auto dark:hidden"
+      />
+      <img
+        src={logoLight}
+        alt="Okultis"
+        className="h-8 md:h-9 w-auto hidden dark:block"
+      />
     </>
   )
 }
@@ -190,51 +200,22 @@ export default function Header() {
 interface NavLinkProps {
   item: NavItem
   isActive: boolean
-  isHomePage: boolean
 }
 
 function DesktopNavLink({ item, isActive }: NavLinkProps) {
-  const dotRef = useRef<HTMLAnchorElement>(null)
+  const classes = `text-[0.92rem] transition-colors ${
+    isActive ? 'text-accent' : 'text-text hover:text-accent'
+  }`
 
-  function handleMouseMove(e: React.MouseEvent<HTMLAnchorElement>) {
-    const el = dotRef.current
-    if (!el) return
-    const rect = el.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    el.style.setProperty('--dot-x', `${x}px`)
-  }
-
-  const baseClasses =
-    'relative text-sm font-medium transition-colors duration-300 group'
-  const activeClasses = isActive ? 'text-text' : 'text-text-muted hover:text-text'
-
-  // Render anchor for hash links, Link for page routes
   if (item.href.startsWith('#') || item.href.startsWith('/#')) {
     return (
-      <a
-        ref={dotRef}
-        href={item.href}
-        className={`${baseClasses} ${activeClasses}`}
-        onMouseMove={handleMouseMove}
-      >
+      <a href={item.href} className={classes}>
         {item.label}
-        <span
-          className="absolute -bottom-2.5 left-[var(--dot-x,50%)] -translate-x-1/2 w-2 h-2 bg-accent rounded-full transition-transform duration-200"
-          style={{ transform: `translateX(-50%) scale(${isActive ? 1 : 0})` }}
-          aria-hidden
-        />
-        <style>{`
-          a:hover > span[aria-hidden] { transform: translateX(-50%) scale(1) !important; }
-        `}</style>
       </a>
     )
   }
-
   return (
-    <Link
-      to={item.href}
-      className={`${baseClasses} ${activeClasses}`}
-    >
+    <Link to={item.href} className={classes}>
       {item.label}
     </Link>
   )
@@ -242,29 +223,23 @@ function DesktopNavLink({ item, isActive }: NavLinkProps) {
 
 interface MobileNavLinkProps extends NavLinkProps {
   onClick: () => void
+  accent?: boolean
 }
 
-function MobileNavLink({ item, isActive, onClick }: MobileNavLinkProps) {
-  const activeClasses = isActive ? 'text-accent' : 'text-text hover:text-accent'
+function MobileNavLink({ item, isActive, onClick, accent = false }: MobileNavLinkProps) {
+  const classes = `display block py-5 text-[2.4rem] leading-none transition-colors duration-300 ${
+    accent ? 'text-accent' : isActive ? 'text-accent' : 'text-text'
+  }`
 
   if (item.href.startsWith('#') || item.href.startsWith('/#')) {
     return (
-      <a
-        href={item.href}
-        className={`block text-[clamp(1.8rem,5vw,2.5rem)] font-semibold py-4 transition-colors duration-300 ${activeClasses}`}
-        onClick={onClick}
-      >
+      <a href={item.href} className={classes} onClick={onClick}>
         {item.label}
       </a>
     )
   }
-
   return (
-    <Link
-      to={item.href}
-      className={`block text-[clamp(1.8rem,5vw,2.5rem)] font-semibold py-4 transition-colors duration-300 ${activeClasses}`}
-      onClick={onClick}
-    >
+    <Link to={item.href} className={classes} onClick={onClick}>
       {item.label}
     </Link>
   )

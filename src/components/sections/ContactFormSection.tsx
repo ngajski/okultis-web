@@ -1,21 +1,28 @@
-import ContactForm from '@/components/ContactForm'
+import { Link } from 'react-router-dom'
+import SectionFrame from '@/components/ui/SectionFrame'
 
 export default function ContactFormSection() {
   return (
-    <section id="contact" className="py-[100px] md:py-[72px]">
-      <div className="w-full max-w-[600px] mx-auto px-6">
-        <h2
-          className="font-bold tracking-[-0.02em] mb-2"
-          style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)' }}
-        >
-          Let&apos;s talk
-        </h2>
-        <p className="text-text-muted text-[1.05rem] mb-10">
-          Have a project in mind? Drop us a message and we&apos;ll get back to
-          you within 24 hours.
-        </p>
-        <ContactForm />
+    <SectionFrame
+      id="contact"
+      label="Start here"
+      title={
+        <>
+          Tell us what the{' '}
+          <span className="display-italic">real problem is.</span>
+        </>
+      }
+      subtitle="Every project starts with a 30-minute call and a written summary the same week. Free, no slide deck, no sales page."
+    >
+      <div className="flex flex-wrap items-center gap-8">
+        <Link to="/contact" className="btn-accent">
+          <span>Start the brief</span>
+          <span aria-hidden>→</span>
+        </Link>
+        <a href="mailto:hello@okultis.com" className="ink-link text-text">
+          <span>hello@okultis.com</span>
+        </a>
       </div>
-    </section>
+    </SectionFrame>
   )
 }

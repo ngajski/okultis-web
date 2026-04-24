@@ -1,81 +1,61 @@
 import { Link } from 'react-router-dom'
+import logoDark from '@/assets/images/logo/okultis.png'
+import logoLight from '@/assets/images/logo/okultis-logo-white.png'
 
 export default function Footer() {
+  const year = new Date().getFullYear()
+
   return (
-    <footer className="border-t border-border py-10">
-      <div className="w-full max-w-[1120px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0 text-center md:text-left">
-        <div className="flex items-center gap-4">
-          <p className="text-sm text-text-muted">
-            &copy; 2023–{new Date().getFullYear()} Okultis. All rights reserved.
-          </p>
-          <a
-            href="https://www.linkedin.com/company/okultis-it"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            className="text-text-muted transition-colors duration-300 hover:text-text"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-            >
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-            </svg>
-          </a>
+    <footer className="relative pt-24 pb-10">
+      <div className="w-full max-w-[1120px] mx-auto px-6 md:px-10">
+        <div className="grid grid-cols-12 gap-8 md:gap-10 pb-16 border-b border-border-soft">
+          <div className="col-span-12 md:col-span-5">
+            <img src={logoDark} alt="Okultis" className="h-9 w-auto mb-5 dark:hidden" />
+            <img src={logoLight} alt="Okultis" className="h-9 w-auto mb-5 hidden dark:block" />
+            <p className="text-text-soft text-[0.95rem] leading-[1.7] max-w-[32ch]">
+              A boutique studio building AI systems, custom software, and
+              product design for teams that ship.
+            </p>
+          </div>
+
+          <div className="col-span-6 md:col-span-3">
+            <p className="eyebrow mb-5">Site</p>
+            <ul className="space-y-3">
+              <li><a href="/#about" className="text-[0.95rem] text-text-soft hover:text-text transition-colors">Studio</a></li>
+              <li><a href="/#services" className="text-[0.95rem] text-text-soft hover:text-text transition-colors">Practice</a></li>
+              <li><Link to="/careers" className="text-[0.95rem] text-text-soft hover:text-text transition-colors">Careers</Link></li>
+              <li><Link to="/contact" className="text-[0.95rem] text-text-soft hover:text-text transition-colors">Contact</Link></li>
+            </ul>
+          </div>
+
+          <div className="col-span-6 md:col-span-4">
+            <p className="eyebrow mb-5">Studio</p>
+            <address className="not-italic text-text-soft text-[0.95rem] leading-[1.75] mb-4">
+              WESPA Spaces · Zavrtnica 17
+              <br />
+              10000 Zagreb, Croatia
+            </address>
+            <a href="mailto:hello@okultis.com" className="ink-link text-text">
+              <span>hello@okultis.com</span>
+            </a>
+          </div>
         </div>
-        <ul className="flex flex-wrap justify-center md:justify-end gap-6">
-          <li>
+
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 pt-6 text-[0.85rem] text-text-muted">
+          <span>© 2023–{year} Okultis</span>
+          <div className="flex items-center gap-6">
+            <Link to="/privacy-policy" className="hover:text-text transition-colors">Privacy</Link>
+            <Link to="/terms" className="hover:text-text transition-colors">Terms</Link>
             <a
-              href="/#about"
-              className="text-sm text-text-muted transition-colors duration-300 hover:text-text"
+              href="https://www.linkedin.com/company/okultis-it"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-text transition-colors"
             >
-              About
+              LinkedIn
             </a>
-          </li>
-          <li>
-            <a
-              href="/#services"
-              className="text-sm text-text-muted transition-colors duration-300 hover:text-text"
-            >
-              Services
-            </a>
-          </li>
-          <li>
-            <Link
-              to="/careers"
-              className="text-sm text-text-muted transition-colors duration-300 hover:text-text"
-            >
-              Careers
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/contact"
-              className="text-sm text-text-muted transition-colors duration-300 hover:text-text"
-            >
-              Contact
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/privacy-policy"
-              className="text-sm text-text-muted transition-colors duration-300 hover:text-text"
-            >
-              Privacy Policy
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/terms"
-              className="text-sm text-text-muted transition-colors duration-300 hover:text-text"
-            >
-              Terms
-            </Link>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
     </footer>
   )

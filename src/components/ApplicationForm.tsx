@@ -21,20 +21,14 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 function validateFields(fields: ApplicationFields): ApplicationErrors {
   const errors: ApplicationErrors = { name: '', email: '', role: '', message: '' }
 
-  if (!fields.name.trim()) {
-    errors.name = 'Name is required.'
-  }
+  if (!fields.name.trim()) errors.name = 'Name is required.'
   if (!fields.email.trim()) {
     errors.email = 'Email is required.'
   } else if (!EMAIL_PATTERN.test(fields.email)) {
     errors.email = 'Please enter a valid email address.'
   }
-  if (!fields.role.trim()) {
-    errors.role = 'Please select a position.'
-  }
-  if (!fields.message.trim()) {
-    errors.message = 'Cover letter is required.'
-  }
+  if (!fields.role.trim()) errors.role = 'Please select a position.'
+  if (!fields.message.trim()) errors.message = 'Cover letter is required.'
 
   return errors
 }
@@ -47,10 +41,6 @@ interface ApplicationFormProps {
   positions: string[]
 }
 
-/**
- * Job application form. Submits to /apply.php via FormData.
- * Mirrors the ContactForm submission pattern.
- */
 export default function ApplicationForm({ positions }: ApplicationFormProps) {
   const [fields, setFields] = useState<ApplicationFields>({
     name: '',
@@ -71,7 +61,7 @@ export default function ApplicationForm({ positions }: ApplicationFormProps) {
     null,
   )
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const { name, value } = e.target
     setFields((prev) => ({ ...prev, [name]: value }))
 
@@ -96,9 +86,7 @@ export default function ApplicationForm({ positions }: ApplicationFormProps) {
       const formData = new FormData()
       formData.append('name', fields.name)
       formData.append('email', fields.email)
-      if (fields.linkedin.trim()) {
-        formData.append('linkedin', fields.linkedin)
-      }
+      if (fields.linkedin.trim()) formData.append('linkedin', fields.linkedin)
       formData.append('role', fields.role)
       formData.append('message', fields.message)
       formData.append('website', fields.honeypot)
@@ -112,19 +100,19 @@ export default function ApplicationForm({ positions }: ApplicationFormProps) {
 
       if (data.success) {
         setStatusMessage({
-          text: data.message || "Application sent! We'll review it and get back to you.",
+          text: data.message || "Application received. We'll be in touch.",
           isSuccess: true,
         })
         setFields({ name: '', email: '', linkedin: '', role: '', message: '', honeypot: '' })
       } else {
         setStatusMessage({
-          text: data.message || 'Something went wrong. Please try again or email us directly.',
+          text: data.message || 'Something went wrong. Try again or email hello@okultis.com.',
           isSuccess: false,
         })
       }
     } catch {
       setStatusMessage({
-        text: 'Failed to send application. Please check your connection and try again.',
+        text: 'Connection error. Check your network and try again.',
         isSuccess: false,
       })
     } finally {
@@ -134,7 +122,7 @@ export default function ApplicationForm({ positions }: ApplicationFormProps) {
 
   return (
     <form onSubmit={handleSubmit} noValidate>
-      {/* Honeypot field - hidden from real users, traps bots */}
+      {/* Honeypot */}
       <div className="absolute left-[-9999px] opacity-0 h-0 overflow-hidden" aria-hidden="true">
         <label htmlFor="website">Website</label>
         <input
@@ -148,68 +136,38 @@ export default function ApplicationForm({ positions }: ApplicationFormProps) {
         />
       </div>
 
-      <div className="mb-6">
-        <label htmlFor="name" className="block text-[0.85rem] font-medium text-text-muted mb-2">
-          Full name
-        </label>
-        <input
-          type="text"
-          name="name"
+      <div className="space-y-8">
+        <Field
           id="name"
-          required
-          placeholder="Your full name"
+          label="Full name"
           value={fields.name}
+          error={errors.name}
           onChange={handleChange}
-          className={`w-full px-4 py-3.5 bg-bg-input border rounded-[12px] text-text font-[inherit] text-base transition-colors duration-300 outline-none placeholder-text-muted ${
-            errors.name ? 'border-error focus:border-error' : 'border-border focus:border-accent'
-          }`}
+          placeholder="Your full name"
         />
-        {errors.name && (
-          <span className="block text-[0.8rem] text-error mt-1.5">{errors.name}</span>
-        )}
-      </div>
-
-      <div className="mb-6">
-        <label htmlFor="email" className="block text-[0.85rem] font-medium text-text-muted mb-2">
-          Email
-        </label>
-        <input
-          type="email"
-          name="email"
+        <Field
           id="email"
-          required
-          placeholder="you@example.com"
+          type="email"
+          label="Email"
           value={fields.email}
+          error={errors.email}
           onChange={handleChange}
-          className={`w-full px-4 py-3.5 bg-bg-input border rounded-[12px] text-text font-[inherit] text-base transition-colors duration-300 outline-none placeholder-text-muted ${
-            errors.email ? 'border-error focus:border-error' : 'border-border focus:border-accent'
-          }`}
+          placeholder="you@example.com"
         />
-        {errors.email && (
-          <span className="block text-[0.8rem] text-error mt-1.5">{errors.email}</span>
-        )}
-      </div>
-
-      <div className="mb-6">
-        <label htmlFor="linkedin" className="block text-[0.85rem] font-medium text-text-muted mb-2">
-          LinkedIn <span className="text-text-muted font-normal">(optional)</span>
-        </label>
-        <input
-          type="url"
-          name="linkedin"
+        <Field
           id="linkedin"
-          placeholder="https://linkedin.com/in/yourprofile"
+          type="url"
+          label="LinkedIn / portfolio (optional)"
           value={fields.linkedin}
           onChange={handleChange}
-          className="w-full px-4 py-3.5 bg-bg-input border border-border rounded-[12px] text-text font-[inherit] text-base transition-colors duration-300 outline-none placeholder-text-muted focus:border-accent"
+          placeholder="https://linkedin.com/in/yourprofile"
         />
-      </div>
 
-      <div className="mb-6">
-        <fieldset>
-          <legend className="block text-[0.85rem] font-medium text-text-muted mb-2">
-            Position
-          </legend>
+        <div>
+          <div className="flex items-baseline justify-between mb-3">
+            <span className="field-label">Position</span>
+            {errors.role && <span className="field-error">{errors.role}</span>}
+          </div>
           <div className="flex flex-wrap gap-2">
             {positions.map((position) => (
               <button
@@ -219,64 +177,101 @@ export default function ApplicationForm({ positions }: ApplicationFormProps) {
                   setFields((prev) => ({ ...prev, role: position }))
                   setErrors((prev) => ({ ...prev, role: '' }))
                 }}
-                className={`px-4 py-2.5 rounded-[12px] text-[0.9rem] font-medium border transition-all duration-300 cursor-pointer ${
+                className={`text-[0.9rem] px-4 py-2.5 border transition-colors duration-300 cursor-pointer ${
                   fields.role === position
-                    ? 'border-accent bg-accent text-white'
-                    : 'border-border bg-bg-input text-text-muted hover:border-accent hover:text-text'
+                    ? 'border-accent bg-accent text-accent-ink'
+                    : 'border-border-soft text-text-muted hover:border-ink hover:text-text'
                 }`}
               >
                 {position}
               </button>
             ))}
           </div>
-        </fieldset>
-        {errors.role && (
-          <span className="block text-[0.8rem] text-error mt-1.5">{errors.role}</span>
-        )}
-      </div>
-
-      <div className="mb-6">
-        <label htmlFor="message" className="block text-[0.85rem] font-medium text-text-muted mb-2">
-          Cover letter <span className="text-text-muted font-normal">(a few sentences is fine)</span>
-        </label>
-        <textarea
-          name="message"
-          id="message"
-          required
-          placeholder="Tell us about yourself and why you would like to join Okultis..."
-          rows={6}
-          value={fields.message}
-          onChange={handleChange}
-          className={`w-full px-4 py-3.5 bg-bg-input border rounded-[12px] text-text font-[inherit] text-base transition-colors duration-300 outline-none placeholder-text-muted resize-y min-h-[140px] ${
-            errors.message
-              ? 'border-error focus:border-error'
-              : 'border-border focus:border-accent'
-          }`}
-        />
-        {errors.message && (
-          <span className="block text-[0.8rem] text-error mt-1.5">{errors.message}</span>
-        )}
-      </div>
-
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="w-full px-9 py-3.5 bg-accent text-white font-semibold rounded-[12px] text-base cursor-pointer transition-all duration-300 hover:bg-accent-hover hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0"
-      >
-        {isSubmitting ? 'Sending…' : 'Submit application'}
-      </button>
-
-      {statusMessage && (
-        <div
-          className={`mt-5 text-[0.95rem] text-center min-h-[1.4em] ${
-            statusMessage.isSuccess ? 'text-success' : 'text-error'
-          }`}
-          role="status"
-          aria-live="polite"
-        >
-          {statusMessage.text}
         </div>
-      )}
+
+        <Field
+          id="message"
+          as="textarea"
+          label="Cover letter"
+          value={fields.message}
+          error={errors.message}
+          onChange={handleChange}
+          placeholder="Tell us who you are, what you want to work on, and why Okultis."
+        />
+      </div>
+
+      <div className="mt-10 flex flex-wrap items-center justify-between gap-6">
+        <button type="submit" disabled={isSubmitting} className="btn-accent">
+          <span>{isSubmitting ? 'Sending…' : 'Submit application'}</span>
+          {!isSubmitting && <span aria-hidden>→</span>}
+        </button>
+
+        {statusMessage && (
+          <div
+            className={`text-[0.9rem] ${
+              statusMessage.isSuccess ? 'text-success' : 'text-error'
+            }`}
+            role="status"
+            aria-live="polite"
+          >
+            {statusMessage.text}
+          </div>
+        )}
+      </div>
     </form>
+  )
+}
+
+interface FieldProps {
+  id: string
+  label: string
+  value: string
+  error?: string
+  placeholder?: string
+  type?: string
+  as?: 'input' | 'textarea'
+  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
+}
+
+function Field({
+  id,
+  label,
+  value,
+  error,
+  placeholder,
+  type = 'text',
+  as = 'input',
+  onChange,
+}: FieldProps) {
+  return (
+    <div>
+      <div className="flex items-baseline justify-between mb-1">
+        <label htmlFor={id} className="field-label">
+          {label}
+        </label>
+        {error && <span className="field-error">{error}</span>}
+      </div>
+      {as === 'textarea' ? (
+        <textarea
+          name={id}
+          id={id}
+          rows={6}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+          className={`field ${error ? 'has-error' : ''}`}
+        />
+      ) : (
+        <input
+          name={id}
+          id={id}
+          type={type}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+          className={`field ${error ? 'has-error' : ''}`}
+        />
+      )}
+    </div>
   )
 }

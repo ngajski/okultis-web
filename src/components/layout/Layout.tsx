@@ -3,10 +3,11 @@ import { Outlet, useLocation } from 'react-router-dom'
 import Header from './Header'
 import Footer from './Footer'
 import CookieBanner from '@/components/CookieBanner'
+import Atmosphere from '@/components/ui/Atmosphere'
 
 /**
- * Root layout that wraps every page. Handles scrolling to hash fragments
- * after navigation so that links like `/#about` work correctly in an SPA.
+ * Root layout. Atmosphere (grain + vignette) is painted behind every page.
+ * Hash-fragment scrolling preserved for SPA anchor links like `/#about`.
  */
 export default function Layout() {
   const location = useLocation()
@@ -15,7 +16,6 @@ export default function Layout() {
     const hash = location.hash
     if (!hash) return
 
-    // Use rAF to ensure the page has rendered before trying to scroll
     requestAnimationFrame(() => {
       const target = document.querySelector(hash)
       if (target) {
@@ -26,12 +26,15 @@ export default function Layout() {
 
   return (
     <>
-      <Header />
-      <main>
-        <Outlet />
-      </main>
-      <Footer />
-      <CookieBanner />
+      <Atmosphere />
+      <div className="relative z-[1]">
+        <Header />
+        <main>
+          <Outlet />
+        </main>
+        <Footer />
+        <CookieBanner />
+      </div>
     </>
   )
 }

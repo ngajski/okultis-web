@@ -1,59 +1,55 @@
 /**
- * Displays the office location map and contact details for the contact page.
+ * Coordinates panel shown next to the contact form. Minimal: labeled rows
+ * plus a grayscale map.
  */
 export default function ContactInfo() {
   return (
     <div>
-      <div className="mb-8">
-        <iframe
-          src="https://maps.google.com/maps?q=WESPA+Spaces+Zavrtnica+17+Zagreb&t=&z=15&ie=UTF8&iwloc=&output=embed"
-          width="100%"
-          height="300"
-          style={{ border: 0 }}
-          allowFullScreen
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          title="Okultis office location - WESPA Spaces, Zagreb"
-          className="rounded-[12px] border border-border"
-        />
-      </div>
-
-      <div>
-        <div className="mb-6">
-          <h3 className="text-base font-semibold mb-2 text-text">Office</h3>
-          <p className="text-text-muted text-[0.95rem] leading-[1.75]">
-            WESPA Spaces | Zavrtnica 17
+      <dl className="space-y-8 mb-10">
+        <div>
+          <dt className="eyebrow mb-2">Studio</dt>
+          <dd className="text-text text-[1rem] leading-[1.7]">
+            WESPA Spaces · Zavrtnica 17
             <br />
             10000 Zagreb, Croatia
-          </p>
+          </dd>
         </div>
 
-        <div className="mb-6">
-          <h3 className="text-base font-semibold mb-2 text-text">Email</h3>
-          <p className="text-text-muted text-[0.95rem] leading-[1.75]">
-            <a
-              href="mailto:hello@okultis.com"
-              className="text-accent underline underline-offset-[2px] transition-colors duration-300 hover:text-accent-hover"
-            >
-              hello@okultis.com
+        <div>
+          <dt className="eyebrow mb-2">Email</dt>
+          <dd>
+            <a href="mailto:hello@okultis.com" className="ink-link text-text">
+              <span>hello@okultis.com</span>
             </a>
-          </p>
+          </dd>
         </div>
 
-        <div className="mb-6">
-          <h3 className="text-base font-semibold mb-2 text-text">LinkedIn</h3>
-          <p className="text-text-muted text-[0.95rem] leading-[1.75]">
+        <div>
+          <dt className="eyebrow mb-2">Social</dt>
+          <dd>
             <a
               href="https://www.linkedin.com/company/okultis-it"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-accent underline underline-offset-[2px] transition-colors duration-300 hover:text-accent-hover"
+              className="ink-link text-text"
             >
-              Okultis
+              <span>Okultis on LinkedIn</span>
             </a>
-          </p>
+          </dd>
         </div>
-      </div>
+      </dl>
+
+      <iframe
+        src="https://maps.google.com/maps?q=WESPA+Spaces+Zavrtnica+17+Zagreb&t=&z=15&ie=UTF8&iwloc=&output=embed"
+        width="100%"
+        height="240"
+        style={{ border: 0, filter: 'grayscale(1) contrast(1.05)' }}
+        allowFullScreen
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        title="Okultis office location - WESPA Spaces, Zagreb"
+        className="block"
+      />
     </div>
   )
 }

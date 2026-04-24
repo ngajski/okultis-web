@@ -1,37 +1,41 @@
-import { useScrollFadeIn } from '@/hooks/useScrollFadeIn'
+import SectionFrame from "@/components/ui/SectionFrame";
 
 export default function AboutSection() {
-  const { ref, isVisible } = useScrollFadeIn()
-
   return (
-    <section id="about" className="py-[100px] md:py-[72px]">
-      <div className="w-full max-w-[1120px] mx-auto px-6">
-        <h2
-          className="font-bold tracking-[-0.02em] mb-12"
-          style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)' }}
-        >
-          Who we are
-        </h2>
-        <div
-          ref={ref as React.RefObject<HTMLDivElement>}
-          className={`max-w-[680px] transition-all duration-[600ms] ease-out ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-          }`}
-        >
-          <p className="text-text-muted text-[1.05rem] mb-4">
-            Okultis is a boutique digital studio that partners with startups and
-            small to medium-sized companies to ship software that matters. From
-            first concept to live product, we handle the entire lifecycle - code,
-            design, strategy, and infrastructure - and deliver MVPs in a matter
-            of weeks.
+    <SectionFrame
+      id="about"
+      label="The studio"
+      title={
+        <>
+          A small studio{" "}
+          <span className="display-italic">with a long bench.</span>
+        </>
+      }
+    >
+      <div className="grid grid-cols-12 gap-10 md:gap-16">
+        <div className="col-span-12 md:col-span-8">
+          <p className="dropcap text-text text-[1.2rem] md:text-[1.35rem] leading-[1.55] mb-8">
+            Okultis is a boutique studio working with startups and
+            small-to-medium teams that would rather ship than rehearse. We hold
+            the whole lifecycle - research, design, engineering, infra - inside
+            one small room, so nothing gets lost between disciplines. Most MVPs
+            leave that room in weeks, not quarters.
           </p>
-          <p className="text-text-muted text-[1.05rem]">
-            Based in Croatia and working globally, our team blends engineering
-            precision with creative thinking to deliver solutions that look
-            great and perform even better.
+
+          <p className="text-text-soft text-[1.05rem] leading-[1.7]">
+            We pair engineering precision with a creative streak. The work has
+            to look right, feel right, and behave right under load. That
+            standard does not move. Not for a deadline, not for a demo.
           </p>
         </div>
+
+        <aside className="col-span-12 md:col-span-4 md:pt-2">
+          <blockquote className="display-italic text-[clamp(1.2rem,1.8vw,1.45rem)] leading-[1.35] text-text">
+            “Software the way a newsroom prints a paper: with a deadline, a
+            point of view, and the red pen never far from the page.”
+          </blockquote>
+        </aside>
       </div>
-    </section>
-  )
+    </SectionFrame>
+  );
 }

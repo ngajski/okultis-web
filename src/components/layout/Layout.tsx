@@ -14,15 +14,19 @@ export default function Layout() {
 
   useEffect(() => {
     const hash = location.hash
-    if (!hash) return
 
-    requestAnimationFrame(() => {
-      const target = document.querySelector(hash)
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth' })
-      }
-    })
-  }, [location])
+    if (hash) {
+      requestAnimationFrame(() => {
+        const target = document.querySelector(hash)
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' })
+        }
+      })
+      return
+    }
+
+    window.scrollTo(0, 0)
+  }, [location.pathname, location.hash])
 
   return (
     <>

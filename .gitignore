@@ -28,3 +28,6 @@ dist-ssr
 .env
 config.php
 text.json
+
+# Agent tooling
+.superpowers

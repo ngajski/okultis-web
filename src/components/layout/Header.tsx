@@ -6,7 +6,7 @@ import EclipseToggle from '@/components/EclipseToggle'
 import logoDark from '@/assets/images/logo/okultis.png'
 import logoLight from '@/assets/images/logo/okultis-logo-white.png'
 
-const NAV_SECTION_IDS = ['hero', 'about', 'services']
+const NAV_SECTION_IDS = ['hero', 'clients', 'about', 'services']
 
 interface NavItem {
   label: string
@@ -15,6 +15,7 @@ interface NavItem {
 }
 
 const HOME_NAV_ITEMS: NavItem[] = [
+  { label: 'Clients', href: '#clients', sectionId: 'clients' },
   { label: 'Studio', href: '#about', sectionId: 'about' },
   { label: 'Practice', href: '#services', sectionId: 'services' },
   { label: 'Careers', href: '/careers' },
@@ -22,6 +23,7 @@ const HOME_NAV_ITEMS: NavItem[] = [
 
 const EXTERNAL_NAV_ITEMS: NavItem[] = [
   { label: 'Home', href: '/' },
+  { label: 'Clients', href: '/#clients' },
   { label: 'Studio', href: '/#about' },
   { label: 'Practice', href: '/#services' },
   { label: 'Careers', href: '/careers' },

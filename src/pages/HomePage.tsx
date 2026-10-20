@@ -132,11 +132,11 @@ export default function HomePage() {
       </Helmet>
 
       <HeroSection />
+      <ClientsSection />
       <AboutSection />
       <ServicesSection />
       <ProcessSection />
       <EngagementsSection />
-      <ClientsSection />
       <ContactFormSection />
     </>
   );

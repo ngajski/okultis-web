@@ -48,7 +48,10 @@ function LogoRow({ ariaHidden = false }: { ariaHidden?: boolean }) {
               key={key}
               to={client.href}
               tabIndex={ariaHidden ? -1 : undefined}
-              className={cn(tileClassName, 'group/tile transition-colors hover:bg-bg')}
+              className={cn(
+                tileClassName,
+                'transition-colors hover:bg-bg focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-text'
+              )}
             >
               <TileContent client={client} />
             </Link>
@@ -79,7 +82,7 @@ export default function ClientsSection() {
         aria-label="Client logos"
       >
         <div
-          className="flex w-max group-hover:[animation-play-state:paused]!"
+          className="flex w-max group-hover:[animation-play-state:paused]! group-focus-within:[animation:none]!"
           style={{
             animation: 'marquee-scroll var(--marquee-duration, 55s) linear infinite',
             willChange: 'transform',

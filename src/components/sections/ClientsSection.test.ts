@@ -18,6 +18,12 @@ describe('clients logo wall', () => {
     expect(section).not.toMatch(forbiddenEndorsementPattern)
   })
 
+  it('stops the marquee while a tile has keyboard focus', () => {
+    const section = clientsSection()
+    const trackClass = section.match(/<div class="([^"]*)" style="animation:marquee-scroll/)?.[1] ?? ''
+    expect(trackClass).toContain('group-focus-within:[animation:none]!')
+  })
+
   it.skipIf(!hasKbcEntry)('links the KBC SM tile to the case study with one focus stop', () => {
     const section = clientsSection()
     const links = section.match(/<a[^>]*href="\/work\/ocular-biobank"[^>]*>/g) ?? []
@@ -25,6 +31,8 @@ describe('clients logo wall', () => {
     expect(links[0]).not.toContain('tabindex="-1"')
     expect(links[1]).toContain('tabindex="-1"')
     expect(section).toContain('Case study')
+    expect(links[0]).toContain('focus-visible:ring-1')
+    expect(links[0]).not.toContain('group/tile')
     const firstLink = section.indexOf('href="/work/ocular-biobank"')
     const secondLink = section.indexOf('href="/work/ocular-biobank"', firstLink + 1)
     const betweenLinks = section.slice(firstLink, secondLink)

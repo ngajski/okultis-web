@@ -45,10 +45,10 @@ describe('case study page', () => {
       'Biobank platform to Biobank DB · Sample data',
       'Biobank platform to ML prediction model · Spectra and predictions',
     ]) {
-      expect(figure).toContain(`<span class="md:hidden">${caption}</span>`)
+      expect(figure).toContain(`<span class="lg:hidden">${caption}</span>`)
     }
     for (const label of ['Secure access', 'Sample data', 'Spectra and predictions']) {
-      expect(figure).toContain(`<span class="hidden md:inline">${label}</span>`)
+      expect(figure).toContain(`<span class="hidden lg:inline">${label}</span>`)
     }
     for (const text of [
       'Researchers',
@@ -63,7 +63,10 @@ describe('case study page', () => {
     ]) {
       expect(figure).toContain(`>${text}</`)
     }
-    expect(figure.match(/aria-hidden="true" class="hidden md:inline[^"]*">→</g)).toHaveLength(3)
+    expect(figure.match(/aria-hidden="true" class="hidden lg:inline[^"]*">→</g)).toHaveLength(3)
+    const figureClass = figure.match(/<figure[^>]*class="([^"]*)"/)?.[1] ?? ''
+    expect(figureClass).toContain('lg:grid-cols-[auto_1fr]')
+    expect(figureClass).not.toContain('grid-cols-4')
     expect(figure).not.toMatch(/Google|Terraform|NestJS|GCP|PostgreSQL/)
     expect(figure).not.toContain('HTTPS')
     expect(appHtml).not.toContain('reads and writes')

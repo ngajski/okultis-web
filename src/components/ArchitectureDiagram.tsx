@@ -26,14 +26,14 @@ function DiagramNode({
 
 function DiagramLink({ label, mobileLabel }: { label: string; mobileLabel: string }) {
   return (
-    <div className="flex items-center justify-center gap-2 py-1 md:py-0">
-      <span aria-hidden className="hidden md:block h-px w-3 bg-border" />
-      <span className="mono text-[0.7rem] text-text-muted text-center md:whitespace-nowrap">
-        <span className="md:hidden">{mobileLabel}</span>
-        <span className="hidden md:inline">{label}</span>
+    <div className="flex items-center justify-center gap-2 py-1 lg:py-0">
+      <span aria-hidden className="hidden lg:block h-px w-3 bg-border" />
+      <span className="mono text-[0.7rem] text-text-muted text-center lg:whitespace-nowrap">
+        <span className="lg:hidden">{mobileLabel}</span>
+        <span className="hidden lg:inline">{label}</span>
       </span>
-      <span aria-hidden className="hidden md:block h-px w-3 bg-border" />
-      <span aria-hidden className="hidden md:inline mono text-[0.7rem] text-text-muted">
+      <span aria-hidden className="hidden lg:block h-px w-3 bg-border" />
+      <span aria-hidden className="hidden lg:inline mono text-[0.7rem] text-text-muted">
         →
       </span>
     </div>
@@ -47,21 +47,21 @@ export default function ArchitectureDiagram() {
   return (
     <figure
       aria-label="System architecture"
-      className="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-4 items-center"
+      className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-2 lg:gap-4 items-center"
     >
       <figcaption className="sr-only">{TOPOLOGY_DESCRIPTION}</figcaption>
-      <div className="flex flex-col md:flex-row items-stretch md:items-center gap-2">
-        <DiagramNode label="Researchers" sublabel="web browser" className="md:flex-1" />
+      <div className="flex flex-col lg:flex-row items-stretch lg:items-center gap-2">
+        <DiagramNode label="Researchers" sublabel="web browser" className="lg:flex-1" />
         <DiagramLink label="Secure access" mobileLabel="Researchers to Biobank platform · Secure access" />
       </div>
 
-      <div className="md:col-span-3 border border-dashed border-border p-4 md:p-6">
+      <div className="border border-dashed border-border p-4 lg:p-6">
         <p className="eyebrow mb-5">Infrastructure in a GDPR-compliant EU region</p>
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-2 md:gap-x-3 md:gap-y-4 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-2 lg:gap-x-3 lg:gap-y-4 items-center">
           <DiagramNode
             label="Biobank platform"
             sublabel="web app + API"
-            className="md:row-span-2 md:self-stretch"
+            className="lg:row-span-2 lg:self-stretch"
           />
           <DiagramLink
             label="Sample data"

@@ -46,6 +46,10 @@ describe('ocularBiobank case study data', () => {
     expect(text).toContain('mass spectrometry')
   })
 
+  it('names no specific technology', () => {
+    expect(JSON.stringify(ocularBiobank)).not.toMatch(/React|NestJS|PostgreSQL|Postgres|Python|Terraform|Google Cloud|GCP|SQL\b/i)
+  })
+
   it('has the agreed structure', () => {
     expect(ocularBiobank.facts.map((fact) => fact.label)).toEqual(['Client', 'Engagement', 'Delivered', 'Year'])
     expect(ocularBiobank.chapters).toHaveLength(2)
@@ -54,14 +58,6 @@ describe('ocularBiobank case study data', () => {
       'Comparison across groups',
       "A prediction model trained on the clinic's own data",
       'Built for a hospital',
-    ])
-    expect(ocularBiobank.stack).toEqual([
-      'React',
-      'NestJS',
-      'PostgreSQL',
-      'Python model service',
-      'Terraform on Google Cloud',
-      'EU region',
     ])
     expect(ocularBiobank.closingLinkTo).toBe('/contact')
     expect(ocularBiobank.teaser.title).not.toMatch(hospitalPattern)

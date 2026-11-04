@@ -41,7 +41,7 @@ function DiagramLink({ label, mobileLabel }: { label: string; mobileLabel: strin
 }
 
 const TOPOLOGY_DESCRIPTION =
-  'Browser connects to the platform over HTTPS. The platform reads and writes PostgreSQL over SQL. The platform calls the model service server to server; the model service is internal only. PostgreSQL and the model service run inside the EU region, provisioned as infrastructure as code.'
+  'Researchers reach the biobank platform over HTTPS. The platform reads and writes the biobank DB. The platform calls the ML prediction model server to server; the model is internal only. The platform, the DB and the model run on infrastructure in a GDPR-compliant EU region.'
 
 export default function ArchitectureDiagram() {
   return (
@@ -51,25 +51,28 @@ export default function ArchitectureDiagram() {
     >
       <figcaption className="sr-only">{TOPOLOGY_DESCRIPTION}</figcaption>
       <div className="flex flex-col md:flex-row items-stretch md:items-center gap-2">
-        <DiagramNode label="Browser" className="md:flex-1" />
-        <DiagramLink label="HTTPS" mobileLabel="Browser to Platform · HTTPS" />
+        <DiagramNode label="Researchers" sublabel="web browser" className="md:flex-1" />
+        <DiagramLink label="HTTPS" mobileLabel="Researchers to Biobank platform · HTTPS" />
       </div>
 
       <div className="md:col-span-3 border border-dashed border-border p-4 md:p-6">
-        <p className="eyebrow mb-5">EU region · infrastructure as code</p>
+        <p className="eyebrow mb-5">Infrastructure in a GDPR-compliant EU region</p>
         <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-2 md:gap-x-3 md:gap-y-4 items-center">
           <DiagramNode
-            label="Platform"
-            sublabel="API + web app"
+            label="Biobank platform"
+            sublabel="web app + API"
             className="md:row-span-2 md:self-stretch"
           />
-          <DiagramLink label="SQL" mobileLabel="Platform to PostgreSQL · SQL" />
-          <DiagramNode label="PostgreSQL" />
+          <DiagramLink
+            label="reads and writes"
+            mobileLabel="Biobank platform to Biobank DB · reads and writes"
+          />
+          <DiagramNode label="Biobank DB" sublabel="sample records" />
           <DiagramLink
             label="server to server"
-            mobileLabel="Platform to Model service · server to server"
+            mobileLabel="Biobank platform to ML prediction model · server to server"
           />
-          <DiagramNode label="Model service" sublabel="internal only" />
+          <DiagramNode label="ML prediction model" sublabel="internal only" />
         </div>
       </div>
     </figure>

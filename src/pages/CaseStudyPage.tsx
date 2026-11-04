@@ -168,17 +168,6 @@ export default function CaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
           </motion.section>
 
           <motion.section variants={fadeUp} className="mt-24">
-            <p className="eyebrow mb-6">{caseStudy.stackEyebrow}</p>
-            <ul className="flex flex-wrap gap-x-8 gap-y-3">
-              {caseStudy.stack.map((item) => (
-                <li key={item} className="text-text">
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </motion.section>
-
-          <motion.section variants={fadeUp} className="mt-24">
             <p className="display text-[clamp(1.7rem,3.5vw,2.4rem)] leading-[1.05] text-text">
               {caseStudy.closingText}
             </p>

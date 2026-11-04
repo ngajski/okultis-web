@@ -24,32 +24,46 @@ describe('case study page', () => {
     expect(appHtml).toContain('data-logo-tile')
   })
 
-  it('renders every chapter, pillar, the diagram, stack and closing link', () => {
+  it('renders every chapter, pillar, the diagram and closing link', () => {
     const { appHtml } = page()
     for (const chapter of ocularBiobank.chapters) expect(appHtml).toContain(chapter.title)
     for (const pillar of ocularBiobank.pillars) expect(appHtml).toContain(pillar.title.replace("'", '&#x27;'))
     expect(appHtml).toContain('aria-label="System architecture"')
-    for (const item of ocularBiobank.stack) expect(appHtml).toContain(item)
+    expect(appHtml).not.toMatch(/PostgreSQL|NestJS|Terraform|Google Cloud|Python/)
     expect(appHtml).toMatch(/<a[^>]*href="\/contact"[^>]*>.*Open a conversation/)
   })
 
   it('describes the diagram topology for screen readers and mobile', () => {
     const { appHtml } = page()
     const figure = appHtml.slice(appHtml.indexOf('<figure'), appHtml.indexOf('</figure>'))
-    expect(figure).toMatch(/^<figure[^>]*><figcaption class="sr-only">Browser connects to the platform over HTTPS\./)
-    expect(figure).toContain('The platform calls the model service server to server; the model service is internal only.')
+    expect(figure).toContain(
+      '<figcaption class="sr-only">Researchers reach the biobank platform over HTTPS. The platform reads and writes the biobank DB. The platform calls the ML prediction model server to server; the model is internal only. The platform, the DB and the model run on infrastructure in a GDPR-compliant EU region.</figcaption>',
+    )
     for (const caption of [
-      'Browser to Platform · HTTPS',
-      'Platform to PostgreSQL · SQL',
-      'Platform to Model service · server to server',
+      'Researchers to Biobank platform · HTTPS',
+      'Biobank platform to Biobank DB · reads and writes',
+      'Biobank platform to ML prediction model · server to server',
     ]) {
       expect(figure).toContain(`<span class="md:hidden">${caption}</span>`)
     }
-    for (const label of ['HTTPS', 'SQL', 'server to server']) {
+    for (const label of ['HTTPS', 'reads and writes', 'server to server']) {
       expect(figure).toContain(`<span class="hidden md:inline">${label}</span>`)
     }
+    for (const text of [
+      'Researchers',
+      'web browser',
+      'Biobank platform',
+      'web app + API',
+      'Biobank DB',
+      'sample records',
+      'ML prediction model',
+      'internal only',
+      'Infrastructure in a GDPR-compliant EU region',
+    ]) {
+      expect(figure).toContain(`>${text}</`)
+    }
     expect(figure.match(/aria-hidden="true" class="hidden md:inline[^"]*">→</g)).toHaveLength(3)
-    expect(figure).not.toMatch(/Google|Terraform|NestJS|GCP/)
+    expect(figure).not.toMatch(/Google|Terraform|NestJS|GCP|PostgreSQL/)
   })
 
   it('has no image other than the client logo', () => {

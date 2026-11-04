@@ -100,6 +100,7 @@ documentation, so they may be stated. Descriptions of the data stay generic
 | Logo wall | Logo rendering unchanged. Add a link from the KBC SM tile to the case study and a consortium footnote under the wall |
 | Header nav | Unchanged |
 | Footer | Add a "Work" link to `/work/ocular-biobank` under "Site" (my call) |
+| Technology names | None on the page (owner, 2026-11-04). Diagram uses product-level names: Researchers, Biobank platform, Biobank DB, ML prediction model |
 | Metadata | Title "Ocular Biobank · Okultis", description, canonical, Open Graph, schema.org CreativeWork (my call) |
 
 ## Page structure
@@ -132,8 +133,7 @@ Order, top to bottom:
    four blocks in a two-column grid on desktop, single column on mobile.
 7. **Built under constraints.** Short chapter plus a plain architecture
    diagram.
-8. **Stack.** A facts strip in words: React, NestJS, PostgreSQL, Python model
-   service, Terraform on Google Cloud, EU region. No badges or vendor logos.
+8. (removed 2026-11-04, owner decision: no stack strip, no technology names on the page)
 9. **Closing.** "Working on something similar?" with an `ink-link` to
    `/contact`. No sales pitch.
 
@@ -221,14 +221,16 @@ Working on something similar? Open a conversation. (link to `/contact`)
 
 A plain inline SVG or a CSS grid of labelled boxes, drawn in the site's
 tokens (`--color-border`, `--color-text`, `--color-accent`), legible in light
-and dark themes. Boxes: Browser, Platform (API + web app), PostgreSQL,
-Model service (internal only). Arrows: Browser to Platform (HTTPS), Platform
-to PostgreSQL, Platform to Model service (server to server). A dashed frame
-labelled "EU region, infrastructure as code" around everything but the
-browser. No vendor logos, no cloud product names inside the diagram. Keep it
-to one row on desktop, stacked on mobile. The diagram describes our own
-system design, which the contract leaves with Okultis; it must not reproduce
-any diagram from the project's documentation.
+and dark themes. Boxes: Researchers (web browser), Biobank platform (web app
++ API), Biobank DB (sample records), ML prediction model (internal only).
+Arrows: Researchers to Biobank platform (HTTPS), Biobank platform to Biobank
+DB (reads and writes), Biobank platform to ML prediction model (server to
+server). A dashed frame labelled "Infrastructure in a GDPR-compliant EU
+region" around everything but the researchers. No vendor logos, no
+technology or cloud product names inside the diagram. Keep it to one row on
+desktop, stacked on mobile. The diagram describes our own system design,
+which the contract leaves with Okultis; it must not reproduce any diagram
+from the project's documentation.
 
 ## Homepage teaser
 

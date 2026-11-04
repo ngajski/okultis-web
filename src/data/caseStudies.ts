@@ -56,8 +56,6 @@ export interface CaseStudy {
   pillarsIntro: string
   pillars: CaseStudyPillar[]
   constraints: CaseStudyChapter
-  stackEyebrow: string
-  stack: string[]
   closingText: string
   closingLinkLabel: string
   closingLinkTo: string
@@ -129,18 +127,9 @@ export const ocularBiobank: CaseStudy = {
     eyebrow: 'Built under constraints',
     title: 'The constraints shaped the architecture',
     paragraphs: [
-      "An open public tender. A fixed 60-day delivery term. A hospital's security expectations. GDPR, with hosting pinned to the EU. The constraints shaped the architecture rather than slowing it down: one internet-facing service that owns authentication, the database and the audit log; a model service that only the platform can reach; infrastructure that can be rebuilt from code in a new project in an afternoon.",
+      "An open public tender. A fixed 60-day delivery term. A hospital's security expectations. GDPR, with hosting pinned to the EU. The constraints shaped the architecture rather than slowing it down: one internet-facing service that owns authentication, the database and the audit log; an ML prediction model that only the platform can reach; infrastructure that can be rebuilt from code in a new project in an afternoon.",
     ],
   },
-  stackEyebrow: 'Stack',
-  stack: [
-    'React',
-    'NestJS',
-    'PostgreSQL',
-    'Python model service',
-    'Terraform on Google Cloud',
-    'EU region',
-  ],
   closingText: 'Working on something similar?',
   closingLinkLabel: 'Open a conversation',
   closingLinkTo: '/contact',

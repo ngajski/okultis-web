@@ -16,7 +16,7 @@ interface ConsoleStreamProps {
 
 /**
  * Tiny decorative console panel. Types lines in sequence on mount and
- * leaves a blinking caret on the last line. Purely aesthetic — not a
+ * leaves a blinking caret on the last line. Purely aesthetic - not a
  * real terminal and not interactive.
  */
 export default function ConsoleStream({

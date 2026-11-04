@@ -13,7 +13,7 @@ interface SectionFrameProps {
 /**
  * Editorial frame for homepage sections. Minimal: a quiet eyebrow,
  * a display heading, optional subtitle, then content. No hairline rule,
- * no chapter numbers — typography and whitespace carry the rhythm.
+ * no chapter numbers - typography and whitespace carry the rhythm.
  */
 export default function SectionFrame({
   id,

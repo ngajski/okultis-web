@@ -49,7 +49,7 @@ export default function ContactPage() {
   return (
     <>
       <Helmet>
-        <title>Contact -- Okultis</title>
+        <title>Contact · Okultis</title>
         <meta
           name="description"
           content="Get in touch with Okultis. Send us a message and we'll reply within 24 hours."

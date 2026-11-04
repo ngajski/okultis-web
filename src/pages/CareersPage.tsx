@@ -22,7 +22,7 @@ export default function CareersPage() {
   return (
     <>
       <Helmet>
-        <title>Careers -- Okultis</title>
+        <title>Careers · Okultis</title>
         <meta
           name="description"
           content="Join the Okultis team. We are a small, focused software engineering studio building products for ambitious clients."
@@ -55,7 +55,7 @@ export default function CareersPage() {
             className="mt-8 max-w-[52ch] text-text-soft text-[1.05rem] md:text-[1.15rem] leading-[1.6]"
           >
             We hire people who care about the details, ship with intent, and
-            treat craft like a habit -- not a deadline concern. Most of the
+            treat craft as a habit. Most of the
             team touches design, code, and client conversation in the same
             week.
           </motion.p>
@@ -99,8 +99,8 @@ export default function CareersPage() {
                   '5+ years of product management in custom software delivery',
                   "Bachelor's degree in a relevant field",
                   'Hands-on experience working directly with external clients',
-                  'Strong negotiation -- pushing back politely to protect the team',
-                  'Calm under pressure; you manage timelines without passing stress down',
+                  'Strong negotiation skills and the confidence to push back politely to protect the team',
+                  'Calm under pressure, managing timelines without passing stress down',
                 ]}
               />
 
@@ -110,8 +110,8 @@ export default function CareersPage() {
                 </h3>
                 <p className="text-text-soft text-[0.95rem] leading-[1.7] max-w-[48ch]">
                   We are always interested in talented people. Send us your
-                  story -- what you build, what you want to build next, and
-                  what a good day at work looks like to you.
+                  story, including what you build, what you want to build next,
+                  and what a good day at work looks like to you.
                 </p>
               </div>
             </div>
@@ -164,7 +164,7 @@ function Position({
                 key={b}
                 className="flex items-baseline gap-3 text-[0.92rem] text-text leading-[1.65]"
               >
-                <span className="text-accent shrink-0">—</span>
+                <span className="text-accent shrink-0">-</span>
                 <span>{b}</span>
               </li>
             ))}
@@ -178,7 +178,7 @@ function Position({
                 key={r}
                 className="flex items-baseline gap-3 text-[0.92rem] text-text leading-[1.65]"
               >
-                <span className="text-accent shrink-0">—</span>
+                <span className="text-accent shrink-0">-</span>
                 <span>{r}</span>
               </li>
             ))}

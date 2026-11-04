@@ -52,7 +52,7 @@ export default function CaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
     description: meta.description,
     url: meta.canonical,
     author: { '@type': 'Organization', name: 'Okultis', url: 'https://okultis.com' },
-    datePublished: '2026-11-03',
+    datePublished: meta.datePublished,
   }
 
   return (
@@ -68,6 +68,10 @@ export default function CaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
         <meta property="og:url" content={meta.canonical} />
         <meta property="og:site_name" content="Okultis" />
         <meta property="og:image" content={OG_IMAGE_URL} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={meta.title} />
+        <meta name="twitter:description" content={meta.description} />
+        <meta name="twitter:image" content={OG_IMAGE_URL} />
         <script type="application/ld+json">{JSON.stringify(creativeWorkSchema)}</script>
       </Helmet>
 
@@ -103,7 +107,13 @@ export default function CaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
                 data-logo-tile
                 className="inline-flex items-center rounded-md bg-[#f3efe6] px-5 py-4"
               >
-                <img src={client.logo} alt={client.logoAlt} className="h-16 w-auto" />
+                <img
+                  src={client.logo}
+                  alt={client.logoAlt}
+                  width={197}
+                  height={64}
+                  className="h-16 w-auto"
+                />
               </div>
             </motion.div>
           )}

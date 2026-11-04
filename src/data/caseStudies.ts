@@ -32,6 +32,7 @@ export interface CaseStudyMeta {
   title: string
   description: string
   canonical: string
+  datePublished: string
 }
 
 export interface CaseStudyTeaser {
@@ -161,5 +162,6 @@ export const ocularBiobank: CaseStudy = {
     description:
       'How Okultis built a research data platform and disease prediction model for an eye clinic: biobank, group comparison, GDPR-first EU hosting.',
     canonical: 'https://okultis.com/work/ocular-biobank',
+    datePublished: '2026-11-04',
   },
 }

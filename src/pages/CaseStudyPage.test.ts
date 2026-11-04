@@ -18,6 +18,8 @@ describe('case study page', () => {
     const img = appHtml.match(/<img[^>]*alt="KBC Sestre milosrdnice"[^>]*>/)?.[0] ?? ''
     expect(img).not.toBe('')
     expect(img).toMatch(/class="[^"]*\bh-16\b[^"]*\bw-auto\b/)
+    expect(img).toContain('width="197"')
+    expect(img).toContain('height="64"')
     expect(img).not.toMatch(/grayscale|invert|brightness/)
     expect(appHtml).toContain('data-logo-tile')
   })
@@ -63,5 +65,8 @@ describe('case study page', () => {
     expect(html).toContain('href="https://okultis.com/work/ocular-biobank"')
     expect(html).toContain('property="og:type" content="article"')
     expect(html).toContain('"@type":"CreativeWork"')
+    expect(html).toContain('"datePublished":"2026-11-04"')
+    expect(html).toContain('name="twitter:card" content="summary_large_image"')
+    expect(html).toContain(`name="twitter:title" content="${ocularBiobank.meta.title}"`)
   })
 })

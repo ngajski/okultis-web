@@ -9,6 +9,7 @@ describe('ocularBiobank case study data', () => {
     expect(ocularBiobank.path).toBe('/work/ocular-biobank')
     expect(ocularBiobank.meta.canonical).toBe('https://okultis.com/work/ocular-biobank')
     expect(ocularBiobank.meta.title).toBe('Ocular Biobank · Okultis')
+    expect(ocularBiobank.meta.datePublished).toBe('2026-11-04')
   })
 
   it('names the hospital only in the facts row and the reference block', () => {

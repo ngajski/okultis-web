@@ -6,6 +6,7 @@ import mbAutoskola from '@/assets/images/clients/mb_autoskola.png'
 import zmda from '@/assets/images/clients/zmda.png'
 import posluzIme from '@/assets/images/clients/posluzi.me.png'
 import kbcsm from '@/assets/images/clients/kbcsm.svg'
+import { ocularBiobank } from '@/data/caseStudies'
 
 export interface Client {
   src: string
@@ -13,6 +14,7 @@ export interface Client {
   sector: string
   invertOnLight?: boolean
   className?: string
+  href?: string
 }
 
 export const clients: Client[] = [
@@ -23,6 +25,7 @@ export const clients: Client[] = [
     name: 'KBC Sestre milosrdnice',
     sector: 'Healthcare',
     className: 'h-16 sm:h-20 md:h-24',
+    href: ocularBiobank.path,
   },
   { src: auroraMedia, name: 'Aurora Media', sector: 'Media', invertOnLight: true },
   { src: posluzIme, name: 'posluzi.me', sector: 'Hospitality', invertOnLight: true },

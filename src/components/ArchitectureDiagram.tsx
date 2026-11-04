@@ -24,15 +24,24 @@ function DiagramNode({
   )
 }
 
-function DiagramLink({ label }: { label: string }) {
+function DiagramLink({ label, mobileLabel }: { label: string; mobileLabel: string }) {
   return (
     <div className="flex items-center justify-center gap-2 py-1 md:py-0">
       <span aria-hidden className="hidden md:block h-px w-3 bg-border" />
-      <span className="mono text-[0.7rem] text-text-muted whitespace-nowrap">{label}</span>
+      <span className="mono text-[0.7rem] text-text-muted text-center md:whitespace-nowrap">
+        <span className="md:hidden">{mobileLabel}</span>
+        <span className="hidden md:inline">{label}</span>
+      </span>
       <span aria-hidden className="hidden md:block h-px w-3 bg-border" />
+      <span aria-hidden className="hidden md:inline mono text-[0.7rem] text-text-muted">
+        →
+      </span>
     </div>
   )
 }
+
+const TOPOLOGY_DESCRIPTION =
+  'Browser connects to the platform over HTTPS. The platform reads and writes PostgreSQL over SQL. The platform calls the model service server to server; the model service is internal only. PostgreSQL and the model service run inside the EU region, provisioned as infrastructure as code.'
 
 export default function ArchitectureDiagram() {
   return (
@@ -40,9 +49,10 @@ export default function ArchitectureDiagram() {
       aria-label="System architecture"
       className="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-4 items-center"
     >
+      <figcaption className="sr-only">{TOPOLOGY_DESCRIPTION}</figcaption>
       <div className="flex flex-col md:flex-row items-stretch md:items-center gap-2">
         <DiagramNode label="Browser" className="md:flex-1" />
-        <DiagramLink label="HTTPS" />
+        <DiagramLink label="HTTPS" mobileLabel="Browser to Platform · HTTPS" />
       </div>
 
       <div className="md:col-span-3 border border-dashed border-border p-4 md:p-6">
@@ -53,9 +63,12 @@ export default function ArchitectureDiagram() {
             sublabel="API + web app"
             className="md:row-span-2 md:self-stretch"
           />
-          <DiagramLink label="SQL" />
+          <DiagramLink label="SQL" mobileLabel="Platform to PostgreSQL · SQL" />
           <DiagramNode label="PostgreSQL" />
-          <DiagramLink label="server to server" />
+          <DiagramLink
+            label="server to server"
+            mobileLabel="Platform to Model service · server to server"
+          />
           <DiagramNode label="Model service" sublabel="internal only" />
         </div>
       </div>

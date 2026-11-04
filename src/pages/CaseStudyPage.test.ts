@@ -31,6 +31,25 @@ describe('case study page', () => {
     expect(appHtml).toMatch(/<a[^>]*href="\/contact"[^>]*>.*Open a conversation/)
   })
 
+  it('describes the diagram topology for screen readers and mobile', () => {
+    const { appHtml } = page()
+    const figure = appHtml.slice(appHtml.indexOf('<figure'), appHtml.indexOf('</figure>'))
+    expect(figure).toMatch(/^<figure[^>]*><figcaption class="sr-only">Browser connects to the platform over HTTPS\./)
+    expect(figure).toContain('The platform calls the model service server to server; the model service is internal only.')
+    for (const caption of [
+      'Browser to Platform · HTTPS',
+      'Platform to PostgreSQL · SQL',
+      'Platform to Model service · server to server',
+    ]) {
+      expect(figure).toContain(`<span class="md:hidden">${caption}</span>`)
+    }
+    for (const label of ['HTTPS', 'SQL', 'server to server']) {
+      expect(figure).toContain(`<span class="hidden md:inline">${label}</span>`)
+    }
+    expect(figure.match(/aria-hidden="true" class="hidden md:inline[^"]*">→</g)).toHaveLength(3)
+    expect(figure).not.toMatch(/Google|Terraform|NestJS|GCP/)
+  })
+
   it('has no image other than the client logo', () => {
     const { appHtml } = page()
     const mainHtml = appHtml.slice(appHtml.indexOf('<main'), appHtml.indexOf('</main>'))

@@ -234,8 +234,8 @@ from the project's documentation.
 
 ## Homepage teaser
 
-New section component `SelectedWorkSection`, placed after `ServicesSection`
-and before `ProcessSection` in `HomePage.tsx`. Compact: `py` smaller than
+New section component `SelectedWorkSection`, placed after `ClientsSection`
+and before `AboutSection` in `HomePage.tsx`. Compact: `py` smaller than
 `SectionFrame`'s, eyebrow "Selected work", one display line "Ocular Biobank:
 a research data platform and prediction model for an eye clinic.", and an
 `ink-link` "Read the case study" to `/work/ocular-biobank`. The client is

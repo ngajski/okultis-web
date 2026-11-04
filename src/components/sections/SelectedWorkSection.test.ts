@@ -17,6 +17,15 @@ describe('homepage selected work teaser', () => {
     expect(section).not.toMatch(/KBC|Sestre milosrdnice/)
   })
 
+  it('keeps the teaser link as wide as its text on phones', () => {
+    const { appHtml } = render('/')
+    const work = appHtml.indexOf('id="work"')
+    const section = appHtml.slice(work, appHtml.indexOf('id="about"'))
+    const anchor = section.match(/<a[^>]*href="\/work\/ocular-biobank"[^>]*>/)
+    expect(anchor).not.toBeNull()
+    expect(anchor![0]).toContain('justify-self-start')
+  })
+
   it('links to the case study from the footer', () => {
     const { appHtml } = render('/careers')
     const footer = appHtml.slice(appHtml.indexOf('<footer'))

@@ -22,7 +22,7 @@ export default function SelectedWorkSection() {
             <h2 className="display text-[clamp(1.6rem,3vw,2.2rem)] leading-[1.15] max-w-[560px] text-text">
               {teaser.title}
             </h2>
-            <Link to={path} className="ink-link text-text">
+            <Link to={path} className="ink-link text-text justify-self-start">
               <span>{teaser.linkLabel}</span>
               <span aria-hidden>→</span>
             </Link>

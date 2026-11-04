@@ -37,8 +37,9 @@ describe('case study page', () => {
     const { appHtml } = page()
     const figure = appHtml.slice(appHtml.indexOf('<figure'), appHtml.indexOf('</figure>'))
     expect(figure).toContain(
-      '<figcaption class="sr-only">Researchers reach the biobank platform over HTTPS. The platform reads and writes the biobank DB. The platform calls the ML prediction model server to server; the model is internal only. The platform, the DB and the model run on infrastructure in a GDPR-compliant EU region.</figcaption>',
+      '<figcaption class="sr-only">Researchers reach the biobank platform over HTTPS. The platform reads and writes the biobank DB. The platform calls the ML prediction model server to server, and the model is internal only. The platform, the DB and the model run on infrastructure in a GDPR-compliant EU region.</figcaption>',
     )
+    expect(figure.match(/<figcaption[^>]*>(.*?)<\/figcaption>/)?.[1]).not.toContain(';')
     for (const caption of [
       'Researchers to Biobank platform · HTTPS',
       'Biobank platform to Biobank DB · reads and writes',

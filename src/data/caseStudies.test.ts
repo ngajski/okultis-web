@@ -46,6 +46,13 @@ describe('ocularBiobank case study data', () => {
     expect(text).toContain('mass spectrometry')
   })
 
+  it('uses plain copy without semicolons', () => {
+    const text = JSON.stringify(ocularBiobank)
+    expect(text).not.toContain(';')
+    expect(text).not.toContain('biomarker profiles')
+    expect(text).not.toContain('afternoon')
+  })
+
   it('names no specific technology', () => {
     expect(JSON.stringify(ocularBiobank)).not.toMatch(/React|NestJS|PostgreSQL|Postgres|Python|Terraform|Google Cloud|GCP|SQL\b/i)
   })
@@ -54,9 +61,9 @@ describe('ocularBiobank case study data', () => {
     expect(ocularBiobank.facts.map((fact) => fact.label)).toEqual(['Client', 'Engagement', 'Delivered', 'Year'])
     expect(ocularBiobank.chapters).toHaveLength(2)
     expect(ocularBiobank.pillars.map((pillar) => pillar.title)).toEqual([
-      'A biobank you can ask questions of',
-      'Comparison across groups',
-      "A prediction model trained on the clinic's own data",
+      'A searchable biobank',
+      'Comparing groups',
+      "A prediction model trained on the clinic's data",
       'Built for a hospital',
     ])
     expect(ocularBiobank.closingLinkTo).toBe('/contact')

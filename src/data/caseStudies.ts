@@ -74,7 +74,7 @@ export const ocularBiobank: CaseStudy = {
   title: "Turning a clinic's sample archive into a",
   titleItalic: 'research instrument.',
   standfirst:
-    'An eye clinic had years of samples and the clinical history behind each one. We built the platform that turns that collection into searchable data, comparable groups and a prediction model trained on it.',
+    'An eye clinic had years of samples and the clinical history behind each one. We built a platform that lets its researchers search that data, compare patient groups and run a prediction model trained on it.',
   facts: [
     { label: 'Client', value: 'KBC Sestre milosrdnice, Eye Clinic' },
     { label: 'Engagement', value: 'Public tender, fixed scope' },
@@ -86,48 +86,48 @@ export const ocularBiobank: CaseStudy = {
       eyebrow: 'The starting point',
       title: 'A collection worth building on',
       paragraphs: [
-        "The clinic had built something rare: a collection of eye fluid and serum samples from patients with glaucoma, PEX syndrome, diabetic retinopathy and macular degeneration, each sample paired with the patient's full clinical picture: diagnoses and stages, other conditions, medications, surgeries. The samples had been analysed with Raman spectroscopy and mass spectrometry. Years of careful work, and a real foundation for research into biomarkers and early diagnosis.",
-        'The research questions that collection could answer were bigger than the tools around it. The clinical records lived in wide spreadsheet exports, a column for every clinical field. Spectra came as one file per measurement. Each new study began with the same preparation, done by hand, before a single comparison could be run. Group comparisons and prediction were the goal, and they needed a platform under them.',
+        "The clinic spent years collecting eye fluid and serum samples from patients with glaucoma, PEX syndrome, diabetic retinopathy and macular degeneration. Each sample comes with the patient's clinical history, including diagnoses and stages, other conditions, medications and surgeries. The samples were analysed with Raman spectroscopy and mass spectrometry. That makes the collection a strong base for research into biomarkers and early diagnosis.",
+        'The clinical records came as spreadsheet exports with a column for every field, and the spectra came as one file per measurement. Every new study started with the same manual cleanup. To compare patient groups or try prediction, the researchers needed a proper platform behind the data.',
       ],
     },
     {
       eyebrow: 'What we did with the data',
       title: 'Prepared once, on import',
       paragraphs: [
-        'We turned those exports into a single structured database. The importer reads the clinical workbooks directly, unpivots the wide tables into a normalised schema, resolves duplicates, and tells "absent" apart from "not measured" so counts and comparisons are honest. Spectra and mass spectrometry results are linked to the same patient record. From then on the preparation happens once, on import, and every question after that starts from clean data.',
+        'We moved those exports into one database. The importer reads the clinical spreadsheets directly, turns the very wide tables into a clean structure and removes duplicates. It also keeps "absent" and "not measured" apart, so the counts stay correct. Spectra and mass spectrometry results are linked to the same patient. The cleanup now happens once, during import, and every study after that starts with clean data.',
       ],
     },
   ],
   pillarsEyebrow: 'What we built',
-  pillarsTitle: 'A research platform in three layers',
-  pillarsIntro: 'Ocular Biobank is a research platform in three layers, built for the people who run a hospital.',
+  pillarsTitle: 'What the platform does',
+  pillarsIntro: 'Ocular Biobank has three main parts, and all of them were built with hospital rules in mind.',
   pillars: [
     {
-      title: 'A biobank you can ask questions of',
+      title: 'A searchable biobank',
       description:
-        "Every patient record carries their diagnoses and stages, other conditions, medications and surgeries, linked to their Raman spectra and mass spectrometry results. Researchers filter by disease, stage, treatment or any combination, open a patient's full profile, and export exactly the cohort they need. Import handles the clinic's own spreadsheet exports and spectra files, so new data flows in without a developer in the loop.",
+        "Each patient record holds diagnoses and stages, other conditions, medications and surgeries, along with the Raman spectra and mass spectrometry results. Researchers can filter by disease, stage or treatment, open a patient's full profile and export the group they need. They can also import new spreadsheets and spectra files themselves, without asking a developer.",
     },
     {
-      title: 'Comparison across groups',
+      title: 'Comparing groups',
       description:
-        'Pick two cohorts, say a disease group and controls, or two stages of the same disease, and compare their spectral and biomarker profiles side by side. What used to be a one-off preparation for each study is now a query.',
+        'Researchers pick two groups, such as a disease group and a control group, or two stages of the same disease, and compare their spectra side by side. The preparation that each comparison used to need is already done.',
     },
     {
-      title: "A prediction model trained on the clinic's own data",
+      title: "A prediction model trained on the clinic's data",
       description:
-        "Using the spectra in the biobank, we trained models that score a patient's measurements against the leading eye diseases. The model runs as an internal service behind the platform: a researcher uploads spectra, gets a prediction per disease, and sees which model produced it. As the biobank grows, the model can be retrained on the larger set.",
+        "We trained models on the spectra in the biobank to score a patient's measurements against the leading eye diseases. A researcher uploads spectra and gets a prediction for each disease, along with the model that produced it. The model can be retrained as the biobank grows.",
     },
     {
       title: 'Built for a hospital',
       description:
-        'Role-based access for researchers, supervisors and administrators. Every access and change is audit-logged. Data stays in the EU, encrypted, on infrastructure defined as code. GDPR was a design input, not a checklist at the end.',
+        'Researchers, supervisors and administrators each get their own level of access. Every access and change is recorded in an audit log. The data is encrypted and stays in the EU, and we designed for GDPR from the start.',
     },
   ],
   constraints: {
     eyebrow: 'Built under constraints',
-    title: 'The constraints shaped the architecture',
+    title: 'What shaped the architecture',
     paragraphs: [
-      "An open public tender. A fixed 60-day delivery term. A hospital's security expectations. GDPR, with hosting pinned to the EU. The constraints shaped the architecture rather than slowing it down: one internet-facing service that owns authentication, the database and the audit log; an ML prediction model that only the platform can reach; infrastructure that can be rebuilt from code in a new project in an afternoon.",
+      'This was an open public tender with a fixed 60-day delivery term, for a hospital with strict security expectations. GDPR meant hosting in the EU. Those limits shaped the design. One service faces the internet and handles login, the database and the audit log. The ML prediction model can only be reached through the platform. All the infrastructure is defined in code, so it can be rebuilt when needed.',
     ],
   },
   closingText: 'Working on something similar?',
@@ -149,7 +149,7 @@ export const ocularBiobank: CaseStudy = {
   meta: {
     title: 'Ocular Biobank · Okultis',
     description:
-      'How Okultis built a research data platform and disease prediction model for an eye clinic: biobank, group comparison, GDPR-first EU hosting.',
+      'How Okultis built a research data platform and disease prediction model for an eye clinic, with group comparison and GDPR-compliant EU hosting.',
     canonical: 'https://okultis.com/work/ocular-biobank',
     datePublished: '2026-11-04',
   },

@@ -41,7 +41,7 @@ function DiagramLink({ label, mobileLabel }: { label: string; mobileLabel: strin
 }
 
 const TOPOLOGY_DESCRIPTION =
-  'Researchers reach the biobank platform over HTTPS. The platform reads and writes the biobank DB. The platform calls the ML prediction model server to server; the model is internal only. The platform, the DB and the model run on infrastructure in a GDPR-compliant EU region.'
+  'Researchers reach the biobank platform over HTTPS. The platform reads and writes the biobank DB. The platform calls the ML prediction model server to server, and the model is internal only. The platform, the DB and the model run on infrastructure in a GDPR-compliant EU region.'
 
 export default function ArchitectureDiagram() {
   return (

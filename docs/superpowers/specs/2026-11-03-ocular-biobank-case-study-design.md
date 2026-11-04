@@ -139,6 +139,8 @@ Order, top to bottom:
 
 ## Copy (approved drafts)
 
+Superseded on 2026-11-04 by the plainer copy in src/data/caseStudies.ts, which is now the source of truth.
+
 The owner approved the drafts below in conversation. The builder may tighten
 sentences but must keep meaning, tone and every constraint above. Headings
 are suggestions.

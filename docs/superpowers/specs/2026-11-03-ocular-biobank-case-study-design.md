@@ -225,9 +225,9 @@ A plain inline SVG or a CSS grid of labelled boxes, drawn in the site's
 tokens (`--color-border`, `--color-text`, `--color-accent`), legible in light
 and dark themes. Boxes: Researchers (web browser), Biobank platform (web app
 + API), Biobank DB (sample records), ML prediction model (internal only).
-Arrows: Researchers to Biobank platform (HTTPS), Biobank platform to Biobank
-DB (reads and writes), Biobank platform to ML prediction model (server to
-server). A dashed frame labelled "Infrastructure in a GDPR-compliant EU
+Arrows: Researchers to Biobank platform (Secure access), Biobank platform to
+Biobank DB (Sample data), Biobank platform to ML prediction model (Spectra and
+predictions). A dashed frame labelled "Infrastructure in a GDPR-compliant EU
 region" around everything but the researchers. No vendor logos, no
 technology or cloud product names inside the diagram. Keep it to one row on
 desktop, stacked on mobile. The diagram describes our own system design,

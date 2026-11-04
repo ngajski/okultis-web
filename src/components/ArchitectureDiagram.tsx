@@ -41,7 +41,7 @@ function DiagramLink({ label, mobileLabel }: { label: string; mobileLabel: strin
 }
 
 const TOPOLOGY_DESCRIPTION =
-  'Researchers reach the biobank platform over HTTPS. The platform reads and writes the biobank DB. The platform calls the ML prediction model server to server, and the model is internal only. The platform, the DB and the model run on infrastructure in a GDPR-compliant EU region.'
+  'Researchers get secure access to the biobank platform. The platform stores sample data in the biobank DB. It sends spectra to the ML prediction model and gets predictions back, and the model is internal only. The platform, the DB and the model run on infrastructure in a GDPR-compliant EU region.'
 
 export default function ArchitectureDiagram() {
   return (
@@ -52,7 +52,7 @@ export default function ArchitectureDiagram() {
       <figcaption className="sr-only">{TOPOLOGY_DESCRIPTION}</figcaption>
       <div className="flex flex-col md:flex-row items-stretch md:items-center gap-2">
         <DiagramNode label="Researchers" sublabel="web browser" className="md:flex-1" />
-        <DiagramLink label="HTTPS" mobileLabel="Researchers to Biobank platform · HTTPS" />
+        <DiagramLink label="Secure access" mobileLabel="Researchers to Biobank platform · Secure access" />
       </div>
 
       <div className="md:col-span-3 border border-dashed border-border p-4 md:p-6">
@@ -64,13 +64,13 @@ export default function ArchitectureDiagram() {
             className="md:row-span-2 md:self-stretch"
           />
           <DiagramLink
-            label="reads and writes"
-            mobileLabel="Biobank platform to Biobank DB · reads and writes"
+            label="Sample data"
+            mobileLabel="Biobank platform to Biobank DB · Sample data"
           />
           <DiagramNode label="Biobank DB" sublabel="sample records" />
           <DiagramLink
-            label="server to server"
-            mobileLabel="Biobank platform to ML prediction model · server to server"
+            label="Spectra and predictions"
+            mobileLabel="Biobank platform to ML prediction model · Spectra and predictions"
           />
           <DiagramNode label="ML prediction model" sublabel="internal only" />
         </div>

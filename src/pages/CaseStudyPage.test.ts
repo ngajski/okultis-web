@@ -37,17 +37,17 @@ describe('case study page', () => {
     const { appHtml } = page()
     const figure = appHtml.slice(appHtml.indexOf('<figure'), appHtml.indexOf('</figure>'))
     expect(figure).toContain(
-      '<figcaption class="sr-only">Researchers reach the biobank platform over HTTPS. The platform reads and writes the biobank DB. The platform calls the ML prediction model server to server, and the model is internal only. The platform, the DB and the model run on infrastructure in a GDPR-compliant EU region.</figcaption>',
+      '<figcaption class="sr-only">Researchers get secure access to the biobank platform. The platform stores sample data in the biobank DB. It sends spectra to the ML prediction model and gets predictions back, and the model is internal only. The platform, the DB and the model run on infrastructure in a GDPR-compliant EU region.</figcaption>',
     )
     expect(figure.match(/<figcaption[^>]*>(.*?)<\/figcaption>/)?.[1]).not.toContain(';')
     for (const caption of [
-      'Researchers to Biobank platform · HTTPS',
-      'Biobank platform to Biobank DB · reads and writes',
-      'Biobank platform to ML prediction model · server to server',
+      'Researchers to Biobank platform · Secure access',
+      'Biobank platform to Biobank DB · Sample data',
+      'Biobank platform to ML prediction model · Spectra and predictions',
     ]) {
       expect(figure).toContain(`<span class="md:hidden">${caption}</span>`)
     }
-    for (const label of ['HTTPS', 'reads and writes', 'server to server']) {
+    for (const label of ['Secure access', 'Sample data', 'Spectra and predictions']) {
       expect(figure).toContain(`<span class="hidden md:inline">${label}</span>`)
     }
     for (const text of [
@@ -65,6 +65,9 @@ describe('case study page', () => {
     }
     expect(figure.match(/aria-hidden="true" class="hidden md:inline[^"]*">→</g)).toHaveLength(3)
     expect(figure).not.toMatch(/Google|Terraform|NestJS|GCP|PostgreSQL/)
+    expect(figure).not.toContain('HTTPS')
+    expect(appHtml).not.toContain('reads and writes')
+    expect(appHtml).not.toContain('server to server')
   })
 
   it('has no image other than the client logo', () => {

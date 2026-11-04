@@ -8,7 +8,7 @@ const hasKbcEntry = clients.some((client) => /KBC/.test(client.name))
 const clientsSection = () => {
   const { appHtml } = render('/')
   const start = appHtml.indexOf('id="clients"')
-  return appHtml.slice(start, appHtml.indexOf('id="about"', start))
+  return appHtml.slice(start, appHtml.indexOf('id="work"', start))
 }
 
 describe('clients logo wall', () => {

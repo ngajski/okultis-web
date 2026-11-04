@@ -134,9 +134,9 @@ export default function HomePage() {
 
       <HeroSection />
       <ClientsSection />
+      <SelectedWorkSection />
       <AboutSection />
       <ServicesSection />
-      <SelectedWorkSection />
       <ProcessSection />
       <EngagementsSection />
       <ContactFormSection />

@@ -22,6 +22,12 @@ export interface CaseStudyClient {
   logoAlt: string
 }
 
+export interface CaseStudyReference {
+  client: CaseStudyClient
+  consortiumLine: string
+  logoWallFootnote: string
+}
+
 export interface CaseStudyMeta {
   title: string
   description: string
@@ -43,8 +49,6 @@ export interface CaseStudy {
   titleItalic: string
   standfirst: string
   facts: CaseStudyFact[]
-  consortiumLine?: string
-  client?: CaseStudyClient
   chapters: CaseStudyChapter[]
   pillarsEyebrow: string
   pillarsTitle: string
@@ -57,7 +61,7 @@ export interface CaseStudy {
   closingLinkLabel: string
   closingLinkTo: string
   teaser: CaseStudyTeaser
-  logoWallFootnote?: string
+  reference?: CaseStudyReference
   meta: CaseStudyMeta
 }
 
@@ -78,9 +82,6 @@ export const ocularBiobank: CaseStudy = {
     { label: 'Delivered', value: 'Platform, prediction model, documentation, EU hosting' },
     { label: 'Year', value: '2026' },
   ],
-  consortiumLine:
-    'Delivered under contract N-215/2026 by the consortium of Okultis d.o.o. and Alpha Signal Analytics d.o.o.',
-  client: { name: 'KBC Sestre milosrdnice', logo: kbcsm, logoAlt: 'KBC Sestre milosrdnice' },
   chapters: [
     {
       eyebrow: 'The starting point',
@@ -147,8 +148,14 @@ export const ocularBiobank: CaseStudy = {
     title: 'Ocular Biobank: a research data platform and prediction model for an eye clinic.',
     linkLabel: 'Read the case study',
   },
-  logoWallFootnote:
-    'KBC Sestre milosrdnice: contract N-215/2026 concluded with the consortium of Okultis d.o.o. and Alpha Signal Analytics d.o.o.',
+  // Consent revocation: delete this block and the kbcsm import above (spec: Revocation path)
+  reference: {
+    client: { name: 'KBC Sestre milosrdnice', logo: kbcsm, logoAlt: 'KBC Sestre milosrdnice' },
+    consortiumLine:
+      'Delivered under contract N-215/2026 by the consortium of Okultis d.o.o. and Alpha Signal Analytics d.o.o.',
+    logoWallFootnote:
+      'KBC Sestre milosrdnice: contract N-215/2026 concluded with the consortium of Okultis d.o.o. and Alpha Signal Analytics d.o.o.',
+  },
   meta: {
     title: 'Ocular Biobank · Okultis',
     description:

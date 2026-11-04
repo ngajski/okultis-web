@@ -1,6 +1,9 @@
 import { describe, expect, it } from 'vitest'
 import { render } from '@/entry-server'
 import { forbiddenEndorsementPattern } from '@/data/caseStudies'
+import { clients } from '@/data/clients'
+
+const hasKbcEntry = clients.some((client) => /KBC/.test(client.name))
 
 const clientsSection = () => {
   const { appHtml } = render('/')
@@ -15,22 +18,29 @@ describe('clients logo wall', () => {
     expect(section).not.toMatch(forbiddenEndorsementPattern)
   })
 
-  it('links the KBC SM tile to the case study with one focus stop', () => {
+  it.skipIf(!hasKbcEntry)('links the KBC SM tile to the case study with one focus stop', () => {
     const section = clientsSection()
     const links = section.match(/<a[^>]*href="\/work\/ocular-biobank"[^>]*>/g) ?? []
     expect(links).toHaveLength(2)
     expect(links[0]).not.toContain('tabindex="-1"')
     expect(links[1]).toContain('tabindex="-1"')
     expect(section).toContain('Case study')
-    expect(section.match(/aria-hidden="true"/g)?.length ?? 0).toBeGreaterThanOrEqual(1)
+    const firstLink = section.indexOf('href="/work/ocular-biobank"')
+    const secondLink = section.indexOf('href="/work/ocular-biobank"', firstLink + 1)
+    const betweenLinks = section.slice(firstLink, secondLink)
+    expect(betweenLinks).toContain('<div class="flex shrink-0" aria-hidden="true">')
   })
 
-  it('keeps the logo rendering unchanged and adds the consortium footnote', () => {
+  it('keeps the logo rendering unchanged and shows the footnote only with the KBC entry', () => {
     const section = clientsSection()
-    const img = section.match(/<img[^>]*alt="KBC Sestre milosrdnice"[^>]*>/)?.[0] ?? ''
-    expect(img).toContain('grayscale')
-    expect(section).toContain(
-      'KBC Sestre milosrdnice: contract N-215/2026 concluded with the consortium of Okultis d.o.o. and Alpha Signal Analytics d.o.o.',
-    )
+    const footnote =
+      'KBC Sestre milosrdnice: contract N-215/2026 concluded with the consortium of Okultis d.o.o. and Alpha Signal Analytics d.o.o.'
+    if (hasKbcEntry) {
+      const img = section.match(/<img[^>]*alt="KBC Sestre milosrdnice"[^>]*>/)?.[0] ?? ''
+      expect(img).toContain('grayscale')
+      expect(section).toContain(footnote)
+    } else {
+      expect(section).not.toMatch(/KBC|Sestre milosrdnice/)
+    }
   })
 })

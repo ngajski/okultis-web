@@ -42,7 +42,8 @@ function ChapterContent({ chapter }: { chapter: CaseStudyChapter }) {
 }
 
 export default function CaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
-  const { meta, client } = caseStudy
+  const { meta, reference } = caseStudy
+  const client = reference?.client
 
   const creativeWorkSchema = {
     '@context': 'https://schema.org',
@@ -119,9 +120,9 @@ export default function CaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
             ))}
           </motion.dl>
 
-          {caseStudy.consortiumLine && (
+          {reference?.consortiumLine && (
             <motion.p variants={fadeUp} className="text-[0.85rem] text-text-muted mt-6">
-              {caseStudy.consortiumLine}
+              {reference.consortiumLine}
             </motion.p>
           )}
 

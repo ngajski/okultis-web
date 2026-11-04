@@ -1,7 +1,7 @@
 # Ocular Biobank case study - design
 
 Date: 2026-11-03
-Status: builder check done, awaiting owner approval
+Status: approved, implemented on feat/ocular-biobank-case-study
 
 ## Intent
 
@@ -90,7 +90,7 @@ documentation, so they may be stated. Descriptions of the data stay generic
 | Shape | Dedicated page plus homepage teaser (option B of three mocked) |
 | Route | `/work/ocular-biobank` |
 | Product name on the page | "Ocular Biobank" |
-| Client naming | Once in the facts row at the top, once in the consortium line. Nowhere else by name |
+| Client naming | Once in the facts row at the top, plus the logo (its alt text), the logo wall tile and its footnote. The consortium line names the contract and the consortium, not the client. Nowhere else by name |
 | Story framing | Positive, solution-side. Three pillars: biobank, group comparison, prediction model. Plus a "built for a hospital" block |
 | Before-state facts (owner) | Data was in Excel, no database; the researcher cleaned data by hand; prediction was not possible; group comparison was not possible; records included other diseases and medications |
 | What we did with data (owner) | Duplicate removal; unpivoting very wide tables into a normalised schema |
@@ -262,20 +262,29 @@ not named in the teaser. Uses `useScrollFadeIn` like the other sections.
 
 - `src/data/caseStudies.ts`: a `CaseStudy` interface and a single exported
   `ocularBiobank` object holding every string on the page: slug, name,
-  eyebrow, title, standfirst, facts, consortium line, chapters, pillars,
-  stack, metadata (title, description, Open Graph), the client block
-  (`name`, `logo` import, `logoAlt`) and the logo wall footnote string.
+  eyebrow, title, standfirst, facts, chapters, pillars, stack, metadata
+  (title, description, Open Graph), and one optional `reference` block that
+  groups everything consent-dependent: the client (`name`, `logo` import,
+  `logoAlt`), the consortium line and the logo wall footnote string.
 - `src/data/clients.ts` keeps the KBC SM tile entry as today, plus the new
   `href`. It does not derive from `caseStudies.ts`; the two files are
   independent on purpose so the wall never depends on the page.
 
 ### Revocation path
 
-Two edits, no component changes: remove the KBC SM entry from `clients.ts`
-(the tile disappears entirely), and in `caseStudies.ts` remove the client
-block, the consortium line and the footnote string, and reword the facts
-row "Client" item to "A university eye clinic". The page stays live under
-its product name.
+Block deletions in the two data files, no component changes:
+
+- `caseStudies.ts`: delete the `reference` block and the `kbcsm` import, and
+  reword the facts row "Client" value to "A university eye clinic".
+- `clients.ts`: delete the KBC SM entry and the `kbcsm` import (the tile
+  disappears entirely).
+
+Both spots carry a one-line "Consent revocation" comment. The page stays live
+under its product name. The tests are written to stay green after these
+edits: assertions about the hospital, its logo, the consortium line and the
+footnote are skipped or inverted when the `reference` block or the KBC SM
+entry is absent, and `CaseStudyPage.revocation.test.ts` renders the page in
+its revoked state.
 - `src/pages/CaseStudyPage.tsx`: renders a `CaseStudy`. Today it is wired to
   `ocularBiobank` directly; a slug lookup can come when there is a second
   case study. Route `work/ocular-biobank` in `AppRoutes.tsx`.

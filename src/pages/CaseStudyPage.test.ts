@@ -10,10 +10,10 @@ describe('case study page', () => {
     expect(appHtml).toMatch(/<h1[^>]*>.*Turning a clinic&#x27;s sample archive into a/)
     expect(appHtml).toContain('research instrument.')
     for (const fact of ocularBiobank.facts) expect(appHtml).toContain(fact.value)
-    expect(appHtml).toContain('Delivered under contract N-215/2026 by the consortium of Okultis d.o.o. and Alpha Signal Analytics d.o.o.')
+    if (ocularBiobank.reference) expect(appHtml).toContain(ocularBiobank.reference.consortiumLine)
   })
 
-  it('shows the client logo untouched on a neutral tile', () => {
+  it.skipIf(!ocularBiobank.reference)('shows the client logo untouched on a neutral tile', () => {
     const { appHtml } = page()
     const img = appHtml.match(/<img[^>]*alt="KBC Sestre milosrdnice"[^>]*>/)?.[0] ?? ''
     expect(img).not.toBe('')
@@ -31,10 +31,10 @@ describe('case study page', () => {
     expect(appHtml).toMatch(/<a[^>]*href="\/contact"[^>]*>.*Open a conversation/)
   })
 
-  it('has only the client logo as an image', () => {
+  it('has no image other than the client logo', () => {
     const { appHtml } = page()
     const mainHtml = appHtml.slice(appHtml.indexOf('<main'), appHtml.indexOf('</main>'))
-    expect(mainHtml.match(/<img/g)).toHaveLength(1)
+    expect(mainHtml.match(/<img/g) ?? []).toHaveLength(ocularBiobank.reference ? 1 : 0)
   })
 
   it('emits title, description and canonical in the head', () => {

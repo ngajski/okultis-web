@@ -6,7 +6,6 @@ import mbAutoskola from '@/assets/images/clients/mb_autoskola.png'
 import zmda from '@/assets/images/clients/zmda.png'
 import posluzIme from '@/assets/images/clients/posluzi.me.png'
 import kbcsm from '@/assets/images/clients/kbcsm.svg'
-import { ocularBiobank } from '@/data/caseStudies'
 
 export interface Client {
   src: string
@@ -20,12 +19,13 @@ export interface Client {
 export const clients: Client[] = [
   { src: greenSolutions, name: 'GreenSolutions', sector: 'Gardening' },
   { src: zmda, name: 'Zavičajni muzej Daruvar', sector: 'Culture', invertOnLight: true },
+  // Consent revocation: delete this entry and the kbcsm import above (spec: Revocation path)
   {
     src: kbcsm,
     name: 'KBC Sestre milosrdnice',
     sector: 'Healthcare',
     className: 'h-16 sm:h-20 md:h-24',
-    href: ocularBiobank.path,
+    href: '/work/ocular-biobank',
   },
   { src: auroraMedia, name: 'Aurora Media', sector: 'Media', invertOnLight: true },
   { src: posluzIme, name: 'posluzi.me', sector: 'Hospitality', invertOnLight: true },

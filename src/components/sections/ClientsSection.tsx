@@ -107,9 +107,9 @@ export default function ClientsSection() {
         />
       </div>
 
-      {ocularBiobank.logoWallFootnote && (
+      {ocularBiobank.reference?.logoWallFootnote && (
         <div className="max-w-[1120px] mx-auto px-6 md:px-10 mt-6">
-          <p className="text-[0.8rem] text-text-muted">{ocularBiobank.logoWallFootnote}</p>
+          <p className="text-[0.8rem] text-text-muted">{ocularBiobank.reference.logoWallFootnote}</p>
         </div>
       )}
     </section>

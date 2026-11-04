@@ -24,6 +24,7 @@ export default function Footer() {
               <li><a href="/#about" className="text-[0.95rem] text-text-soft hover:text-text transition-colors">Studio</a></li>
               <li><a href="/#services" className="text-[0.95rem] text-text-soft hover:text-text transition-colors">Practice</a></li>
               <li><a href="/#clients" className="text-[0.95rem] text-text-soft hover:text-text transition-colors">Clients</a></li>
+              <li><Link to="/work/ocular-biobank" className="text-[0.95rem] text-text-soft hover:text-text transition-colors">Work</Link></li>
               <li><Link to="/careers" className="text-[0.95rem] text-text-soft hover:text-text transition-colors">Careers</Link></li>
               <li><Link to="/contact" className="text-[0.95rem] text-text-soft hover:text-text transition-colors">Contact</Link></li>
             </ul>

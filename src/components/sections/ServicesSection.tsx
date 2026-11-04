@@ -11,7 +11,7 @@ export default function ServicesSection() {
   return (
     <SectionFrame
       id="services"
-      label="Practice"
+      label="Services"
       title={
         <>
           What we do{' '}

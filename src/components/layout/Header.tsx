@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { ocularBiobank } from '@/data/caseStudies'
 import { useScrollSpy } from '@/hooks/useScrollSpy'
 import { useTheme } from '@/hooks/useTheme'
 import EclipseToggle from '@/components/EclipseToggle'
 import logoDark from '@/assets/images/logo/okultis.png'
 import logoLight from '@/assets/images/logo/okultis-logo-white.png'
 
-const NAV_SECTION_IDS = ['hero', 'clients', 'about', 'services']
+const NAV_SECTION_IDS = ['hero', 'about', 'services']
 
 interface NavItem {
   label: string
@@ -15,17 +16,16 @@ interface NavItem {
 }
 
 const HOME_NAV_ITEMS: NavItem[] = [
-  { label: 'Clients', href: '#clients', sectionId: 'clients' },
-  { label: 'Studio', href: '#about', sectionId: 'about' },
-  { label: 'Practice', href: '#services', sectionId: 'services' },
+  { label: 'Work', href: ocularBiobank.path },
+  { label: 'Services', href: '#services', sectionId: 'services' },
+  { label: 'About', href: '#about', sectionId: 'about' },
   { label: 'Careers', href: '/careers' },
 ]
 
 const EXTERNAL_NAV_ITEMS: NavItem[] = [
-  { label: 'Home', href: '/' },
-  { label: 'Clients', href: '/#clients' },
-  { label: 'Studio', href: '/#about' },
-  { label: 'Practice', href: '/#services' },
+  { label: 'Work', href: ocularBiobank.path },
+  { label: 'Services', href: '/#services' },
+  { label: 'About', href: '/#about' },
   { label: 'Careers', href: '/careers' },
 ]
 

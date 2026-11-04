@@ -23,3 +23,22 @@ describe('homepage selected work teaser', () => {
     expect(footer).toMatch(/<a[^>]*href="\/work\/ocular-biobank"[^>]*>Work<\/a>/)
   })
 })
+
+describe('renamed navigation labels', () => {
+  it('labels the footer links About and Services', () => {
+    const { appHtml } = render('/')
+    const footer = appHtml.slice(appHtml.indexOf('<footer'))
+    expect(footer).toContain('>About<')
+    expect(footer).toContain('>Services<')
+    expect(footer).not.toMatch(/<a [^>]*>Studio</)
+    expect(footer).not.toContain('>Practice<')
+  })
+
+  it('labels the homepage services section Services', () => {
+    const { appHtml } = render('/')
+    const start = appHtml.indexOf('id="services"')
+    const section = appHtml.slice(start, appHtml.indexOf('id="work"', start))
+    expect(section).toContain('>Services<')
+    expect(section).not.toContain('Practice')
+  })
+})

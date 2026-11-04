@@ -80,7 +80,7 @@ export default function CareersPage() {
           {/* Positions + application */}
           <motion.div
             variants={fadeUp}
-            className="mt-24 grid grid-cols-12 gap-10 md:gap-16 items-start"
+            className="mt-24 grid grid-cols-12 gap-x-0 gap-y-10 md:gap-16 items-start"
           >
             <div className="col-span-12 md:col-span-7">
               <p className="eyebrow mb-10">Open positions</p>

@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <footer className="relative pt-24 pb-10">
       <div className="w-full max-w-[1120px] mx-auto px-6 md:px-10">
-        <div className="grid grid-cols-12 gap-8 md:gap-10 pb-16 border-b border-border-soft">
+        <div className="grid grid-cols-12 gap-x-3 gap-y-8 md:gap-10 pb-16 border-b border-border-soft">
           <div className="col-span-12 md:col-span-5">
             <img src={logoDark} alt="Okultis" className="h-9 w-auto mb-5 dark:hidden" />
             <img src={logoLight} alt="Okultis" className="h-9 w-auto mb-5 hidden dark:block" />

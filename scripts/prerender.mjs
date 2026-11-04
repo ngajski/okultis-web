@@ -2,7 +2,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
 
-const routes = ['/', '/contact', '/careers', '/privacy-policy', '/terms']
+const routes = ['/', '/contact', '/careers', '/work/ocular-biobank', '/privacy-policy', '/terms']
 const rootDir = process.cwd()
 const distDir = path.resolve(rootDir, 'dist')
 const templatePath = path.resolve(distDir, 'index.html')

@@ -6,6 +6,8 @@ import CareersPage from '@/pages/CareersPage'
 import PrivacyPolicyPage from '@/pages/PrivacyPolicyPage'
 import TermsPage from '@/pages/TermsPage'
 import NotFoundPage from '@/pages/NotFoundPage'
+import CaseStudyPage from '@/pages/CaseStudyPage'
+import { ocularBiobank } from '@/data/caseStudies'
 
 export default function AppRoutes() {
   return (
@@ -16,6 +18,7 @@ export default function AppRoutes() {
         <Route path="careers" element={<CareersPage />} />
         <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="terms" element={<TermsPage />} />
+        <Route path="work/ocular-biobank" element={<CaseStudyPage caseStudy={ocularBiobank} />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

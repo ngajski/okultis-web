@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <footer className="relative pt-24 pb-10">
       <div className="w-full max-w-[1120px] mx-auto px-6 md:px-10">
-        <div className="grid grid-cols-12 gap-8 md:gap-10 pb-16 border-b border-border-soft">
+        <div className="grid grid-cols-12 gap-x-3 gap-y-8 md:gap-10 pb-16 border-b border-border-soft">
           <div className="col-span-12 md:col-span-5">
             <img src={logoDark} alt="Okultis" className="h-9 w-auto mb-5 dark:hidden" />
             <img src={logoLight} alt="Okultis" className="h-9 w-auto mb-5 hidden dark:block" />
@@ -21,9 +21,10 @@ export default function Footer() {
           <div className="col-span-6 md:col-span-3">
             <p className="eyebrow mb-5">Site</p>
             <ul className="space-y-3">
-              <li><a href="/#about" className="text-[0.95rem] text-text-soft hover:text-text transition-colors">Studio</a></li>
-              <li><a href="/#services" className="text-[0.95rem] text-text-soft hover:text-text transition-colors">Practice</a></li>
+              <li><a href="/#about" className="text-[0.95rem] text-text-soft hover:text-text transition-colors">About</a></li>
+              <li><a href="/#services" className="text-[0.95rem] text-text-soft hover:text-text transition-colors">Services</a></li>
               <li><a href="/#clients" className="text-[0.95rem] text-text-soft hover:text-text transition-colors">Clients</a></li>
+              <li><Link to="/work/ocular-biobank" className="text-[0.95rem] text-text-soft hover:text-text transition-colors">Work</Link></li>
               <li><Link to="/careers" className="text-[0.95rem] text-text-soft hover:text-text transition-colors">Careers</Link></li>
               <li><Link to="/contact" className="text-[0.95rem] text-text-soft hover:text-text transition-colors">Contact</Link></li>
             </ul>

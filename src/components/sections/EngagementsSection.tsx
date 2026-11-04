@@ -29,7 +29,7 @@ export default function EngagementsSection() {
                   key={item}
                   className="flex items-baseline gap-3 text-[0.92rem] text-text"
                 >
-                  <span className="text-accent shrink-0">—</span>
+                  <span className="text-accent shrink-0">-</span>
                   <span>{item}</span>
                 </li>
               ))}

@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import HeroSection from "@/components/sections/HeroSection";
 import AboutSection from "@/components/sections/AboutSection";
 import ServicesSection from "@/components/sections/ServicesSection";
+import SelectedWorkSection from "@/components/sections/SelectedWorkSection";
 import ProcessSection from "@/components/sections/ProcessSection";
 import EngagementsSection from "@/components/sections/EngagementsSection";
 import ClientsSection from "@/components/sections/ClientsSection";
@@ -133,6 +134,7 @@ export default function HomePage() {
 
       <HeroSection />
       <ClientsSection />
+      <SelectedWorkSection />
       <AboutSection />
       <ServicesSection />
       <ProcessSection />

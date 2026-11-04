@@ -13,16 +13,19 @@ export interface Client {
   sector: string
   invertOnLight?: boolean
   className?: string
+  href?: string
 }
 
 export const clients: Client[] = [
   { src: greenSolutions, name: 'GreenSolutions', sector: 'Gardening' },
   { src: zmda, name: 'Zavičajni muzej Daruvar', sector: 'Culture', invertOnLight: true },
+  // Consent revocation: delete this entry and the kbcsm import above (spec: Revocation path)
   {
     src: kbcsm,
     name: 'KBC Sestre milosrdnice',
     sector: 'Healthcare',
     className: 'h-16 sm:h-20 md:h-24',
+    href: '/work/ocular-biobank',
   },
   { src: auroraMedia, name: 'Aurora Media', sector: 'Media', invertOnLight: true },
   { src: posluzIme, name: 'posluzi.me', sector: 'Hospitality', invertOnLight: true },

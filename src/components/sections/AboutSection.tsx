@@ -12,7 +12,7 @@ export default function AboutSection() {
         </>
       }
     >
-      <div className="grid grid-cols-12 gap-10 md:gap-16">
+      <div className="grid grid-cols-12 gap-x-0 gap-y-10 md:gap-16">
         <div className="col-span-12 md:col-span-8">
           <p className="dropcap text-text text-[1.2rem] md:text-[1.35rem] leading-[1.55] mb-8">
             Okultis is a boutique studio working with startups and

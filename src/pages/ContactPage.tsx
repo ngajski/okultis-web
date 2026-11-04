@@ -49,7 +49,7 @@ export default function ContactPage() {
   return (
     <>
       <Helmet>
-        <title>Contact -- Okultis</title>
+        <title>Contact · Okultis</title>
         <meta
           name="description"
           content="Get in touch with Okultis. Send us a message and we'll reply within 24 hours."
@@ -91,7 +91,7 @@ export default function ContactPage() {
 
           <motion.div
             variants={fadeUp}
-            className="mt-20 md:mt-24 grid grid-cols-12 gap-10 md:gap-16 items-start"
+            className="mt-20 md:mt-24 grid grid-cols-12 gap-x-0 gap-y-10 md:gap-16 items-start"
           >
             <div className="col-span-12 md:col-span-7">
               <ContactForm />

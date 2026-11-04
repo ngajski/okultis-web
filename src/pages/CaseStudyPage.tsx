@@ -110,9 +110,9 @@ export default function CaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
                 <img
                   src={client.logo}
                   alt={client.logoAlt}
-                  width={197}
-                  height={64}
-                  className="h-16 w-auto"
+                  width={296}
+                  height={96}
+                  className="h-20 md:h-24 w-auto"
                 />
               </div>
             </motion.div>

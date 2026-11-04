@@ -17,9 +17,9 @@ describe('case study page', () => {
     const { appHtml } = page()
     const img = appHtml.match(/<img[^>]*alt="KBC Sestre milosrdnice"[^>]*>/)?.[0] ?? ''
     expect(img).not.toBe('')
-    expect(img).toMatch(/class="[^"]*\bh-16\b[^"]*\bw-auto\b/)
-    expect(img).toContain('width="197"')
-    expect(img).toContain('height="64"')
+    expect(img).toMatch(/class="[^"]*\bh-20\b[^"]*\bmd:h-24\b[^"]*\bw-auto\b/)
+    expect(img).toContain('width="296"')
+    expect(img).toContain('height="96"')
     expect(img).not.toMatch(/grayscale|invert|brightness/)
     expect(appHtml).toContain('data-logo-tile')
   })
